@@ -1,36 +1,26 @@
-letters = "qwertyuiopasdfghjklmnbvcxzQWERTYUIOPLKJHGFDSAZXCVBNM"
-digits = "0123456789"
-symbol = ";:,[](){}+-*=<"
-whitespace = "\n\r\t\v\f "
-slash = "/"
-all_valid = letters + digits + symbol + whitespace + slash
-keywords = ["if", "else", "void", "int", "repeat", "break", "until", "return"]
-NUM = "NUM"
-ID = "ID"
-KEYWORD = "KEYWORD"
-KEYWORD_ID = "KEYWORD_ID"
-SYMBOL = "SYMBOL"
-COMMENT = "COMMENT"
-WHITESPACE = "WHITESPACE"
-START = "START"
-TOKEN_TYPES = [NUM, ID, KEYWORD, KEYWORD_ID, SYMBOL, COMMENT, WHITESPACE, START]
-
-states = {}
-
-all_characters = "".join([chr(i) for i in range(256)])
+from constants import *
 
 
 class State:
+    states = {}
+
     def __init__(self, id, token_type=START, is_accept_state=False, is_retreat=False):
         self.id = id
         self.transitions = {}
         self.token_type = token_type
         self.is_accept_state = is_accept_state
         self.is_retreat = is_retreat
-        states[id] = self
+        State.states[id] = self
 
     def add_transition(self, dest_state, character):
         self.transitions[character] = dest_state
+
+    def get_next_state(self, character):
+        return self.transitions[character]
+
+
+def add_eof_transition(src_state: State, dest_state: State):
+    src_state.transitions[''] = dest_state
 
 
 def add_transitions(src_state: State, dest_state: State, character_lists, negate=False):
@@ -54,6 +44,7 @@ def initialize_keyword_states(start_state):
     add_transitions(start_state, state_1, [letters])
     add_transitions(state_1, state_1, [letters, digits])
     add_transitions(state_1, state_2, [letters, digits], negate=True)
+    add_eof_transition(state_1, state_2)
 
 
 def initialize_num_states(start_state):
@@ -63,6 +54,7 @@ def initialize_num_states(start_state):
     add_transitions(start_state, state_3, [digits])
     add_transitions(state_3, state_3, [digits])
     add_transitions(state_3, state_4, [digits], negate=True)
+    add_eof_transition(state_3, state_4)
 
 
 def initialize_symbol_states(start_state):
@@ -91,6 +83,7 @@ def initialize_comment_states(start_state):
     add_transitions(state_10, state_11, ['/'])
     add_transitions(state_11, state_11, [all_characters.replace('\n', "")])
     add_transitions(state_11, state_12, ['\n'])
+    add_eof_transition(state_11, state_12)
     add_transitions(state_10, state_13, ['*'])
     add_transitions(state_13, state_13, [all_characters.replace('*', "")])
     add_transitions(state_13, state_14, ['*'])
@@ -111,9 +104,3 @@ def initialize_states():
     initialize_symbol_states(start_state)
     initialize_comment_states(start_state)
     initialize_whitespace_states(start_state)
-    pass
-
-
-initialize_states()
-
-print(states)
