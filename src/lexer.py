@@ -39,7 +39,6 @@ class Lexer:
             if not must_continue:
                 if not curr_state == states.State.states[0]:
                     return self.panic_mode(curr_state, lexeme, must_continue, start_line, is_tof)
-                    # return start_line, 'panic', lexeme, must_continue
                 break
 
         if curr_state.is_retreat and not is_tof:
@@ -75,3 +74,4 @@ class Lexer:
             if lexeme in keywords:
                 return KEYWORD
             return ID
+

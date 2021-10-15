@@ -1,6 +1,7 @@
 import states
-from BufferedReader import *
 from lexer import Lexer
+from lexer_output_generator import *
+from lexer_file_writer import *
 
 if __name__ == '__main__':
     states.initialize_states()
@@ -9,7 +10,6 @@ if __name__ == '__main__':
     all_tokens = {}
 
     while True:
-
         token = lexer.get_next_token()
         if (token[0] not in all_tokens.keys()):
             all_tokens[token[0]] = []
@@ -18,5 +18,11 @@ if __name__ == '__main__':
         all_tokens[token[0]].append((token_type, token_lexeme))
         if not token[3]:
             break
+
+    tokens, lexical_errors, symbol_table = LexerOutputGenerator.generate_final_outputs(all_tokens)
+    writer = LexerFileWriter(tokens=tokens, lexical_errors=lexical_errors, symbol_table=symbol_table)
+    writer.write_token_file()
+    writer.write_lexical_errors_file()
+    writer.write_symbol_table_file()
 
     print(all_tokens)

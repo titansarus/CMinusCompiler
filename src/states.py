@@ -53,7 +53,7 @@ def initialize_num_states(start_state):
 
     add_transitions(start_state, state_3, [digits])
     add_transitions(state_3, state_3, [digits])
-    add_transitions(state_3, state_4, [digits], negate=True)
+    add_transitions(state_3, state_4, [digits , letters], negate=True)
     add_eof_transition(state_3, state_4)
 
 
