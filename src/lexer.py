@@ -18,7 +18,7 @@ class Lexer:
         curr_state: states.State = states.State.states[0]
         lexeme = ""
         start_line = self.curr_lineno + 1
-        is_tof = False
+        is_tof = False # TODO change this
 
         while True:
             character, must_continue = self.reader.next_char()
