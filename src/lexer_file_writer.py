@@ -18,8 +18,11 @@ class LexerFileWriter():
     def write_lexical_errors_file(self):
         output_string = ""
         with open(self.lexical_error_filename, 'w') as f:
-            for k in sorted(self.lexical_errors.keys()):
-                output_string += f"{k}.\t{self.lexical_errors[k]}\n"
+            if self.lexical_errors:
+                for k in sorted(self.lexical_errors.keys()):
+                    output_string += f"{k}.\t{self.lexical_errors[k]}\n"
+            else:
+                output_string = "There is no lexical error."
             f.write(output_string)
 
     def write_symbol_table_file(self):

@@ -18,7 +18,7 @@ class Lexer:
         curr_state: states.State = states.State.states[0]
         lexeme = ""
         start_line = self.curr_lineno + 1
-        is_tof = False # TODO change this
+        is_tof = False  # TODO change this
 
         while True:
             character, must_continue = self.reader.next_char()
@@ -64,6 +64,8 @@ class Lexer:
         if curr_state.token_type == SYMBOL:
             if lexeme.startswith('*/'):
                 panic_state = PANIC_UNMATCHED_COMMENT
+        if lexeme[-1] in whitespace:
+            lexeme = lexeme[:-1]
         return self.final_return(curr_state, is_tof, lexeme, must_continue, start_line, panic_state)
 
     @staticmethod
@@ -74,4 +76,3 @@ class Lexer:
             if lexeme in keywords:
                 return KEYWORD
             return ID
-

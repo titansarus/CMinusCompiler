@@ -11,7 +11,7 @@ if __name__ == '__main__':
 
     while True:
         token = lexer.get_next_token()
-        if (token[0] not in all_tokens.keys()):
+        if token[0] not in all_tokens.keys():
             all_tokens[token[0]] = []
         token_type = token[1]
         token_lexeme = token[2]
@@ -24,5 +24,3 @@ if __name__ == '__main__':
     writer.write_token_file()
     writer.write_lexical_errors_file()
     writer.write_symbol_table_file()
-
-    print(all_tokens)

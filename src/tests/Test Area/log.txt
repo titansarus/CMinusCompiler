@@ -1,0 +1,576 @@
+
+
+
+
+
+=====================================>>>>> Running Test ../PA1_input_output_samples/T01...
+
+
+              *** tokens.txt diffrences ***
+1.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 						1.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 																
+2.	(KEYWORD, int) (ID, a) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 								2.	(KEYWORD, int) (ID, a) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 																
+4.	(ID, a) (SYMBOL, =) (NUM, 2) (SYMBOL, +) (NUM, 2) (SYMBOL, ;) 								4.	(ID, a) (SYMBOL, =) (NUM, 2) (SYMBOL, +) (NUM, 2) (SYMBOL, ;) 																
+5.	(ID, a) (SYMBOL, =) (ID, a) (SYMBOL, -) (NUM, 3) (SYMBOL, ;) 								5.	(ID, a) (SYMBOL, =) (ID, a) (SYMBOL, -) (NUM, 3) (SYMBOL, ;) 																
+6.	(ID, cde) (SYMBOL, =) (ID, a) (SYMBOL, ;) 										6.	(ID, cde) (SYMBOL, =) (ID, a) (SYMBOL, ;) 																
+7.	(KEYWORD, if) (SYMBOL, () (ID, b) (SYMBOL, ==) (SYMBOL, )) (SYMBOL, {) 							7.	(KEYWORD, if) (SYMBOL, () (ID, b) (SYMBOL, ==) (SYMBOL, )) (SYMBOL, {) 																
+8.	(ID, a) (SYMBOL, =) (NUM, 3) (SYMBOL, ;) 										8.	(ID, a) (SYMBOL, =) (NUM, 3) (SYMBOL, ;) 																
+9.	(ID, e) (SYMBOL, =) (NUM, 7) (SYMBOL, ;) 										9.	(ID, e) (SYMBOL, =) (NUM, 7) (SYMBOL, ;) 																
+10.	(SYMBOL, }) 														10.	(SYMBOL, }) 																
+11.	(KEYWORD, else) 													11.	(KEYWORD, else) 																
+12.	(SYMBOL, {) 														12.	(SYMBOL, {) 																
+13.	(ID, b) (SYMBOL, =) (ID, a) (SYMBOL, <) (ID, cde) (SYMBOL, ;) 								13.	(ID, b) (SYMBOL, =) (ID, a) (SYMBOL, <) (ID, cde) (SYMBOL, ;) 																
+14.	(SYMBOL, {) (ID, cde) (SYMBOL, =) (NUM, 2) (SYMBOL, ;) 									14.	(SYMBOL, {) (ID, cde) (SYMBOL, =) (NUM, 2) (SYMBOL, ;) 																
+15.	(SYMBOL, }) (SYMBOL, }) 												15.	(SYMBOL, }) (SYMBOL, }) 																
+16.	(KEYWORD, return) (SYMBOL, ;) 												16.	(KEYWORD, return) (SYMBOL, ;) 																
+Files ./tokens.txt and ../PA1_input_output_samples/T01/tokens.txt are identical
+
+
+              *** lexical_errors.txt diffrences ***
+7.	(3d, Invalid number) 													7.	(3d, Invalid number) 																
+9.	(cd!, Invalid input) 													9.	(cd!, Invalid input) 																
+11.	(*/, Unmatched comment) 												11.	(*/, Unmatched comment) 																
+14.	(@, Invalid input) 													14.	(@, Invalid input) 																
+16.	(/* comm..., Unclosed comment) 												16.	(/* comm..., Unclosed comment) 																
+Files ./lexical_errors.txt and ../PA1_input_output_samples/T01/lexical_errors.txt are identical
+
+
+              *** symbol_table.txt diffrences ***
+1.	if															1.	if																
+2.	else															2.	else																
+3.	void															3.	void																
+4.	int															4.	int																
+5.	repeat															5.	repeat																
+6.	break															6.	break																
+7.	until															7.	until																
+8.	return															8.	return																
+9.	main															9.	main																
+10.	a															10.	a																
+11.	cde															11.	cde																
+12.	b															12.	b																
+13.	e															13.	e																
+Files ./symbol_table.txt and ../PA1_input_output_samples/T01/symbol_table.txt are identical
+
+
+
+
+=====================================>>>>> Running Test ../PA1_input_output_samples/T02...
+
+
+              *** tokens.txt diffrences ***
+2.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 						2.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 																
+3.	(KEYWORD, int) (ID, prod) (SYMBOL, ;) 											3.	(KEYWORD, int) (ID, prod) (SYMBOL, ;) 																
+4.	(KEYWORD, int) (ID, i) (SYMBOL, ;) 											4.	(KEYWORD, int) (ID, i) (SYMBOL, ;) 																
+5.	(ID, prod) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 										5.	(ID, prod) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 																
+6.	(ID, i) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 										6.	(ID, i) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 																
+7.	(KEYWORD, repeat) (SYMBOL, {) 												7.	(KEYWORD, repeat) (SYMBOL, {) 																
+8.	(ID, prod) (SYMBOL, =) (ID, i) (SYMBOL, *) (ID, prod) (SYMBOL, ;) 							8.	(ID, prod) (SYMBOL, =) (ID, i) (SYMBOL, *) (ID, prod) (SYMBOL, ;) 																
+9.	(ID, i) (SYMBOL, =) (ID, i) (SYMBOL, +) (NUM, 2) (SYMBOL, ;) 								9.	(ID, i) (SYMBOL, =) (ID, i) (SYMBOL, +) (NUM, 2) (SYMBOL, ;) 																
+10.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (ID, i) (SYMBOL, <) (NUM, 7) (SYMBOL, )) 					10.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (ID, i) (SYMBOL, <) (NUM, 7) (SYMBOL, )) 																
+11.	(ID, output) (SYMBOL, () (ID, prod) (SYMBOL, )) (SYMBOL, ;) 								11.	(ID, output) (SYMBOL, () (ID, prod) (SYMBOL, )) (SYMBOL, ;) 																
+12.	(KEYWORD, return) (SYMBOL, ;) 												12.	(KEYWORD, return) (SYMBOL, ;) 																
+15.	(SYMBOL, }) 														15.	(SYMBOL, }) 																
+Files ./tokens.txt and ../PA1_input_output_samples/T02/tokens.txt are identical
+
+
+              *** lexical_errors.txt diffrences ***
+There is no lexical error.													There is no lexical error.Files ./lexical_errors.txt and ../PA1_input_output_samples/T02/lexical_errors.txt are identical
+
+
+              *** symbol_table.txt diffrences ***
+1.	if															1.	if																
+2.	else															2.	else																
+3.	void															3.	void																
+4.	int															4.	int																
+5.	repeat															5.	repeat																
+6.	break															6.	break																
+7.	until															7.	until																
+8.	return															8.	return																
+9.	main															9.	main																
+10.	prod															10.	prod																
+11.	i															11.	i																
+12.	output															12.	output																
+Files ./symbol_table.txt and ../PA1_input_output_samples/T02/symbol_table.txt are identical
+
+
+
+
+=====================================>>>>> Running Test ../PA1_input_output_samples/T03...
+
+
+              *** tokens.txt diffrences ***
+1.	(KEYWORD, int) (ID, f) (SYMBOL, () (KEYWORD, int) (ID, n) (SYMBOL, )) (SYMBOL, {) 					1.	(KEYWORD, int) (ID, f) (SYMBOL, () (KEYWORD, int) (ID, n) (SYMBOL, )) (SYMBOL, {) 																
+2.	(KEYWORD, return) (ID, n) (SYMBOL, *) (ID, n) (SYMBOL, *) (ID, n) (SYMBOL, ;) 						2.	(KEYWORD, return) (ID, n) (SYMBOL, *) (ID, n) (SYMBOL, *) (ID, n) (SYMBOL, ;) 																
+3.	(SYMBOL, }) 														3.	(SYMBOL, }) 																
+5.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 						5.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 																
+6.	(KEYWORD, int) (ID, a) (SYMBOL, ;) (KEYWORD, int) (ID, b) (SYMBOL, ;) (KEYWORD, int) (ID, c) (SYMBOL, ;) 		6.	(KEYWORD, int) (ID, a) (SYMBOL, ;) (KEYWORD, int) (ID, b) (SYMBOL, ;) (KEYWORD, int) (ID, c) (SYMBOL, ;) 																
+7.	(KEYWORD, int) (ID, num) (SYMBOL, ;) (KEYWORD, int) (ID, cha) (SYMBOL, ;) (KEYWORD, int) (ID, t) (SYMBOL, ;) 		7.	(KEYWORD, int) (ID, num) (SYMBOL, ;) (KEYWORD, int) (ID, cha) (SYMBOL, ;) (KEYWORD, int) (ID, t) (SYMBOL, ;) 																
+8.	(KEYWORD, int) (ID, ans) (SYMBOL, ;) 											8.	(KEYWORD, int) (ID, ans) (SYMBOL, ;) 																
+9.	(ID, a) (SYMBOL, =) (NUM, 98) (SYMBOL, ;) 										9.	(ID, a) (SYMBOL, =) (NUM, 98) (SYMBOL, ;) 																
+10.	(ID, b) (SYMBOL, =) (NUM, 2) (SYMBOL, ;) 										10.	(ID, b) (SYMBOL, =) (NUM, 2) (SYMBOL, ;) 																
+11.	(ID, c) (SYMBOL, =) (NUM, 6) (SYMBOL, ;) 										11.	(ID, c) (SYMBOL, =) (NUM, 6) (SYMBOL, ;) 																
+12.	(ID, num) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 										12.	(ID, num) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 																
+13.	(ID, cha) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 										13.	(ID, cha) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 																
+14.	(ID, t) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 										14.	(ID, t) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 																
+16.	(KEYWORD, repeat) (SYMBOL, {) 												16.	(KEYWORD, repeat) (SYMBOL, {) 																
+17.	(ID, t) (SYMBOL, =) (ID, t) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 								17.	(ID, t) (SYMBOL, =) (ID, t) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 																
+18.	(ID, num) (SYMBOL, =) (ID, num) (SYMBOL, +) (ID, cha) (SYMBOL, ;) 							18.	(ID, num) (SYMBOL, =) (ID, num) (SYMBOL, +) (ID, cha) (SYMBOL, ;) 																
+19.	(KEYWORD, if) (SYMBOL, () (ID, t) (SYMBOL, <) (NUM, 5) (SYMBOL, )) (SYMBOL, {) 						19.	(KEYWORD, if) (SYMBOL, () (ID, t) (SYMBOL, <) (NUM, 5) (SYMBOL, )) (SYMBOL, {) 																
+20.	(ID, cha) (SYMBOL, =) (ID, cha) (SYMBOL, *) (ID, b) (SYMBOL, ;) 							20.	(ID, cha) (SYMBOL, =) (ID, cha) (SYMBOL, *) (ID, b) (SYMBOL, ;) 																
+21.	(SYMBOL, }) (KEYWORD, else) (SYMBOL, {) 										21.	(SYMBOL, }) (KEYWORD, else) (SYMBOL, {) 																
+22.	(ID, cha) (SYMBOL, =) (ID, cha) (SYMBOL, +) (ID, c) (SYMBOL, ;) 							22.	(ID, cha) (SYMBOL, =) (ID, cha) (SYMBOL, +) (ID, c) (SYMBOL, ;) 																
+23.	(SYMBOL, }) 														23.	(SYMBOL, }) 																
+24.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (ID, num) (SYMBOL, <) (ID, a) (SYMBOL, )) 					24.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (ID, num) (SYMBOL, <) (ID, a) (SYMBOL, )) 																
+26.	(ID, ans) (SYMBOL, =) (ID, f) (SYMBOL, () (ID, t) (SYMBOL, )) (SYMBOL, ;) 						26.	(ID, ans) (SYMBOL, =) (ID, f) (SYMBOL, () (ID, t) (SYMBOL, )) (SYMBOL, ;) 																
+27.	(KEYWORD, break) (SYMBOL, ;) 												27.	(KEYWORD, break) (SYMBOL, ;) 																
+28.	(SYMBOL, }) 														28.	(SYMBOL, }) 																
+Files ./tokens.txt and ../PA1_input_output_samples/T03/tokens.txt are identical
+
+
+              *** lexical_errors.txt diffrences ***
+There is no lexical error.													There is no lexical error.Files ./lexical_errors.txt and ../PA1_input_output_samples/T03/lexical_errors.txt are identical
+
+
+              *** symbol_table.txt diffrences ***
+1.	if															1.	if																
+2.	else															2.	else																
+3.	void															3.	void																
+4.	int															4.	int																
+5.	repeat															5.	repeat																
+6.	break															6.	break																
+7.	until															7.	until																
+8.	return															8.	return																
+9.	f															9.	f																
+10.	n															10.	n																
+11.	main															11.	main																
+12.	a															12.	a																
+13.	b															13.	b																
+14.	c															14.	c																
+15.	num															15.	num																
+16.	cha															16.	cha																
+17.	t															17.	t																
+18.	ans															18.	ans																
+Files ./symbol_table.txt and ../PA1_input_output_samples/T03/symbol_table.txt are identical
+
+
+
+
+=====================================>>>>> Running Test ../PA1_input_output_samples/T04...
+
+
+              *** tokens.txt diffrences ***
+1.	(KEYWORD, int) (ID, min) (SYMBOL, () (ID, voi) (SYMBOL, )) (SYMBOL, {) 							1.	(KEYWORD, int) (ID, min) (SYMBOL, () (ID, voi) (SYMBOL, )) (SYMBOL, {) 																
+2.	(KEYWORD, repeat) (SYMBOL, {) 												2.	(KEYWORD, repeat) (SYMBOL, {) 																
+3.	(ID, x) (SYMBOL, =) (ID, pple) (SYMBOL, ;) 										3.	(ID, x) (SYMBOL, =) (ID, pple) (SYMBOL, ;) 																
+4.	(ID, mk3) (SYMBOL, =) (ID, x) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 								4.	(ID, mk3) (SYMBOL, =) (ID, x) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 																
+5.	(KEYWORD, if) (SYMBOL, () (ID, mk3) (SYMBOL, ==) (NUM, 52) (SYMBOL, )) (SYMBOL, {) 					5.	(KEYWORD, if) (SYMBOL, () (ID, mk3) (SYMBOL, ==) (NUM, 52) (SYMBOL, )) (SYMBOL, {) 																
+6.	(ID, b) (NUM, 32) (SYMBOL, ;) 												6.	(ID, b) (NUM, 32) (SYMBOL, ;) 																
+7.	(KEYWORD, return) (SYMBOL, ;) 												7.	(KEYWORD, return) (SYMBOL, ;) 																
+8.	(SYMBOL, }) 														8.	(SYMBOL, }) 																
+9.	(KEYWORD, break) (SYMBOL, ;) (SYMBOL, }) 										9.	(KEYWORD, break) (SYMBOL, ;) (SYMBOL, }) 																
+10.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (ID, arr) (SYMBOL, [) (ID, ilk) (SYMBOL, ]) (SYMBOL, )) 			10.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (ID, arr) (SYMBOL, [) (ID, ilk) (SYMBOL, ]) (SYMBOL, )) 																
+11.	(ID, this) (SYMBOL, =) (NUM, 2) (SYMBOL, ;) 										11.	(ID, this) (SYMBOL, =) (NUM, 2) (SYMBOL, ;) 																
+12.	(KEYWORD, return) (SYMBOL, ;) (SYMBOL, ;) 										12.	(KEYWORD, return) (SYMBOL, ;) (SYMBOL, ;) 																
+13.	(SYMBOL, }) 														13.	(SYMBOL, }) 																
+Files ./tokens.txt and ../PA1_input_output_samples/T04/tokens.txt are identical
+
+
+              *** lexical_errors.txt diffrences ***
+3.	(23a, Invalid number) 													3.	(23a, Invalid number) 																
+6.	(=#, Invalid input) 													6.	(=#, Invalid input) 																
+10.	(2m, Invalid number) 													10.	(2m, Invalid number) 																
+11.	(#, Invalid input) 													11.	(#, Invalid input) 																
+12.	(!, Invalid input) 													12.	(!, Invalid input) 																
+Files ./lexical_errors.txt and ../PA1_input_output_samples/T04/lexical_errors.txt are identical
+
+
+              *** symbol_table.txt diffrences ***
+1.	if															1.	if																
+2.	else															2.	else																
+3.	void															3.	void																
+4.	int															4.	int																
+5.	repeat															5.	repeat																
+6.	break															6.	break																
+7.	until															7.	until																
+8.	return															8.	return																
+9.	min															9.	min																
+10.	voi															10.	voi																
+11.	x															11.	x																
+12.	pple															12.	pple																
+13.	mk3															13.	mk3																
+14.	b															14.	b																
+15.	arr															15.	arr																
+16.	ilk															16.	ilk																
+17.	this															17.	this																
+Files ./symbol_table.txt and ../PA1_input_output_samples/T04/symbol_table.txt are identical
+
+
+
+
+=====================================>>>>> Running Test ../PA1_input_output_samples/T05...
+
+
+              *** tokens.txt diffrences ***
+3.	(KEYWORD, int) (ID, hell) (SYMBOL, () (KEYWORD, int) (ID, id) (SYMBOL, )) (SYMBOL, {) 					3.	(KEYWORD, int) (ID, hell) (SYMBOL, () (KEYWORD, int) (ID, id) (SYMBOL, )) (SYMBOL, {) 																
+4.	(ID, peat) (SYMBOL, {) 													4.	(ID, peat) (SYMBOL, {) 																
+5.	(KEYWORD, if) (SYMBOL, () (NUM, 1000) (SYMBOL, <) (ID, scars) (SYMBOL, )) 						5.	(KEYWORD, if) (SYMBOL, () (NUM, 1000) (SYMBOL, <) (ID, scars) (SYMBOL, )) 																
+6.	(KEYWORD, break) (SYMBOL, ;) 												6.	(KEYWORD, break) (SYMBOL, ;) 																
+7.	(KEYWORD, else) 													7.	(KEYWORD, else) 																
+8.	(ID, scars) (SYMBOL, =) (ID, cars) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 							8.	(ID, scars) (SYMBOL, =) (ID, cars) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 																
+9.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (NUM, 1) (SYMBOL, <) (NUM, 0) (SYMBOL, )) 					9.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (NUM, 1) (SYMBOL, <) (NUM, 0) (SYMBOL, )) 																
+11.	(KEYWORD, return) (ID, party) (SYMBOL, () (ID, id) (SYMBOL, )) (SYMBOL, ;) 						11.	(KEYWORD, return) (ID, party) (SYMBOL, () (ID, id) (SYMBOL, )) (SYMBOL, ;) 																
+12.	(SYMBOL, }) 														12.	(SYMBOL, }) 																
+14.	(KEYWORD, int) (ID, party) (SYMBOL, () (KEYWORD, int) (ID, id) (SYMBOL, )) (SYMBOL, {) 					14.	(KEYWORD, int) (ID, party) (SYMBOL, () (KEYWORD, int) (ID, id) (SYMBOL, )) (SYMBOL, {) 																
+15.	(KEYWORD, repeat) (SYMBOL, {) 												15.	(KEYWORD, repeat) (SYMBOL, {) 																
+16.	(ID, scars) (SYMBOL, =) (ID, scars) (SYMBOL, -) (NUM, 1) (SYMBOL, ;) 							16.	(ID, scars) (SYMBOL, =) (ID, scars) (SYMBOL, -) (NUM, 1) (SYMBOL, ;) 																
+17.	(ID, happiness) (SYMBOL, =) (ID, happiness) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 						17.	(ID, happiness) (SYMBOL, =) (ID, happiness) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 																
+18.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (ID, scars) (SYMBOL, ==) (NUM, 0) (SYMBOL, )) 					18.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (ID, scars) (SYMBOL, ==) (NUM, 0) (SYMBOL, )) 																
+20.	(KEYWORD, return) (ID, party) (SYMBOL, () (ID, id) (SYMBOL, )) (SYMBOL, ;) 						20.	(KEYWORD, return) (ID, party) (SYMBOL, () (ID, id) (SYMBOL, )) (SYMBOL, ;) 																
+21.	(SYMBOL, }) 														21.	(SYMBOL, }) 																
+23.	(KEYWORD, int) (ID, ids) (SYMBOL, [) (NUM, 3000) (SYMBOL, ]) (SYMBOL, ;) 						23.	(KEYWORD, int) (ID, ids) (SYMBOL, [) (NUM, 3000) (SYMBOL, ]) (SYMBOL, ;) 																
+24.	(KEYWORD, int) (ID, configs) (SYMBOL, [) (NUM, 3000) (SYMBOL, ]) (SYMBOL, ;) 						24.	(KEYWORD, int) (ID, configs) (SYMBOL, [) (NUM, 3000) (SYMBOL, ]) (SYMBOL, ;) 																
+25.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 						25.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 																
+26.	(KEYWORD, int) (ID, equity) (SYMBOL, ;) 										26.	(KEYWORD, int) (ID, equity) (SYMBOL, ;) 																
+27.	(KEYWORD, int) (ID, effort) (SYMBOL, ;) 										27.	(KEYWORD, int) (ID, effort) (SYMBOL, ;) 																
+28.	(KEYWORD, int) (ID, scars) (SYMBOL, ;) 											28.	(KEYWORD, int) (ID, scars) (SYMBOL, ;) 																
+29.	(KEYWORD, int) (ID, pr) (SYMBOL, ;) 											29.	(KEYWORD, int) (ID, pr) (SYMBOL, ;) 																
+30.	(ID, effort) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 										30.	(ID, effort) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 																
+31.	(ID, scars) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 										31.	(ID, scars) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 																
+32.	(ID, pr) (SYMBOL, =) (NUM, 5) (SYMBOL, ;) 										32.	(ID, pr) (SYMBOL, =) (NUM, 5) (SYMBOL, ;) 																
+33.	(ID, configs) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 					33.	(ID, configs) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 																
+34.	(ID, equity) (SYMBOL, =) (NUM, 10) (SYMBOL, ;) 										34.	(ID, equity) (SYMBOL, =) (NUM, 10) (SYMBOL, ;) 																
+35.	(ID, equity) (SYMBOL, =) (NUM, 10) (SYMBOL, +) (NUM, 3) (SYMBOL, ;) 							35.	(ID, equity) (SYMBOL, =) (NUM, 10) (SYMBOL, +) (NUM, 3) (SYMBOL, ;) 																
+36.	(ID, ids) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (NUM, 3333) (SYMBOL, ;) 						36.	(ID, ids) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (NUM, 3333) (SYMBOL, ;) 																
+37.	(ID, ids) (SYMBOL, [) (NUM, 2) (SYMBOL, ]) (SYMBOL, =) (NUM, 4444) (SYMBOL, ;) 						37.	(ID, ids) (SYMBOL, [) (NUM, 2) (SYMBOL, ]) (SYMBOL, =) (NUM, 4444) (SYMBOL, ;) 																
+38.	(KEYWORD, if) (SYMBOL, () (ID, configs) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, ==) (NUM, 1) (SYMBOL, )) (SYMBOL	38.	(KEYWORD, if) (SYMBOL, () (ID, configs) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, ==) (NUM, 1) (SYMBOL, )) (SYMBOL																
+40.	(KEYWORD, repeat) (SYMBOL, {) 												40.	(KEYWORD, repeat) (SYMBOL, {) 																
+41.	(ID, scars) (SYMBOL, =) (ID, scars) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 							41.	(ID, scars) (SYMBOL, =) (ID, scars) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 																
+42.	(ID, effort) (SYMBOL, =) (ID, effort) (SYMBOL, +) (NUM, 10) (SYMBOL, ;) 						42.	(ID, effort) (SYMBOL, =) (ID, effort) (SYMBOL, +) (NUM, 10) (SYMBOL, ;) 																
+43.	(ID, pr) (SYMBOL, =) (ID, pr) (SYMBOL, +) (NUM, 50) (SYMBOL, ;) 							43.	(ID, pr) (SYMBOL, =) (ID, pr) (SYMBOL, +) (NUM, 50) (SYMBOL, ;) 																
+44.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (NUM, 10) (SYMBOL, <) (ID, scars) (SYMBOL, )) 					44.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (NUM, 10) (SYMBOL, <) (ID, scars) (SYMBOL, )) 																
+45.	(ID, party) (SYMBOL, () (ID, ids) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, ;) 				45.	(ID, party) (SYMBOL, () (ID, ids) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, ;) 																
+46.	(SYMBOL, }) 														46.	(SYMBOL, }) 																
+47.	(KEYWORD, else) 													47.	(KEYWORD, else) 																
+48.	(SYMBOL, {) 														48.	(SYMBOL, {) 																
+49.	(KEYWORD, repeat) (SYMBOL, {) 												49.	(KEYWORD, repeat) (SYMBOL, {) 																
+50.	(ID, effort) (SYMBOL, =) (ID, effort) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 							50.	(ID, effort) (SYMBOL, =) (ID, effort) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 																
+51.	(ID, equity) (SYMBOL, =) (ID, equity) (SYMBOL, +) (NUM, 10) (SYMBOL, ;) 						51.	(ID, equity) (SYMBOL, =) (ID, equity) (SYMBOL, +) (NUM, 10) (SYMBOL, ;) 																
+52.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (NUM, 1000) (SYMBOL, <) (ID, equity) (SYMBOL, )) 				52.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (NUM, 1000) (SYMBOL, <) (ID, equity) (SYMBOL, )) 																
+54.	(ID, hell) (SYMBOL, () (ID, ids) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, ;) 				54.	(ID, hell) (SYMBOL, () (ID, ids) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, ;) 																
+55.	(SYMBOL, }) 														55.	(SYMBOL, }) 																
+56.	(KEYWORD, return) (SYMBOL, ;) 												56.	(KEYWORD, return) (SYMBOL, ;) 																
+57.	(SYMBOL, }) 														57.	(SYMBOL, }) 																
+Files ./tokens.txt and ../PA1_input_output_samples/T05/tokens.txt are identical
+
+
+              *** lexical_errors.txt diffrences ***
+4.	(re%, Invalid input) 													4.	(re%, Invalid input) 																
+8.	(1s, Invalid number) 													8.	(1s, Invalid number) 																
+Files ./lexical_errors.txt and ../PA1_input_output_samples/T05/lexical_errors.txt are identical
+
+
+              *** symbol_table.txt diffrences ***
+1.	if															1.	if																
+2.	else															2.	else																
+3.	void															3.	void																
+4.	int															4.	int																
+5.	repeat															5.	repeat																
+6.	break															6.	break																
+7.	until															7.	until																
+8.	return															8.	return																
+9.	hell															9.	hell																
+10.	id															10.	id																
+11.	peat															11.	peat																
+12.	scars															12.	scars																
+13.	cars															13.	cars																
+14.	party															14.	party																
+15.	happiness														15.	happiness																
+16.	ids															16.	ids																
+17.	configs															17.	configs																
+18.	main															18.	main																
+19.	equity															19.	equity																
+20.	effort															20.	effort																
+21.	pr															21.	pr																
+Files ./symbol_table.txt and ../PA1_input_output_samples/T05/symbol_table.txt are identical
+
+
+
+
+=====================================>>>>> Running Test ../PA1_input_output_samples/T06...
+
+
+              *** tokens.txt diffrences ***
+2.	(KEYWORD, void) (ID, min) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 						2.	(KEYWORD, void) (ID, min) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 																
+3.	(KEYWORD, if) (SYMBOL, () (ID, arr) (SYMBOL, [) (ID, g) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, {) 				3.	(KEYWORD, if) (SYMBOL, () (ID, arr) (SYMBOL, [) (ID, g) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, {) 																
+4.	(ID, killed) (SYMBOL, =) (ID, me) (SYMBOL, ;) 										4.	(ID, killed) (SYMBOL, =) (ID, me) (SYMBOL, ;) 																
+5.	(ID, killer) (SYMBOL, =) (ID, you) (SYMBOL, ;) 										5.	(ID, killer) (SYMBOL, =) (ID, you) (SYMBOL, ;) 																
+6.	(ID, b) (SYMBOL, =) (ID, b) (SYMBOL, +) (NUM, 2) (SYMBOL, ;) 								6.	(ID, b) (SYMBOL, =) (ID, b) (SYMBOL, +) (NUM, 2) (SYMBOL, ;) 																
+7.	(KEYWORD, if) (SYMBOL, () (NUM, 3) (SYMBOL, <) (NUM, 2) (SYMBOL, )) (SYMBOL, {) 					7.	(KEYWORD, if) (SYMBOL, () (NUM, 3) (SYMBOL, <) (NUM, 2) (SYMBOL, )) (SYMBOL, {) 																
+8.	(KEYWORD, return) (SYMBOL, ;) 												8.	(KEYWORD, return) (SYMBOL, ;) 																
+9.	(SYMBOL, }) 														9.	(SYMBOL, }) 																
+10.	(ID, x) (SYMBOL, =) (NUM, 5) (SYMBOL, ;) 										10.	(ID, x) (SYMBOL, =) (NUM, 5) (SYMBOL, ;) 																
+11.	(ID, b) (SYMBOL, =) (ID, u) (SYMBOL, *) (NUM, 123) (SYMBOL, ;) 								11.	(ID, b) (SYMBOL, =) (ID, u) (SYMBOL, *) (NUM, 123) (SYMBOL, ;) 																
+12.	(KEYWORD, break) (SYMBOL, ;) 												12.	(KEYWORD, break) (SYMBOL, ;) 																
+Files ./tokens.txt and ../PA1_input_output_samples/T06/tokens.txt are identical
+
+
+              *** lexical_errors.txt diffrences ***
+4.	(*/, Unmatched comment) 												4.	(*/, Unmatched comment) 																
+13.	(/*this ..., Unclosed comment) 												13.	(/*this ..., Unclosed comment) 																
+Files ./lexical_errors.txt and ../PA1_input_output_samples/T06/lexical_errors.txt are identical
+
+
+              *** symbol_table.txt diffrences ***
+1.	if															1.	if																
+2.	else															2.	else																
+3.	void															3.	void																
+4.	int															4.	int																
+5.	repeat															5.	repeat																
+6.	break															6.	break																
+7.	until															7.	until																
+8.	return															8.	return																
+9.	min															9.	min																
+10.	arr															10.	arr																
+11.	g															11.	g																
+12.	killed															12.	killed																
+13.	me															13.	me																
+14.	killer															14.	killer																
+15.	you															15.	you																
+16.	b															16.	b																
+17.	x															17.	x																
+18.	u															18.	u																
+Files ./symbol_table.txt and ../PA1_input_output_samples/T06/symbol_table.txt are identical
+
+
+
+
+=====================================>>>>> Running Test ../PA1_input_output_samples/T07...
+
+
+              *** tokens.txt diffrences ***
+1.	(KEYWORD, int) (ID, f) (SYMBOL, () (KEYWORD, int) (ID, a) (SYMBOL, )) (SYMBOL, {) 					1.	(KEYWORD, int) (ID, f) (SYMBOL, () (KEYWORD, int) (ID, a) (SYMBOL, )) (SYMBOL, {) 																
+2.	(KEYWORD, void) (ID, g) (SYMBOL, () (KEYWORD, int) (ID, b) (SYMBOL, )) (SYMBOL, {) 					2.	(KEYWORD, void) (ID, g) (SYMBOL, () (KEYWORD, int) (ID, b) (SYMBOL, )) (SYMBOL, {) 																
+3.	(ID, output) (SYMBOL, () (ID, b) (SYMBOL, )) (SYMBOL, ;) 								3.	(ID, output) (SYMBOL, () (ID, b) (SYMBOL, )) (SYMBOL, ;) 																
+4.	(ID, f) (SYMBOL, () (ID, b) (SYMBOL, -) (NUM, 1) (SYMBOL, )) (SYMBOL, ;) 						4.	(ID, f) (SYMBOL, () (ID, b) (SYMBOL, -) (NUM, 1) (SYMBOL, )) (SYMBOL, ;) 																
+5.	(SYMBOL, }) 														5.	(SYMBOL, }) 																
+6.	(KEYWORD, if) (SYMBOL, () (ID, a) (SYMBOL, ==) (NUM, 1) (SYMBOL, )) (SYMBOL, {) 					6.	(KEYWORD, if) (SYMBOL, () (ID, a) (SYMBOL, ==) (NUM, 1) (SYMBOL, )) (SYMBOL, {) 																
+7.	(ID, output) (SYMBOL, () (ID, a) (SYMBOL, )) (SYMBOL, ;) 								7.	(ID, output) (SYMBOL, () (ID, a) (SYMBOL, )) (SYMBOL, ;) 																
+8.	(KEYWORD, return) (NUM, 0) (SYMBOL, ;) 											8.	(KEYWORD, return) (NUM, 0) (SYMBOL, ;) 																
+9.	(SYMBOL, }) (KEYWORD, else) (SYMBOL, {) 										9.	(SYMBOL, }) (KEYWORD, else) (SYMBOL, {) 																
+10.	(ID, g) (SYMBOL, () (ID, a) (SYMBOL, )) (SYMBOL, ;) 									10.	(ID, g) (SYMBOL, () (ID, a) (SYMBOL, )) (SYMBOL, ;) 																
+11.	(SYMBOL, }) 														11.	(SYMBOL, }) 																
+14.	(SYMBOL, }) 														14.	(SYMBOL, }) 																
+Files ./tokens.txt and ../PA1_input_output_samples/T07/tokens.txt are identical
+
+
+              *** lexical_errors.txt diffrences ***
+2.	(*/, Unmatched comment) 												2.	(*/, Unmatched comment) 																
+13.	(/, Invalid input) 													13.	(/, Invalid input) 																
+16.	(/*void ..., Unclosed comment) 												16.	(/*void ..., Unclosed comment) 																
+Files ./lexical_errors.txt and ../PA1_input_output_samples/T07/lexical_errors.txt are identical
+
+
+              *** symbol_table.txt diffrences ***
+1.	if															1.	if																
+2.	else															2.	else																
+3.	void															3.	void																
+4.	int															4.	int																
+5.	repeat															5.	repeat																
+6.	break															6.	break																
+7.	until															7.	until																
+8.	return															8.	return																
+9.	f															9.	f																
+10.	a															10.	a																
+11.	g															11.	g																
+12.	b															12.	b																
+13.	output															13.	output																
+Files ./symbol_table.txt and ../PA1_input_output_samples/T07/symbol_table.txt are identical
+
+
+
+
+=====================================>>>>> Running Test ../PA1_input_output_samples/T08...
+
+
+              *** tokens.txt diffrences ***
+1.	(KEYWORD, int) (ID, f) (SYMBOL, () (KEYWORD, int) (ID, a) (SYMBOL, )) (SYMBOL, {) 					1.	(KEYWORD, int) (ID, f) (SYMBOL, () (KEYWORD, int) (ID, a) (SYMBOL, )) (SYMBOL, {) 																
+2.	(KEYWORD, void) (ID, g) (SYMBOL, () (KEYWORD, int) (ID, b) (SYMBOL, )) (SYMBOL, {) 					2.	(KEYWORD, void) (ID, g) (SYMBOL, () (KEYWORD, int) (ID, b) (SYMBOL, )) (SYMBOL, {) 																
+3.	(ID, output) (SYMBOL, () (ID, b) (SYMBOL, )) (SYMBOL, ;) 								3.	(ID, output) (SYMBOL, () (ID, b) (SYMBOL, )) (SYMBOL, ;) 																
+4.	(ID, f) (SYMBOL, () (ID, b) (SYMBOL, -) (ID, h) (SYMBOL, )) (SYMBOL, ;) 						4.	(ID, f) (SYMBOL, () (ID, b) (SYMBOL, -) (ID, h) (SYMBOL, )) (SYMBOL, ;) 																
+5.	(SYMBOL, }) 														5.	(SYMBOL, }) 																
+6.	(KEYWORD, if) (SYMBOL, () (ID, a) (SYMBOL, ==) (NUM, 1) (SYMBOL, )) (SYMBOL, {) 					6.	(KEYWORD, if) (SYMBOL, () (ID, a) (SYMBOL, ==) (NUM, 1) (SYMBOL, )) (SYMBOL, {) 																
+7.	(SYMBOL, () (ID, a) (SYMBOL, )) (SYMBOL, ;) 										7.	(SYMBOL, () (ID, a) (SYMBOL, )) (SYMBOL, ;) 																
+8.	(KEYWORD, return) (NUM, 0) (SYMBOL, ;) 											8.	(KEYWORD, return) (NUM, 0) (SYMBOL, ;) 																
+9.	(SYMBOL, }) (KEYWORD, else) (SYMBOL, {) 										9.	(SYMBOL, }) (KEYWORD, else) (SYMBOL, {) 																
+10.	(ID, g) (SYMBOL, () (ID, a) (SYMBOL, )) (SYMBOL, ;) 									10.	(ID, g) (SYMBOL, () (ID, a) (SYMBOL, )) (SYMBOL, ;) 																
+11.	(SYMBOL, }) 														11.	(SYMBOL, }) 																
+12.	(SYMBOL, }) 														12.	(SYMBOL, }) 																
+15.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 						15.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 																
+16.	(ID, f) (SYMBOL, () (NUM, 10) (SYMBOL, )) (SYMBOL, ;) 									16.	(ID, f) (SYMBOL, () (NUM, 10) (SYMBOL, )) (SYMBOL, ;) 																
+17.	(SYMBOL, }) 														17.	(SYMBOL, }) 																
+Files ./tokens.txt and ../PA1_input_output_samples/T08/tokens.txt are identical
+
+
+              *** lexical_errors.txt diffrences ***
+4.	(1g, Invalid number) 													4.	(1g, Invalid number) 																
+7.	(hell$, Invalid input) (ooo&, Invalid input) 										7.	(hell$, Invalid input) (ooo&, Invalid input) 																
+8.	(!, Invalid input) 													8.	(!, Invalid input) 																
+Files ./lexical_errors.txt and ../PA1_input_output_samples/T08/lexical_errors.txt are identical
+
+
+              *** symbol_table.txt diffrences ***
+1.	if															1.	if																
+2.	else															2.	else																
+3.	void															3.	void																
+4.	int															4.	int																
+5.	repeat															5.	repeat																
+6.	break															6.	break																
+7.	until															7.	until																
+8.	return															8.	return																
+9.	f															9.	f																
+10.	a															10.	a																
+11.	g															11.	g																
+12.	b															12.	b																
+13.	output															13.	output																
+14.	h															14.	h																
+15.	main															15.	main																
+Files ./symbol_table.txt and ../PA1_input_output_samples/T08/symbol_table.txt are identical
+
+
+
+
+=====================================>>>>> Running Test ../PA1_input_output_samples/T09...
+
+
+              *** tokens.txt diffrences ***
+1.	(KEYWORD, int) (ID, count) (SYMBOL, ;) 											1.	(KEYWORD, int) (ID, count) (SYMBOL, ;) 																
+2.	(KEYWORD, int) (ID, result) (SYMBOL, [) (NUM, 50) (SYMBOL, ]) (SYMBOL, ;) 						2.	(KEYWORD, int) (ID, result) (SYMBOL, [) (NUM, 50) (SYMBOL, ]) (SYMBOL, ;) 																
+5.	(KEYWORD, int) (ID, f) (SYMBOL, () (KEYWORD, int) (ID, a) (SYMBOL, ,) (KEYWORD, int) (ID, result) (SYMBOL, [) (SYM	5.	(KEYWORD, int) (ID, f) (SYMBOL, () (KEYWORD, int) (ID, a) (SYMBOL, ,) (KEYWORD, int) (ID, result) (SYMBOL, [) (SYM																
+6.	(ID, count) (ID, count) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 								6.	(ID, count) (ID, count) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 																
+7.	(KEYWORD, if) (SYMBOL, () (ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, {	7.	(KEYWORD, if) (SYMBOL, () (ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, {																
+8.	(KEYWORD, return) (ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, ;) 			8.	(KEYWORD, return) (ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, ;) 																
+9.	(SYMBOL, }) (KEYWORD, else) (SYMBOL, {) 										9.	(SYMBOL, }) (KEYWORD, else) (SYMBOL, {) 																
+10.	(KEYWORD, if) (SYMBOL, () (ID, a) (SYMBOL, ==) (NUM, 1) (SYMBOL, )) (SYMBOL, {) 					10.	(KEYWORD, if) (SYMBOL, () (ID, a) (SYMBOL, ==) (NUM, 1) (SYMBOL, )) (SYMBOL, {) 																
+11.	(ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 			11.	(ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 																
+12.	(KEYWORD, return) (NUM, 1) (SYMBOL, ;) 											12.	(KEYWORD, return) (NUM, 1) (SYMBOL, ;) 																
+13.	(SYMBOL, }) (KEYWORD, else) (KEYWORD, if) (SYMBOL, () (ID, a) (SYMBOL, ==) (SYMBOL, ==) (SYMBOL, =) (NUM, 2) (SYMB	13.	(SYMBOL, }) (KEYWORD, else) (KEYWORD, if) (SYMBOL, () (ID, a) (SYMBOL, ==) (SYMBOL, ==) (SYMBOL, =) (NUM, 2) (SYMB																
+14.	(ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 			14.	(ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 																
+15.	(KEYWORD, return) (NUM, 1) (SYMBOL, ;) 											15.	(KEYWORD, return) (NUM, 1) (SYMBOL, ;) 																
+16.	(SYMBOL, }) (KEYWORD, else) (SYMBOL, {) 										16.	(SYMBOL, }) (KEYWORD, else) (SYMBOL, {) 																
+17.	(ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (ID, f) (SYMBOL, () (ID, a) (SYMBOL,	17.	(ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (ID, f) (SYMBOL, () (ID, a) (SYMBOL,																
+18.	(KEYWORD, return) (ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, ;) 			18.	(KEYWORD, return) (ID, result) (SYMBOL, [) (ID, a) (SYMBOL, -) (NUM, 1) (SYMBOL, ]) (SYMBOL, ;) 																
+19.	(SYMBOL, }) 														19.	(SYMBOL, }) 																
+20.	(SYMBOL, }) 														20.	(SYMBOL, }) 																
+21.	(SYMBOL, }) 														21.	(SYMBOL, }) 																
+23.	(KEYWORD, void) (ID, main) (SYMBOL, () (SYMBOL, )) (SYMBOL, {) 								23.	(KEYWORD, void) (ID, main) (SYMBOL, () (SYMBOL, )) (SYMBOL, {) 																
+24.	(KEYWORD, int) (ID, i) (SYMBOL, ;) 											24.	(KEYWORD, int) (ID, i) (SYMBOL, ;) 																
+25.	(ID, i) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 										25.	(ID, i) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 																
+26.	(KEYWORD, repeat) (SYMBOL, {) 												26.	(KEYWORD, repeat) (SYMBOL, {) 																
+27.	(ID, result) (SYMBOL, [) (ID, i) (SYMBOL, ]) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 						27.	(ID, result) (SYMBOL, [) (ID, i) (SYMBOL, ]) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 																
+28.	(ID, i) (SYMBOL, =) (ID, i) (NUM, 2) (SYMBOL, ;) 									28.	(ID, i) (SYMBOL, =) (ID, i) (NUM, 2) (SYMBOL, ;) 																
+29.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (NUM, 50) (SYMBOL, <) (ID, i) (SYMBOL, )) 					29.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (NUM, 50) (SYMBOL, <) (ID, i) (SYMBOL, )) 																
+30.	(ID, count) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 										30.	(ID, count) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) 																
+31.	(ID, output) (SYMBOL, () (ID, f) (SYMBOL, () (NUM, 40) (SYMBOL, ,) (ID, result) (SYMBOL, )) (SYMBOL, )) (SYMBOL, ;	31.	(ID, output) (SYMBOL, () (ID, f) (SYMBOL, () (NUM, 40) (SYMBOL, ,) (ID, result) (SYMBOL, )) (SYMBOL, )) (SYMBOL, ;																
+32.	(ID, output) (SYMBOL, () (ID, count) (SYMBOL, )) (SYMBOL, ;) 								32.	(ID, output) (SYMBOL, () (ID, count) (SYMBOL, )) (SYMBOL, ;) 																
+33.	(SYMBOL, }) 														33.	(SYMBOL, }) 																
+34.	(NUM, 1941) 														34.	(NUM, 1941) 																
+Files ./tokens.txt and ../PA1_input_output_samples/T09/tokens.txt are identical
+
+
+              *** lexical_errors.txt diffrences ***
+5.	(#, Invalid input) 													5.	(#, Invalid input) 																
+6.	(=#, Invalid input) (#, Invalid input) 											6.	(=#, Invalid input) (#, Invalid input) 																
+23.	(void$, Invalid input) 													23.	(void$, Invalid input) 																
+28.	(*#, Invalid input) (#, Invalid input) 											28.	(*#, Invalid input) (#, Invalid input) 																
+Files ./lexical_errors.txt and ../PA1_input_output_samples/T09/lexical_errors.txt are identical
+
+
+              *** symbol_table.txt diffrences ***
+1.	if															1.	if																
+2.	else															2.	else																
+3.	void															3.	void																
+4.	int															4.	int																
+5.	repeat															5.	repeat																
+6.	break															6.	break																
+7.	until															7.	until																
+8.	return															8.	return																
+9.	count															9.	count																
+10.	result															10.	result																
+11.	f															11.	f																
+12.	a															12.	a																
+13.	main															13.	main																
+14.	i															14.	i																
+15.	output															15.	output																
+Files ./symbol_table.txt and ../PA1_input_output_samples/T09/symbol_table.txt are identical
+
+
+
+
+=====================================>>>>> Running Test ../PA1_input_output_samples/T10...
+
+
+              *** tokens.txt diffrences ***
+1.	(KEYWORD, int) (ID, b) (SYMBOL, ;) 											1.	(KEYWORD, int) (ID, b) (SYMBOL, ;) 																
+2.	(KEYWORD, int) (ID, foo) (SYMBOL, () (KEYWORD, int) (ID, d) (SYMBOL, ,) (KEYWORD, int) (ID, e) (SYMBOL, )) (SYMBOL	2.	(KEYWORD, int) (ID, foo) (SYMBOL, () (KEYWORD, int) (ID, d) (SYMBOL, ,) (KEYWORD, int) (ID, e) (SYMBOL, )) (SYMBOL																
+3.	(KEYWORD, int) (ID, f) (SYMBOL, ;) 											3.	(KEYWORD, int) (ID, f) (SYMBOL, ;) 																
+4.	(KEYWORD, void) (ID, foo2) (SYMBOL, () (KEYWORD, int) (ID, k) (SYMBOL, [) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, {) 		4.	(KEYWORD, void) (ID, foo2) (SYMBOL, () (KEYWORD, int) (ID, k) (SYMBOL, [) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, {) 																
+5.	(KEYWORD, return) (ID, k) (SYMBOL, [) (NUM, 0) (SYMBOL, ]) (SYMBOL, +) (ID, k) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (S	5.	(KEYWORD, return) (ID, k) (SYMBOL, [) (NUM, 0) (SYMBOL, ]) (SYMBOL, +) (ID, k) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (S																
+6.	(SYMBOL, }) 														6.	(SYMBOL, }) 																
+7.	(KEYWORD, int) (ID, fff) (SYMBOL, [) (NUM, 2) (SYMBOL, ]) (SYMBOL, ;) 							7.	(KEYWORD, int) (ID, fff) (SYMBOL, [) (NUM, 2) (SYMBOL, ]) (SYMBOL, ;) 																
+8.	(ID, fff) (SYMBOL, [) (NUM, 0) (SYMBOL, ]) (SYMBOL, =) (ID, d) (SYMBOL, ;) 						8.	(ID, fff) (SYMBOL, [) (NUM, 0) (SYMBOL, ]) (SYMBOL, =) (ID, d) (SYMBOL, ;) 																
+9.	(ID, fff) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (ID, d) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 			9.	(ID, fff) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (ID, d) (SYMBOL, +) (NUM, 1) (SYMBOL, ;) 																
+10.	(ID, f) (SYMBOL, =) (ID, foo2) (SYMBOL, () (ID, fff) (SYMBOL, )) (SYMBOL, ;) 						10.	(ID, f) (SYMBOL, =) (ID, foo2) (SYMBOL, () (ID, fff) (SYMBOL, )) (SYMBOL, ;) 																
+11.	(ID, b) (SYMBOL, =) (ID, e) (SYMBOL, +) (ID, f) (SYMBOL, ;) 								11.	(ID, b) (SYMBOL, =) (ID, e) (SYMBOL, +) (ID, f) (SYMBOL, ;) 																
+12.	(KEYWORD, repeat) (SYMBOL, {) 												12.	(KEYWORD, repeat) (SYMBOL, {) 																
+13.	(ID, f) (SYMBOL, =) (ID, f) (SYMBOL, +) (ID, d) (SYMBOL, ;) 								13.	(ID, f) (SYMBOL, =) (ID, f) (SYMBOL, +) (ID, d) (SYMBOL, ;) 																
+14.	(ID, d) (SYMBOL, =) (ID, d) (SYMBOL, -) (NUM, 1) (SYMBOL, ;) 								14.	(ID, d) (SYMBOL, =) (ID, d) (SYMBOL, -) (NUM, 1) (SYMBOL, ;) 																
+15.	(KEYWORD, if) (SYMBOL, () (ID, d) (SYMBOL, ==) (SYMBOL, )) 								15.	(KEYWORD, if) (SYMBOL, () (ID, d) (SYMBOL, ==) (SYMBOL, )) 																
+16.	(KEYWORD, break) (SYMBOL, ;) 												16.	(KEYWORD, break) (SYMBOL, ;) 																
+17.	(KEYWORD, else) (ID, d) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 								17.	(KEYWORD, else) (ID, d) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 																
+18.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (NUM, 0) (SYMBOL, <) (ID, d) (SYMBOL, )) 					18.	(SYMBOL, }) (KEYWORD, until) (SYMBOL, () (NUM, 0) (SYMBOL, <) (ID, d) (SYMBOL, )) 																
+20.	(KEYWORD, return) (ID, f) (SYMBOL, +) (ID, b) (SYMBOL, ;) 								20.	(KEYWORD, return) (ID, f) (SYMBOL, +) (ID, b) (SYMBOL, ;) 																
+21.	(SYMBOL, }) 														21.	(SYMBOL, }) 																
+22.	(KEYWORD, int) (ID, arr) (SYMBOL, [) (NUM, 3) (SYMBOL, ]) (SYMBOL, ;) 							22.	(KEYWORD, int) (ID, arr) (SYMBOL, [) (NUM, 3) (SYMBOL, ]) (SYMBOL, ;) 																
+23.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 						23.	(KEYWORD, void) (ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) (SYMBOL, {) 																
+24.	(KEYWORD, int) (ID, a) (SYMBOL, ;) 											24.	(KEYWORD, int) (ID, a) (SYMBOL, ;) 																
+25.	(ID, a) (SYMBOL, =) (SYMBOL, -) (NUM, 3) (SYMBOL, +) (SYMBOL, +) (NUM, 11) (SYMBOL, ;) 					25.	(ID, a) (SYMBOL, =) (SYMBOL, -) (NUM, 3) (SYMBOL, +) (SYMBOL, +) (NUM, 11) (SYMBOL, ;) 																
+26.	(ID, b) (SYMBOL, =) (NUM, 5) (SYMBOL, *) (ID, a) (SYMBOL, +) (ID, foo) (SYMBOL, () (ID, a) (SYMBOL, ,) (ID, a) (SY	26.	(ID, b) (SYMBOL, =) (NUM, 5) (SYMBOL, *) (ID, a) (SYMBOL, +) (ID, foo) (SYMBOL, () (ID, a) (SYMBOL, ,) (ID, a) (SY																
+27.	(ID, arr) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (ID, b) (SYMBOL, +) (SYMBOL, -) (NUM, 3) (SYMBOL, ;) 		27.	(ID, arr) (SYMBOL, [) (NUM, 1) (SYMBOL, ]) (SYMBOL, =) (ID, b) (SYMBOL, +) (SYMBOL, -) (NUM, 3) (SYMBOL, ;) 																
+28.	(ID, arr) (SYMBOL, [) (NUM, 2) (SYMBOL, ]) (SYMBOL, =) (ID, foo) (SYMBOL, () (ID, arr) (SYMBOL, [) (NUM, 0) (SYMBO	28.	(ID, arr) (SYMBOL, [) (NUM, 2) (SYMBOL, ]) (SYMBOL, =) (ID, foo) (SYMBOL, () (ID, arr) (SYMBOL, [) (NUM, 0) (SYMBO																
+29.	(KEYWORD, if) (SYMBOL, () (ID, b) (SYMBOL, ==) (NUM, 3) (SYMBOL, )) (SYMBOL, {) 					29.	(KEYWORD, if) (SYMBOL, () (ID, b) (SYMBOL, ==) (NUM, 3) (SYMBOL, )) (SYMBOL, {) 																
+30.	(ID, arr) (SYMBOL, [) (NUM, 0) (SYMBOL, ]) (SYMBOL, =) (SYMBOL, -) (NUM, 7) (SYMBOL, ;) 				30.	(ID, arr) (SYMBOL, [) (NUM, 0) (SYMBOL, ]) (SYMBOL, =) (SYMBOL, -) (NUM, 7) (SYMBOL, ;) 																
+31.	(SYMBOL, }) 														31.	(SYMBOL, }) 																
+32.	(KEYWORD, return) (SYMBOL, ;) 												32.	(KEYWORD, return) (SYMBOL, ;) 																
+33.	(SYMBOL, }) 														33.	(SYMBOL, }) 																
+35.	(KEYWORD, int) (ID, foo) (SYMBOL, () (KEYWORD, int) (ID, d) (SYMBOL, ,) (KEYWORD, int) (ID, e) (SYMBOL, )) (SYMBOL	35.	(KEYWORD, int) (ID, foo) (SYMBOL, () (KEYWORD, int) (ID, d) (SYMBOL, ,) (KEYWORD, int) (ID, e) (SYMBOL, )) (SYMBOL																
+36.	(KEYWORD, int) (ID, a) (SYMBOL, ;) 											36.	(KEYWORD, int) (ID, a) (SYMBOL, ;) 																
+37.	(ID, a) (SYMBOL, =) (NUM, 5) (SYMBOL, ;) 										37.	(ID, a) (SYMBOL, =) (NUM, 5) (SYMBOL, ;) 																
+38.	(KEYWORD, repeat) (SYMBOL, {) (KEYWORD, if) (SYMBOL, () (ID, a) (SYMBOL, ==) (NUM, 5) (SYMBOL, )) (KEYWORD, break)	38.	(KEYWORD, repeat) (SYMBOL, {) (KEYWORD, if) (SYMBOL, () (ID, a) (SYMBOL, ==) (NUM, 5) (SYMBOL, )) (KEYWORD, break)																
+39.	(SYMBOL, }) 														39.	(SYMBOL, }) 																
+Files ./tokens.txt and ../PA1_input_output_samples/T10/tokens.txt are identical
+
+
+              *** lexical_errors.txt diffrences ***
+There is no lexical error.													There is no lexical error.Files ./lexical_errors.txt and ../PA1_input_output_samples/T10/lexical_errors.txt are identical
+
+
+              *** symbol_table.txt diffrences ***
+1.	if															1.	if																
+2.	else															2.	else																
+3.	void															3.	void																
+4.	int															4.	int																
+5.	repeat															5.	repeat																
+6.	break															6.	break																
+7.	until															7.	until																
+8.	return															8.	return																
+9.	b															9.	b																
+10.	foo															10.	foo																
+11.	d															11.	d																
+12.	e															12.	e																
+13.	f															13.	f																
+14.	foo2															14.	foo2																
+15.	k															15.	k																
+16.	fff															16.	fff																
+17.	arr															17.	arr																
+18.	main															18.	main																
+19.	a															19.	a																
+Files ./symbol_table.txt and ../PA1_input_output_samples/T10/symbol_table.txt are identical
