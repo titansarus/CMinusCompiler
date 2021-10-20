@@ -30,7 +30,7 @@ class LexerOutputGenerator:
             for token in token_list:
                 if token[0] in PANIC_STATES:
                     lexical_error_list.append(
-                        f"({token[1] if len(token[1]) <= 7 else token[1][:7] + '...'}, {token[0]})")
+                        f"({token[1] if len(token[1]) <= 7 or token[0] != PANIC_UNCLOSED_COMMENT else token[1][:7] + '...'}, {token[0]})")
             if lexical_error_list:
                 lexical_errors[lineno] = " ".join(lexical_error_list) + " "
         return lexical_errors
