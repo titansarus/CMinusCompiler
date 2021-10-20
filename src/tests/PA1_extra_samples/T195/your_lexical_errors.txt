@@ -1,0 +1,6 @@
+1.	(#, Invalid input) (stdio., Invalid input) (h>, Invalid input) 
+9.	(point_, Invalid input) 
+13.	(my_, Invalid input) 
+15.	(point_, Invalid input) (my_, Invalid input) (., Invalid input) (12., Invalid number) 
+16.	(point_, Invalid input) (my_, Invalid input) (., Invalid input) (56., Invalid number) 
+18.	(", Invalid input) (%, Invalid input) (%, Invalid input) (f\, Invalid input) (n", Invalid input) (point_, Invalid input) (my_, Invalid input) (., Invalid input) (point_, Invalid input) (my_, Invalid input) (., Invalid input) 

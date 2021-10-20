@@ -1,0 +1,6 @@
+1.	(., Invalid input) (., Invalid input) (., Invalid input) 
+3.	(#, Invalid input) (ACPI_, Invalid input) (TYPE_, Invalid input) (0x, Invalid number) (1E, Invalid number) 
+4.	(#, Invalid input) (NUM_, Invalid input) (NS_, Invalid input) (ACPI_, Invalid input) (TYPE_, Invalid input) 
+5.	(NUM_, Invalid input) (NS_, Invalid input) 
+7.	(#, Invalid input) (0x, Invalid number) 
+10.	(", Invalid input) (%, Invalid input) (d\, Invalid input) (n", Invalid input) 

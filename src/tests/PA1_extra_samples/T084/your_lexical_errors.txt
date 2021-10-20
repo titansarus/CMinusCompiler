@@ -1,0 +1,7 @@
+1.	(#, Invalid input) (., Invalid input) (., Invalid input) (., Invalid input) (_, Invalid input) (_, Invalid input) (VA_, Invalid input) (ARGS_, Invalid input) (_, Invalid input) 
+12.	(!, Invalid input) 
+21.	(!, Invalid input) 
+23.	(!, Invalid input) 
+32.	(!, Invalid input) 
+34.	(!, Invalid input) 
+36.	(!, Invalid input) 

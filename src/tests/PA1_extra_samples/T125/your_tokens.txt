@@ -1,0 +1,7 @@
+1.	(ID, include) (SYMBOL, <) 
+3.	(KEYWORD, int) 
+4.	(ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) 
+5.	(SYMBOL, {) 
+6.	(ID, printf) (SYMBOL, () (ID, hello) (SYMBOL, )) (SYMBOL, ;) 
+7.	(KEYWORD, return) (NUM, 0) (SYMBOL, ;) 
+8.	(SYMBOL, }) 

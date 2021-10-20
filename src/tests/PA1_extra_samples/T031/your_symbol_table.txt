@@ -1,0 +1,13 @@
+1.	if
+2.	else
+3.	void
+4.	int
+5.	repeat
+6.	break
+7.	until
+8.	return
+9.	zero
+10.	one
+11.	main
+12.	x
+13.	y

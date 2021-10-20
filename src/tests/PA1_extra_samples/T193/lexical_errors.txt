@@ -1,0 +1,5 @@
+1.	(#, Invalid input) (stdio., Invalid input) (h>, Invalid input) 
+7.	(", Invalid input) (1\, Invalid number) (n", Invalid input) 
+8.	(", Invalid input) (2\, Invalid number) (n", Invalid input) 
+9.	(", Invalid input) (3\, Invalid number) (n", Invalid input) 
+12.	(", Invalid input) (out\, Invalid input) (n", Invalid input) 

@@ -1,0 +1,14 @@
+1.	if
+2.	else
+3.	void
+4.	int
+5.	repeat
+6.	break
+7.	until
+8.	return
+9.	x
+10.	endif
+11.	X
+12.	ifndef
+13.	AAA
+14.	main

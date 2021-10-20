@@ -1,0 +1,7 @@
+1.	(#, Invalid input) (stdint., Invalid input) (h>, Invalid input) 
+6.	(int32_, Invalid input) 
+7.	(int64_, Invalid input) 
+12.	(~, Invalid input) 
+13.	(!, Invalid input) (0x, Invalid number) 
+16.	(~, Invalid input) 
+17.	(!, Invalid input) (0x, Invalid number) 

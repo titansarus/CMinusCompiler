@@ -1,0 +1,7 @@
+1.	(ID, extern) (KEYWORD, int) (ID, x) (SYMBOL, ;) 
+2.	(KEYWORD, int) (ID, x) (SYMBOL, ;) 
+4.	(KEYWORD, int) 
+5.	(ID, main) (SYMBOL, () (SYMBOL, )) 
+6.	(SYMBOL, {) 
+7.	(KEYWORD, return) (ID, x) (SYMBOL, ;) 
+8.	(SYMBOL, }) 

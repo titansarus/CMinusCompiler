@@ -1,0 +1,8 @@
+18.	(v., Invalid input) 
+19.	(v., Invalid input) 
+20.	(v., Invalid input) 
+21.	(v., Invalid input) 
+23.	(v., Invalid input) (!, Invalid input) 
+25.	(v., Invalid input) (!, Invalid input) (&, Invalid input) (&, Invalid input) (v., Invalid input) (!, Invalid input) 
+27.	(v., Invalid input) (!, Invalid input) 
+29.	(v., Invalid input) (!, Invalid input) 

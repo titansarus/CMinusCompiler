@@ -1,0 +1,6 @@
+1.	(ID, define) (ID, F) (SYMBOL, () (ID, a) (SYMBOL, ,) (ID, b) (SYMBOL, )) (ID, a) 
+2.	(KEYWORD, int) 
+3.	(ID, main) (SYMBOL, () (SYMBOL, )) 
+4.	(SYMBOL, {) 
+5.	(KEYWORD, return) (ID, F) (SYMBOL, () (SYMBOL, ,) (NUM, 1) (SYMBOL, )) (NUM, 0) (SYMBOL, ;) 
+6.	(SYMBOL, }) 

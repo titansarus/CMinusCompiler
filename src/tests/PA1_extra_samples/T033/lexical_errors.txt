@@ -1,0 +1,6 @@
+17.	(&, Invalid input) (&, Invalid input) 
+22.	(&, Invalid input) (&, Invalid input) 
+23.	(!, Invalid input) 
+30.	(|, Invalid input) (|, Invalid input) 
+37.	(|, Invalid input) (|, Invalid input) 
+38.	(!, Invalid input) 

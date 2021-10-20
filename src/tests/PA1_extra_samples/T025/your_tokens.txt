@@ -1,0 +1,8 @@
+1.	(KEYWORD, int) (ID, strlen) (SYMBOL, () (ID, char) (SYMBOL, *) (SYMBOL, )) (SYMBOL, ;) 
+3.	(KEYWORD, int) 
+4.	(ID, main) (SYMBOL, () (SYMBOL, )) 
+5.	(SYMBOL, {) 
+6.	(ID, char) (SYMBOL, *) (ID, p) (SYMBOL, ;) 
+8.	(ID, p) (SYMBOL, =) (SYMBOL, ;) 
+9.	(KEYWORD, return) (ID, strlen) (SYMBOL, () (ID, p) (SYMBOL, )) (SYMBOL, -) (NUM, 5) (SYMBOL, ;) 
+10.	(SYMBOL, }) 

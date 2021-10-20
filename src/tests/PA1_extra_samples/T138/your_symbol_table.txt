@@ -1,0 +1,16 @@
+1.	if
+2.	else
+3.	void
+4.	int
+5.	repeat
+6.	break
+7.	until
+8.	return
+9.	define
+10.	M
+11.	x
+12.	A
+13.	a
+14.	b
+15.	main
+16.	char

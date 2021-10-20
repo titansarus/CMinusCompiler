@@ -1,0 +1,4 @@
+21.	(/, Invalid input) 
+22.	(%, Invalid input) 
+31.	(>, Invalid input) 
+34.	(!, Invalid input) 

@@ -1,0 +1,16 @@
+1.	if
+2.	else
+3.	void
+4.	int
+5.	repeat
+6.	break
+7.	until
+8.	return
+9.	define
+10.	BAR
+11.	ifdef
+12.	FOO
+13.	XXX
+14.	endif
+15.	x
+16.	main

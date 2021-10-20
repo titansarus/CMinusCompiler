@@ -1,0 +1,2 @@
+1.	(#, Invalid input) (stdio., Invalid input) (h>, Invalid input) 
+6.	(", Invalid input) (world\, Invalid input) (n", Invalid input) 

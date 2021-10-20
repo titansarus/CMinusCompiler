@@ -1,0 +1,8 @@
+1.	(KEYWORD, int) 
+2.	(ID, main) (SYMBOL, () (SYMBOL, )) 
+3.	(SYMBOL, {) 
+4.	(ID, short) (ID, s) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 
+5.	(ID, long) (ID, l) (SYMBOL, =) (NUM, 1) (SYMBOL, ;) 
+7.	(ID, s) (SYMBOL, -) (SYMBOL, =) (ID, l) (SYMBOL, ;) 
+8.	(KEYWORD, return) (ID, s) (SYMBOL, ;) 
+9.	(SYMBOL, }) 

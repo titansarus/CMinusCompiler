@@ -1,0 +1,6 @@
+1.	(#, Invalid input) (stdio., Invalid input) (h>, Invalid input) 
+5.	(", Invalid input) (world\, Invalid input) (n", Invalid input) 
+9.	(", Invalid input) (%, Invalid input) (d\, Invalid input) (n", Invalid input) 
+11.	(", Invalid input) (', Invalid input) (hello', Invalid input) (', Invalid input) (there', Invalid input) (', Invalid input) (%, Invalid input) (s', Invalid input) (', Invalid input) (%, Invalid input) (s', Invalid input) (\, Invalid input) (n", Invalid input) (", Invalid input) (hello", Invalid input) (", Invalid input) (there", Invalid input) 
+12.	(", Invalid input) (', Invalid input) (A', Invalid input) (', Invalid input) (%, Invalid input) (c', Invalid input) (\, Invalid input) (n", Invalid input) 
+13.	(", Invalid input) (', Invalid input) (a', Invalid input) (', Invalid input) (%, Invalid input) (c', Invalid input) (\, Invalid input) (n", Invalid input) (', Invalid input) (a', Invalid input) 

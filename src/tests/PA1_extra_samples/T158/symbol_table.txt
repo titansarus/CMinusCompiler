@@ -1,0 +1,16 @@
+1.	if
+2.	else
+3.	void
+4.	int
+5.	repeat
+6.	break
+7.	until
+8.	return
+9.	include
+10.	main
+11.	Count
+12.	for
+13.	printf
+14.	switch
+15.	case
+16.	default

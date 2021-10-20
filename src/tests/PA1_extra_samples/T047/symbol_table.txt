@@ -1,0 +1,14 @@
+1.	if
+2.	else
+3.	void
+4.	int
+5.	repeat
+6.	break
+7.	until
+8.	return
+9.	struct
+10.	a
+11.	b
+12.	c
+13.	s
+14.	main

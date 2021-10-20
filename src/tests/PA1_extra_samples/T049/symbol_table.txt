@@ -1,0 +1,15 @@
+1.	if
+2.	else
+3.	void
+4.	int
+5.	repeat
+6.	break
+7.	until
+8.	return
+9.	x
+10.	struct
+11.	S
+12.	a
+13.	p
+14.	s
+15.	main

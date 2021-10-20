@@ -1,0 +1,3 @@
+5.	(u., Invalid input) 
+6.	(u., Invalid input) 
+8.	(u., Invalid input) (!, Invalid input) (|, Invalid input) (|, Invalid input) (u., Invalid input) (!, Invalid input) 

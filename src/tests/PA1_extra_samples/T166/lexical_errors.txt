@@ -1,0 +1,7 @@
+1.	(#, Invalid input) (stdio., Invalid input) (h>, Invalid input) 
+7.	(0x, Invalid number) (2468a, Invalid number) 
+8.	(0x, Invalid number) (2468A, Invalid number) 
+10.	(", Invalid input) (%, Invalid input) (d\, Invalid input) (n", Invalid input) 
+11.	(", Invalid input) (%, Invalid input) (d\, Invalid input) (n", Invalid input) 
+12.	(", Invalid input) (%, Invalid input) (d\, Invalid input) (n", Invalid input) 
+13.	(", Invalid input) (%, Invalid input) (d\, Invalid input) (n", Invalid input) 

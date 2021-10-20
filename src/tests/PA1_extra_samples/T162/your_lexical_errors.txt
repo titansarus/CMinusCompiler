@@ -1,0 +1,4 @@
+17.	(#, Invalid input) 
+19.	(#, Invalid input) 
+23.	(#, Invalid input) 
+30.	(#, Invalid input) 

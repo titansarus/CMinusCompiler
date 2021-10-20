@@ -1,0 +1,17 @@
+1.	if
+2.	else
+3.	void
+4.	int
+5.	repeat
+6.	break
+7.	until
+8.	return
+9.	include
+10.	main
+11.	char
+12.	a
+13.	short
+14.	b
+15.	printf
+16.	d
+17.	sizeof

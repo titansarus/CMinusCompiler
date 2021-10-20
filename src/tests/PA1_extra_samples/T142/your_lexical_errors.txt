@@ -1,0 +1,5 @@
+1.	(#, Invalid input) 
+3.	(#, Invalid input) (!, Invalid input) (&, Invalid input) (&, Invalid input) 
+5.	(#, Invalid input) (!, Invalid input) (&, Invalid input) (&, Invalid input) (!, Invalid input) 
+7.	(#, Invalid input) 
+9.	(#, Invalid input) 

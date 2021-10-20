@@ -1,0 +1,17 @@
+1.	if
+2.	else
+3.	void
+4.	int
+5.	repeat
+6.	break
+7.	until
+8.	return
+9.	typedef
+10.	struct
+11.	n
+12.	Vec
+13.	static
+14.	vecresize
+15.	v
+16.	cap
+17.	main

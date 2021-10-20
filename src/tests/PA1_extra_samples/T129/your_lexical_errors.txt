@@ -1,0 +1,3 @@
+12.	(#, Invalid input) 
+17.	(#, Invalid input) 
+24.	(s., Invalid input) (s., Invalid input) (s., Invalid input) (s., Invalid input) (s1., Invalid input) 

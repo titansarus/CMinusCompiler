@@ -1,0 +1,6 @@
+1.	(#, Invalid input) (", Invalid input) (b", Invalid input) 
+3.	(", Invalid input) (a", Invalid input) (", Invalid input) (c", Invalid input) 
+8.	(!, Invalid input) (', Invalid input) (a', Invalid input) 
+10.	(!, Invalid input) (', Invalid input) (b', Invalid input) 
+12.	(!, Invalid input) (', Invalid input) (c', Invalid input) 
+14.	(!, Invalid input) (', Invalid input) (\, Invalid input) (0', Invalid number) 

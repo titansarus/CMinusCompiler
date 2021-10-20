@@ -1,0 +1,7 @@
+1.	(ID, typedef) (KEYWORD, int) (ID, myint) (SYMBOL, ;) 
+2.	(ID, myint) (ID, x) (SYMBOL, =) (SYMBOL, () (ID, myint) (SYMBOL, )) (NUM, 1) (SYMBOL, ;) 
+4.	(KEYWORD, int) 
+5.	(ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) 
+6.	(SYMBOL, {) 
+7.	(KEYWORD, return) (ID, x) (SYMBOL, -) (NUM, 1) (SYMBOL, ;) 
+8.	(SYMBOL, }) 

@@ -1,0 +1,8 @@
+1.	(ID, define) (ID, x) (SYMBOL, () (ID, y) (SYMBOL, )) (ID, y) 
+3.	(KEYWORD, int) 
+4.	(ID, main) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) 
+5.	(SYMBOL, {) 
+6.	(ID, char) (SYMBOL, *) (ID, p) (SYMBOL, ;) 
+7.	(ID, p) (SYMBOL, =) (ID, x) (SYMBOL, () (ID, hello) (SYMBOL, )) (ID, is) (ID, better) (ID, than) (SYMBOL, ;) 
+9.	(KEYWORD, return) (SYMBOL, () (SYMBOL, *) (ID, p) (SYMBOL, ==) (SYMBOL, )) (NUM, 0) (SYMBOL, :) (NUM, 1) (SYMBOL, ;) 
+10.	(SYMBOL, }) 
