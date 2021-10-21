@@ -6,6 +6,7 @@ class BufferedReader:
         self.buffer = [''] * ((self.half_buffer_size + 1) * 2)
         self.forward = 0
         read_string = self.file.read(self.half_buffer_size)
+        self.ending_retreat = False
         self.buffer[:len(read_string)] = read_string
 
     def fill_buffer(self, read_string, half):
@@ -21,29 +22,41 @@ class BufferedReader:
     def retreat(self):
         if self.forward == self.half_buffer_size + 1:
             self.forward -= 1
+            self.ending_retreat = True
         if self.forward == 0:
             self.forward = self.half_buffer_size * 2 + 1
+            self.ending_retreat = True
         self.forward -= 1
 
     def next_char(self):
         retval = self.buffer[self.forward]
         self.forward += 1
-        if self.buffer[self.forward] == '':
+        if not self.ending_retreat:
+            if self.buffer[self.forward] == '':
+                if self.forward == self.half_buffer_size:
+                    read_string = self.file.read(self.half_buffer_size)
+                    self.fill_buffer(read_string, 2)
+                    self.forward += 1
+                    if read_string == '':
+                        self.file.close()
+                        return retval, False
+                elif self.forward == self.half_buffer_size * 2 + 1:
+                    read_string = self.file.read(self.half_buffer_size)
+                    if read_string == '':
+                        self.file.close()
+                        return retval, False
+                    self.fill_buffer(read_string, 1)
+                    self.forward = 0
+                else:
+                    self.file.close()
+                    return retval, False
+        else:
             if self.forward == self.half_buffer_size:
-                read_string = self.file.read(self.half_buffer_size)
-                self.fill_buffer(read_string, 2)
                 self.forward += 1
-                if read_string == '':
-                    self.file.close()
-                    return retval, False
+                self.ending_retreat = False
             elif self.forward == self.half_buffer_size * 2 + 1:
-                read_string = self.file.read(self.half_buffer_size)
-                if read_string == '':
-                    self.file.close()
-                    return retval, False
-                self.fill_buffer(read_string, 1)
                 self.forward = 0
+                self.ending_retreat = False
             else:
-                self.file.close()
-                return retval, False
+                raise Exception("Should Not Reach this state")
         return retval, True
