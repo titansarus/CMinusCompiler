@@ -6,7 +6,7 @@ class BufferedReader:
         self.buffer = [''] * ((self.half_buffer_size + 1) * 2)
         self.forward = 0
         read_string = self.file.read(self.half_buffer_size)
-        self.ending_retreat = False
+        self.beginnig_retreat = False
         self.buffer[:len(read_string)] = read_string
 
     def fill_buffer(self, read_string, half):
@@ -22,16 +22,16 @@ class BufferedReader:
     def retreat(self):
         if self.forward == self.half_buffer_size + 1:
             self.forward -= 1
-            self.ending_retreat = True
+            self.beginnig_retreat = True
         if self.forward == 0:
             self.forward = self.half_buffer_size * 2 + 1
-            self.ending_retreat = True
+            self.beginnig_retreat = True
         self.forward -= 1
 
     def next_char(self):
         retval = self.buffer[self.forward]
         self.forward += 1
-        if not self.ending_retreat:
+        if not self.beginnig_retreat:
             if self.buffer[self.forward] == '':
                 if self.forward == self.half_buffer_size:
                     read_string = self.file.read(self.half_buffer_size)
@@ -53,10 +53,10 @@ class BufferedReader:
         else:
             if self.forward == self.half_buffer_size:
                 self.forward += 1
-                self.ending_retreat = False
+                self.beginnig_retreat = False
             elif self.forward == self.half_buffer_size * 2 + 1:
                 self.forward = 0
-                self.ending_retreat = False
+                self.beginnig_retreat = False
             else:
                 raise Exception("Should Not Reach this state")
         return retval, True
