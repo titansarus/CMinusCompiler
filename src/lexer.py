@@ -2,9 +2,6 @@ import states
 from constants import *
 from BufferedReader import *
 
-
-# TODO EMPTY FILE
-
 class Lexer:
     def __init__(self, filename="input.txt"):
         self.reader = BufferedReader(filename)
@@ -43,6 +40,8 @@ class Lexer:
 
         if curr_state.is_retreat:
             if not is_eof_step:
+                if curr_state.is_accept_state and not must_continue:
+                    must_continue = True
                 lexeme = lexeme[:-1]
             if character == '\n':
                 self.curr_lineno -= 1
