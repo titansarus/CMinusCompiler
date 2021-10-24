@@ -549,9 +549,7 @@ Files ./lexical_errors.txt and ../PA1_extra_samples/T174/lexical_errors.txt diff
 
 
 =====================================>>>>> Running Test ../PA1_extra_samples/T182...
-Files ./tokens.txt and ../PA1_extra_samples/T182/tokens.txt differ
 Files ./lexical_errors.txt and ../PA1_extra_samples/T182/lexical_errors.txt differ
-Files ./symbol_table.txt and ../PA1_extra_samples/T182/symbol_table.txt differ
 
 
 =====================================>>>>> Running Test ../PA1_extra_samples/T183...
@@ -618,9 +616,6 @@ Files ./symbol_table.txt and ../PA1_extra_samples/T182/symbol_table.txt differ
 
 
 =====================================>>>>> Running Test ../PA1_extra_samples/T204...
-Files ./tokens.txt and ../PA1_extra_samples/T204/tokens.txt differ
-Files ./lexical_errors.txt and ../PA1_extra_samples/T204/lexical_errors.txt differ
-Files ./symbol_table.txt and ../PA1_extra_samples/T204/symbol_table.txt differ
 
 
 =====================================>>>>> Running Test ../PA1_extra_samples/T205...
