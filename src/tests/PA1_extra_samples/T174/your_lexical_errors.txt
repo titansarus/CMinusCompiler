@@ -19,7 +19,7 @@
 31.	(56., Invalid number) 
 32.	(", Invalid input) (%, Invalid input) (f\, Invalid input) (n", Invalid input) 
 34.	(12., Invalid number) 
-35.	(/=, Invalid input) (56., Invalid number) 
+35.	(/, Invalid input) (56., Invalid number) 
 36.	(", Invalid input) (%, Invalid input) (f\, Invalid input) (n", Invalid input) 
 39.	(", Invalid input) (%, Invalid input) (f\, Invalid input) (n", Invalid input) (12., Invalid number) 
 40.	(", Invalid input) (%, Invalid input) (f\, Invalid input) (n", Invalid input) (12., Invalid number) 

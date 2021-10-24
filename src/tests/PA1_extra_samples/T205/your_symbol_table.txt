@@ -22,6 +22,5 @@
 22.	j
 23.	for
 24.	sizeof
-25.	izeof
-26.	printf
-27.	d
+25.	printf
+26.	d

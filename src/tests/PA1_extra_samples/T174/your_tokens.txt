@@ -21,7 +21,7 @@
 31.	(ID, a) (SYMBOL, *) (SYMBOL, =) (NUM, 78) (SYMBOL, ;) 
 32.	(ID, printf) (SYMBOL, () (SYMBOL, ,) (ID, a) (SYMBOL, )) (SYMBOL, ;) 
 34.	(ID, a) (SYMBOL, =) (NUM, 34) (SYMBOL, ;) 
-35.	(ID, a) (NUM, 78) (SYMBOL, ;) 
+35.	(ID, a) (SYMBOL, =) (NUM, 78) (SYMBOL, ;) 
 36.	(ID, printf) (SYMBOL, () (SYMBOL, ,) (ID, a) (SYMBOL, )) (SYMBOL, ;) 
 39.	(ID, printf) (SYMBOL, () (SYMBOL, ,) (SYMBOL, +) (NUM, 34) (SYMBOL, )) (SYMBOL, ;) 
 40.	(ID, printf) (SYMBOL, () (SYMBOL, ,) (SYMBOL, -) (NUM, 34) (SYMBOL, )) (SYMBOL, ;) 

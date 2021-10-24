@@ -167,7 +167,7 @@
 214.	(KEYWORD, void) (ID, relocs) (SYMBOL, () (KEYWORD, void) (SYMBOL, )) 
 215.	(SYMBOL, {) 
 216.	(KEYWORD, int) (ID, i) (SYMBOL, ;) 
-217.	(ID, for) (SYMBOL, () (ID, i) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) (ID, i) (SYMBOL, <) (ID, sizeof) (SYMBOL, () (ID, table) (SYMBOL, )) (ID, izeof) (SYMBOL, () (ID, table) (SYMBOL, [) (NUM, 0) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, ;) (ID, i) (SYMBOL, +) (SYMBOL, +) (SYMBOL, )) 
+217.	(ID, for) (SYMBOL, () (ID, i) (SYMBOL, =) (NUM, 0) (SYMBOL, ;) (ID, i) (SYMBOL, <) (ID, sizeof) (SYMBOL, () (ID, table) (SYMBOL, )) (ID, sizeof) (SYMBOL, () (ID, table) (SYMBOL, [) (NUM, 0) (SYMBOL, ]) (SYMBOL, )) (SYMBOL, ;) (ID, i) (SYMBOL, +) (SYMBOL, +) (SYMBOL, )) 
 218.	(ID, table) (SYMBOL, [) (ID, i) (SYMBOL, ]) (SYMBOL, () (SYMBOL, )) (SYMBOL, ;) 
 219.	(SYMBOL, }) 
 223.	(ID, struct) (ID, SEA) (SYMBOL, {) (KEYWORD, int) (ID, i) (SYMBOL, ;) (KEYWORD, int) (ID, j) (SYMBOL, ;) (KEYWORD, int) (ID, k) (SYMBOL, ;) (KEYWORD, int) (ID, l) (SYMBOL, ;) (SYMBOL, }) (SYMBOL, ;) 

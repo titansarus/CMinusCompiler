@@ -23,7 +23,7 @@
 187.	(0L, Invalid number) (?, Invalid input) 
 190.	(x%, Invalid input) (10L, Invalid number) 
 191.	(>, Invalid input) (MAX_, Invalid input) 
-192.	(/1, Invalid input) (0L, Invalid number) 
+192.	(/, Invalid input) (10L, Invalid number) 
 197.	(i>, Invalid input) 
 200.	(=', Invalid input) (', Invalid input) 
 202.	(=', Invalid input) (\, Invalid input) (n', Invalid input) 

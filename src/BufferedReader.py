@@ -26,7 +26,10 @@ class BufferedReader:
             self.forward -= 1
 
     def next_char(self):
-        retval = self.buffer[self.current_half][self.forward]
+        try:
+            retval = self.buffer[self.current_half][self.forward]
+        except Exception:
+            return "", False
         self.forward += 1
         if self.forward == len(self.buffer[self.current_half]):
             self.goto_next_half_buffer()

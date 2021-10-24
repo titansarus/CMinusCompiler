@@ -63,7 +63,7 @@
 210.	(sys_, Invalid input) 
 211.	(sys_, Invalid input) 
 214.	(test_, Invalid input) (multi_, Invalid input) 
-217.	(/s, Invalid input) 
+217.	(/, Invalid input) 
 229.	(test_, Invalid input) (correct_, Invalid input) 
 232.	(>, Invalid input) (!, Invalid input) (|, Invalid input) (|, Invalid input) (>, Invalid input) (!, Invalid input) (|, Invalid input) (|, Invalid input) (>, Invalid input) (!, Invalid input) (|, Invalid input) (|, Invalid input) (>, Invalid input) (!, Invalid input) 
 233.	(", Invalid input) (sea_, Invalid input) (fill%, Invalid input) (wrong\, Invalid input) (n", Invalid input) 

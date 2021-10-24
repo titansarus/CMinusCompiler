@@ -4,12 +4,13 @@ from constants import *
 class State:
     states = {}
 
-    def __init__(self, id, token_type=START, is_accept_state=False, is_retreat=False):
+    def __init__(self, id, token_type=START, is_accept_state=False, is_retreat=False, is_panic_state=False):
         self.id = id
         self.transitions = {}
         self.token_type = token_type
         self.is_accept_state = is_accept_state
         self.is_retreat = is_retreat
+        self.is_panic_state = is_panic_state
         State.states[id] = self
 
     def add_transition(self, dest_state, character):
@@ -20,7 +21,7 @@ class State:
 
 
 def add_eof_transition(src_state: State, dest_state: State):
-    src_state.transitions[''] = dest_state
+    src_state.transitions[FINISH] = dest_state
 
 
 def add_transitions(src_state: State, dest_state: State, character_lists, negate=False):
@@ -70,6 +71,8 @@ def initialize_symbol_states(start_state):
     add_transitions(state_6, state_9, ["="], negate=True)
     add_transitions(start_state, state_8, ["*"])
     add_transitions(state_8, state_9, ["/"], True)
+    add_eof_transition(state_6, state_9)
+    add_eof_transition(state_8, state_9)
 
 
 def initialize_comment_states(start_state):
@@ -78,6 +81,7 @@ def initialize_comment_states(start_state):
     state_12 = State(12, COMMENT, is_accept_state=True, is_retreat=False)
     state_13 = State(13, COMMENT, is_accept_state=False, is_retreat=False)
     state_14 = State(14, COMMENT, is_accept_state=False, is_retreat=False)
+    lone_slash_state = State(16, KEYWORD_ID, is_accept_state=False, is_retreat=True, is_panic_state=True)
 
     add_transitions(start_state, state_10, ['/'])
     add_transitions(state_10, state_11, ['/'])
@@ -90,6 +94,7 @@ def initialize_comment_states(start_state):
     add_transitions(state_14, state_14, ['*'])
     add_transitions(state_14, state_12, ['/'])
     add_transitions(state_14, state_13, [all_characters.replace('*', "").replace('/', "")])
+    add_transitions(state_10, lone_slash_state, ['/', '*'], negate=True)
 
 
 def initialize_whitespace_states(start_state):

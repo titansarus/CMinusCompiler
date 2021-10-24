@@ -9,7 +9,7 @@ class Lexer:
     def __init__(self, filename="input.txt"):
         self.reader = BufferedReader(filename)
         self.lines = {}
-        self.curr_lineno = 0
+        self.curr_lineno = 1
         self.curr_line = None
         self.char_index = 0
         pass
@@ -17,44 +17,47 @@ class Lexer:
     def get_next_token(self):
         curr_state: states.State = states.State.states[0]
         lexeme = ""
-        start_line = self.curr_lineno + 1
-        is_tof = False  # TODO change this
+        start_line = self.curr_lineno
+        is_eof_step = False
 
         while True:
             character, must_continue = self.reader.next_char()
-            if character == '\n' or not must_continue:
+            if character == "":
+                return None
+            if character == '\n':
                 self.curr_lineno += 1
             lexeme += character
             try:
                 curr_state = curr_state.get_next_state(character)
             except KeyError:
-                return self.panic_mode(curr_state, lexeme, must_continue, start_line, is_tof)
-            if curr_state.is_accept_state:
+                return self.panic_mode(curr_state, lexeme, must_continue, start_line)
+            if curr_state.is_panic_state or curr_state.is_accept_state:
                 break
             if not must_continue:
-                curr_state = curr_state.get_next_state('\n')
-                is_tof = True
-            if curr_state.is_accept_state:
-                break
-            if not must_continue:
-                if not curr_state == states.State.states[0]:
-                    return self.panic_mode(curr_state, lexeme, must_continue, start_line, is_tof)
-                break
+                try:
+                    curr_state = curr_state.get_next_state(FINISH)
+                    is_eof_step = True
+                    break
+                except KeyError:
+                    return self.panic_mode(curr_state, lexeme, must_continue, start_line)
 
-        if curr_state.is_retreat and not is_tof:
-            lexeme = lexeme[:-1]
+        if curr_state.is_retreat:
+            if not is_eof_step:
+                lexeme = lexeme[:-1]
             if character == '\n':
                 self.curr_lineno -= 1
             self.reader.retreat()
-            must_continue = True
+        
+        if (not curr_state.is_accept_state and not must_continue and not curr_state == states.State.states[0]) or curr_state.is_panic_state:
+            return self.panic_mode(curr_state, lexeme, must_continue, start_line)
 
-        return self.final_return(curr_state, is_tof, lexeme, must_continue, start_line)
+        return self.final_return(curr_state, lexeme, must_continue, start_line)
 
-    def final_return(self, curr_state, is_tof, lexeme, must_continue, start_line, panic_state=None):
+    def final_return(self, curr_state, lexeme, must_continue, start_line, panic_state=None):
         token_type = Lexer.get_token_type(curr_state.token_type, lexeme)
-        return start_line, (panic_state if panic_state else token_type), lexeme, must_continue, is_tof
+        return start_line, (panic_state if panic_state else token_type), lexeme, must_continue
 
-    def panic_mode(self, curr_state, lexeme, must_continue, start_line, is_tof):
+    def panic_mode(self, curr_state, lexeme, must_continue, start_line):
         panic_state = PANIC_INVALID_INPUT
         if curr_state.token_type == NUM:
             panic_state = PANIC_INVALID_NUMBER
@@ -66,7 +69,7 @@ class Lexer:
                 panic_state = PANIC_UNMATCHED_COMMENT
         if lexeme[-1] in whitespace:
             lexeme = lexeme[:-1]
-        return self.final_return(curr_state, is_tof, lexeme, must_continue, start_line, panic_state)
+        return self.final_return(curr_state, lexeme, must_continue, start_line, panic_state)
 
     @staticmethod
     def get_token_type(token_type, lexeme):
