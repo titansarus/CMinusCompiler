@@ -1,0 +1,44 @@
+Declaration_list	$ { break ; if repeat return ID ( NUM }
+Declaration	int void $ { break ; if repeat return ID ( NUM }
+Declaration_initial	( ; [ , )
+Declaration_prime	int void $ { break ; if repeat return ID ( NUM }
+Var_declaration_prime	int void $ { break ; if repeat return ID ( NUM }
+Fun_declaration_prime	int void $ { break ; if repeat return ID ( NUM }
+Type_specifier	ID
+Params	)
+Param_list	)
+Param	, )
+Param_prime	, )
+Compound_stmt	int void $ { break ; if repeat return ID ( NUM } endif else until
+Statement_list	}
+Statement	{ break ; if repeat return ID ( NUM } endif else until
+Expression_stmt	{ break ; if repeat return ID ( NUM } endif else until
+Selection_stmt	{ break ; if repeat return ID ( NUM } endif else until
+Else_stmt	{ break ; if repeat return ID ( NUM } endif else until
+Iteration_stmt	{ break ; if repeat return ID ( NUM } endif else until
+Return_stmt	{ break ; if repeat return ID ( NUM } endif else until
+Return_stmt_prime	{ break ; if repeat return ID ( NUM } endif else until
+Expression	; ) ] ,
+B	; ) ] ,
+H	; ) ] ,
+Simple_expression_zegond	; ) ] ,
+Simple_expression_prime	; ) ] ,
+C	; ) ] ,
+Relop	( ID NUM
+Additive_expression	; ) ] ,
+Additive_expression_prime	< == ; ) ] ,
+Additive_expression_zegond	< == ; ) ] ,
+D	< == ; ) ] ,
+Addop	( ID NUM
+Term	+ _ ; ) < == ] ,
+Term_prime	+ _ < == ; ) ] ,
+Term_zegond	+ _ < == ; ) ] ,
+G	+ _ < == ; ) ] ,
+Factor	* + _ ; ) < == ] ,
+Var_call_prime	* + _ ; ) < == ] ,
+Var_prime	* + _ ; ) < == ] ,
+Factor_prime	* + _ < == ; ) ] ,
+Factor_zegond	* + _ < == ; ) ] ,
+Args	)
+Arg_list	)
+Arg_list_prime	)

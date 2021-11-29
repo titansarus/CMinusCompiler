@@ -242,3 +242,4 @@ Factor_zegond.follow = ["*", "+", "_", "<", "==", ";", ")", "]", ",", ]
 Args.follow = [")", ]
 Arg_list.follow = [")", ]
 Arg_list_prime.follow = [")", ]
+

@@ -1,0 +1,45 @@
+Program	$ int void
+Declaration_list	ε int void
+Declaration	int void
+Declaration_initial	int void
+Declaration_prime	( ; [
+Var_declaration_prime	; [
+Fun_declaration_prime	(
+Type_specifier	int void
+Params	int void
+Param_list	, ε
+Param	int void
+Param_prime	[ ε
+Compound_stmt	{
+Statement_list	ε { break ; if repeat return ID ( NUM
+Statement	{ break ; if repeat return ID ( NUM
+Expression_stmt	break ; ID ( NUM
+Selection_stmt	if
+Else_stmt	endif else
+Iteration_stmt	repeat
+Return_stmt	return
+Return_stmt_prime	; ID ( NUM
+Expression	ID ( NUM
+B	= [ ( * + _ < == ε
+H	= * ε + _ < ==
+Simple_expression_zegond	( NUM
+Simple_expression_prime	( * + _ < == ε
+C	ε < ==
+Relop	< ==
+Additive_expression	( ID NUM
+Additive_expression_prime	( * + _ ε
+Additive_expression_zegond	( NUM
+D	ε + _
+Addop	+ _
+Term	( ID NUM
+Term_prime	( * ε
+Term_zegond	( NUM
+G	* ε
+Factor	( ID NUM
+Var_call_prime	( [ ε
+Var_prime	[ ε
+Factor_prime	( ε
+Factor_zegond	( NUM
+Args	ε ID ( NUM
+Arg_list	ID ( NUM
+Arg_list_prime	, ε

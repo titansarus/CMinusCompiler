@@ -1,3 +1,4 @@
+import first_follow_converter
 
 productions = '''Program -> Declaration-list $
 Declaration-list -> Declaration Declaration-list | EPSILON 
@@ -46,6 +47,8 @@ Arg-list -> Expression Arg-list-prime
 Arg-list-prime -> , Expression Arg-list-prime | EPSILON'''.split("\n")
 
 program = ""
+with open("productions_header.py") as f:
+    program += f.read() + '\n'
 for production in productions:
     lhs, rhs = production.split(" -> ")
     program += f'{lhs.replace("-", "_")} = Production("{lhs}")\n'
@@ -68,5 +71,6 @@ for production in productions:
                     temp += f'"{semitoken}", '
             temp = f'[{temp}]'
             program += f'{lhs_name}.add_rule({temp})\n'
-with open("production_production.py", "w") as f:
+program += first_follow_converter.get_program()
+with open("program.py", "w") as f:
     print(program, file=f)
