@@ -5,7 +5,7 @@ symbol = ";:,[](){}+-*=<"
 whitespace = "\n\r\t\v\f "
 slash = "/"
 all_valid = letters + digits + symbol + whitespace + slash
-keywords = ["if", "else", "void", "int", "repeat", "break", "until", "return"]
+keywords = ["if", "else", "void", "int", "repeat", "break", "until", "return", "endif"]
 NUM = "NUM"
 ID = "ID"
 KEYWORD = "KEYWORD"
