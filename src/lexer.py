@@ -9,9 +9,19 @@ class Lexer:
         self.curr_lineno = 1
         self.curr_line = None
         self.char_index = 0
+        self.must_continue = True
         pass
 
     def get_next_token(self):
+        token = self.get_next_token_util()
+        if token == None or not self.must_continue:
+            return self.curr_lineno, END_TOKEN, "$", False
+        if not token[3]:
+            self.must_continue = False
+            token = (token[0], token[1], token[2], True)
+        return token
+    
+    def get_next_token_util(self):
         curr_state: states.State = states.State.states[0]
         lexeme = ""
         start_line = self.curr_lineno

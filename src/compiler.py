@@ -11,6 +11,7 @@ if __name__ == '__main__':
 
     while True:
         token = lexer.get_next_token()
+        print(token)
         if token == None:
             break
         if token[0] not in all_tokens.keys():
