@@ -6,4 +6,6 @@
 6.	break
 7.	until
 8.	return
-9.	main
+9.	endif
+10.	main
+11.	k

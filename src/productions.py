@@ -1,6 +1,21 @@
-class Rules:
+from constants import *
+from parser_states import *
+
+class Rule:
     def __init__(self, rhs):
         self.rhs = rhs
+    def goes_with_token(self, token):
+        for production in self.rhs:
+            if (token.token_type == NUM or token.token_type == ID) and production == token.token_type:
+                return True
+            elif token.lexeme == production: # keywords and terminals
+                return
+            elif token.lexeme in production.first:
+                return True
+            elif production.first_has_epsilon:
+                continue
+            else:
+                False
 
 class Production:
     def __init__(self, name):
@@ -11,7 +26,12 @@ class Production:
         self.first = []
         self.follow = []
     def add_rule(self, rhs):
-        self.rules.append(Rules(rhs))
+        self.rules.append(Rule(rhs))
+    def get_next_rule(self, token):
+        for rule in self.rules:
+            if rule.goes_with_token(token):
+                return rule
+        return None
 
 Program = Production("Program")
 Declaration_list = Production("Declaration-list")
@@ -242,3 +262,6 @@ Factor_zegond.follow = ["*", "+", "_", "<", "==", ";", ")", "]", ",", ]
 Args.follow = [")", ]
 Arg_list.follow = [")", ]
 Arg_list_prime.follow = [")", ]
+
+productions = [Program, Declaration_list, Declaration, Declaration_initial, Declaration_prime, Var_declaration_prime, Fun_declaration_prime, Type_specifier, Params, Param_list, Param, Param_prime, Compound_stmt, Statement_list, Statement, Expression_stmt, Selection_stmt, Else_stmt, Iteration_stmt, Return_stmt, Return_stmt_prime, Expression, B, H, Simple_expression_zegond, Simple_expression_prime, C, Relop, Additive_expression, Additive_expression_prime, Additive_expression_zegond, D, Addop, Term, Term_prime, Term_zegond, G, Factor, Var_call_prime, Var_prime, Factor_prime, Factor_zegond, Args, Arg_list, Arg_list_prime, ]
+parser_states = generate_parser_states(productions)

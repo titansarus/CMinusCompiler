@@ -1,6 +1,7 @@
 import states
 from constants import *
 from BufferedReader import *
+from token import Token
 
 class Lexer:
     def __init__(self, filename="input.txt"):
@@ -12,16 +13,16 @@ class Lexer:
         self.must_continue = True
         pass
 
-    def get_next_token(self):
+    def get_next_token(self) -> Token:
         token = self.get_next_token_util()
         if token == None or not self.must_continue:
-            return self.curr_lineno, END_TOKEN, "$", False
-        if not token[3]:
+            return Token(self.curr_lineno, END_TOKEN, "$", False)
+        if not token.must_continue:
             self.must_continue = False
-            token = (token[0], token[1], token[2], True)
+            token.must_continue = True
         return token
     
-    def get_next_token_util(self):
+    def get_next_token_util(self) -> Token:
         curr_state: states.State = states.State.states[0]
         lexeme = ""
         start_line = self.curr_lineno
@@ -64,7 +65,8 @@ class Lexer:
 
     def final_return(self, curr_state, lexeme, must_continue, start_line, panic_state=None):
         token_type = Lexer.get_token_type(curr_state.token_type, lexeme)
-        return start_line, (panic_state if panic_state else token_type), lexeme, must_continue
+        token = Token(start_line, (panic_state if panic_state else token_type), lexeme, must_continue)
+        return token
 
     def panic_mode(self, curr_state, lexeme, must_continue, start_line):
         panic_state = PANIC_INVALID_INPUT

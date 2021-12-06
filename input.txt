@@ -1,5 +1,6 @@
 int
 main()
 {
+	endif 2 4 6 8 if k endif;
 	return 0;
 }

@@ -47,10 +47,12 @@ Arg-list -> Expression Arg-list-prime
 Arg-list-prime -> , Expression Arg-list-prime | EPSILON'''.split("\n")
 
 program = ""
-with open("productions_header.py") as f:
+production_names = ""
+with open("./src/generator codes/productions_header.py") as f:
     program += f.read() + '\n'
 for production in productions:
     lhs, rhs = production.split(" -> ")
+    production_names += f'{lhs.replace("-", "_")}, '
     program += f'{lhs.replace("-", "_")} = Production("{lhs}")\n'
 for production in productions:
     lhs, rhs = production.split(" -> ")
@@ -72,5 +74,8 @@ for production in productions:
             temp = f'[{temp}]'
             program += f'{lhs_name}.add_rule({temp})\n'
 program += first_follow_converter.get_program()
-with open("program.py", "w") as f:
+program += f'\nproductions = [{production_names}]\n'
+program += f'parser_states = generate_parser_states(productions)\n'
+
+with open("./src/generator codes/program.py", "w") as f:
     print(program, file=f)
