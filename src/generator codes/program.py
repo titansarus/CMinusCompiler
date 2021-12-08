@@ -264,5 +264,5 @@ Arg_list.follow = [")", ]
 Arg_list_prime.follow = [")", ]
 
 productions = [Program, Declaration_list, Declaration, Declaration_initial, Declaration_prime, Var_declaration_prime, Fun_declaration_prime, Type_specifier, Params, Param_list, Param, Param_prime, Compound_stmt, Statement_list, Statement, Expression_stmt, Selection_stmt, Else_stmt, Iteration_stmt, Return_stmt, Return_stmt_prime, Expression, B, H, Simple_expression_zegond, Simple_expression_prime, C, Relop, Additive_expression, Additive_expression_prime, Additive_expression_zegond, D, Addop, Term, Term_prime, Term_zegond, G, Factor, Var_call_prime, Var_prime, Factor_prime, Factor_zegond, Args, Arg_list, Arg_list_prime, ]
-parser_states = generate_parser_states(productions)
+parser_states_dict, parser_states_list = generate_parser_states(productions)
 

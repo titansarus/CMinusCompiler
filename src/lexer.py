@@ -1,7 +1,7 @@
 import states
 from constants import *
 from BufferedReader import *
-from token import Token
+from cminus_token import Token
 
 class Lexer:
     def __init__(self, filename="input.txt"):
