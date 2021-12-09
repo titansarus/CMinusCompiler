@@ -1,17 +1,19 @@
-/*sample 5*/
-
-int fun(int a){
-	return a * a;
-}
-void main(void){
-	int ozra;
-	int bahram;
-	bahram =1; 
-	if (bahram < 5) {
-		ozra = fun(bahram);
+/*sample 7*/
+int func(int x){
+	int a;
+	a = 10;
+	output(x);
+	if(a < x) {
+		return(1);
 	}
 	else {
-		ozra = 4*4;
+		return(2);
 	}
-	endif
 }
+void main  ( void )
+{
+	int i;
+	i func (2+4);
+	output(i;
+}
+

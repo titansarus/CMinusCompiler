@@ -9,7 +9,9 @@ if __name__ == '__main__':
     states.initialize_states()
     lexer = Lexer()
     parser = Parser(lexer)
-    initial_node = parser.parse()
+    initial_node, errors = parser.parse()
     tree = get_tree(initial_node)
     with open("parse_tree.txt", "w") as f:
         print(render_tree(tree), file=f)
+    for i in errors:
+        print(i)
