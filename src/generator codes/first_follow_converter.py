@@ -97,6 +97,8 @@ Arg_list_prime	)'''.split('\n')
         for f in first.split():
             if f == "ε":
                 program += f'{production}.first_has_epsilon = True\n'
+            elif f == "_":
+                production_first += f'"-", '
             else:
                 production_first += f'"{f}", '
         program += f'{production}.first = [{production_first}]\n'
@@ -105,7 +107,10 @@ Arg_list_prime	)'''.split('\n')
         production, follow = line.split('\t')
         production_follow = ""
         for f in follow.split():
-            production_follow += f'"{f}", '
+            if f == "_":
+                production_follow += f'"-", '
+            else:
+                production_follow += f'"{f}", '
         program += f'{production}.follow = [{production_follow}]\n'
 
     return program

@@ -67,14 +67,14 @@ class ProductionParser:
                 is_valid_epsilon_nonterminal = edge.edge_type == PRODUCTION_PARSER_EDGE and edge.label.first_has_epsilon and (current_token.lexeme in edge.label.follow or current_token.token_type in edge.label.follow)
                 if is_valid_NUM_or_ID or is_valid_KEYWORD_or_SYMBOL:
                     epsilon_state = None
-                    # print(self.current_state.ID, current_token.lexeme)
+                    print(self.current_state.ID, current_token.lexeme)
                     next_node = ProductionParser(edge.label, self.lexer).parse()
                     current_node.add_child(next_node)
                     self.current_state = edge.destination
                     break
                 elif is_valid_Nonterminal or is_valid_epsilon_nonterminal:
                     epsilon_state = None
-                    # print(self.current_state.ID, current_token.lexeme)
+                    print(self.current_state.ID, current_token.lexeme)
                     next_node = ProductionParser(edge.label, self.lexer).parse()
                     current_node.add_child(next_node)
                     self.current_state = edge.destination
@@ -82,10 +82,10 @@ class ProductionParser:
                 elif edge.edge_type == EPSILON_PARSER_EDGE:
                     epsilon_state = edge.destination
             if epsilon_state:
-                # print(self.current_state.ID, current_token.lexeme)
+                print(self.current_state.ID, current_token.lexeme)
                 next_node = ParseNode(EPSILON, EPSILON)
                 current_node.add_child(next_node)
                 self.current_state = epsilon_state
-        # print(self.current_state.ID, current_token.lexeme)
+        print(self.current_state.ID, current_token.lexeme)
         return current_node
         
