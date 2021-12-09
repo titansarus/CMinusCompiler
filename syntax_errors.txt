@@ -1,4 +1,1 @@
-#19 : syntax error, missing ]
-#19 : syntax error, missing ;
-#19 : syntax error, illegal )
-#19 : syntax error, illegal ]
+There is no syntax error.
