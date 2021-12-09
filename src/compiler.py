@@ -13,5 +13,5 @@ if __name__ == '__main__':
     tree = get_tree(initial_node)
     with open("parse_tree.txt", "w") as f:
         print(render_tree(tree), file=f)
-    for i in errors:
-        print(i)
+    with open("syntax_errors.txt", "w") as f:
+        print("\n".join(errors), file=f)

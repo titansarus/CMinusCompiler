@@ -121,8 +121,10 @@ class ProductionParser:
             elif error_edge:
                 try:
                     if is_nonterminal_missing:
+                        self.current_state = error_edge.destination
                         raise Exception("missing", error_edge.label.name, current_token)
                     elif is_NUM_or_ID_missing or is_KEYWORD_or_SYMBOL_missing:
+                        self.current_state = error_edge.destination
                         raise Exception("missing", error_edge.label, current_token)
                     elif is_token_illegal:
                         illegal_token = current_token
@@ -140,10 +142,10 @@ class ProductionParser:
                         message = "Unexpexted"
                         error_message = f"#{token.lineno} : syntax error, Unexpected EOF"
                         file_ended = True
+                        errors.append(error_message)
+                        break
                     errors.append(error_message)
-                    if message == "illegal":
-                        continue
-                    break
+                    continue
 
         # print(self.current_state.ID, current_token.lexeme)
         return current_node
