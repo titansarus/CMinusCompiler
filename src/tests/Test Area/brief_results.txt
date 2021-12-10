@@ -41,18 +41,15 @@
 
 
 =====================================>>>>> Running Test ../PA2_testcases/T14...
-Files ./syntax_errors.txt and ../PA2_testcases/T14/syntax_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA2_testcases/T15...
-Files ./syntax_errors.txt and ../PA2_testcases/T15/syntax_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA2_testcases/T16...
 
 
 =====================================>>>>> Running Test ../PA2_testcases/T17...
-Files ./syntax_errors.txt and ../PA2_testcases/T17/syntax_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA2_testcases/T18...
