@@ -1,11 +1,11 @@
-from constants import *
-from productions import *
-from lexer import Lexer
-from cminus_token import Token
+from .productions import *
+from ..Lexer.lexer import Lexer
+from ..Lexer.cminus_token import Token
 
 current_token = None
 errors = []
 file_ended = False
+
 
 def get_next_valid_token(lexer: Lexer):
     token = lexer.get_next_token()
@@ -13,6 +13,7 @@ def get_next_valid_token(lexer: Lexer):
     while token.token_type in skip_states:
         token = lexer.get_next_token()
     return token
+
 
 class Parser:
     def __init__(self, lexer):
@@ -34,13 +35,16 @@ class ParseNode:
         self.label = label
         self.parent = parent
         self.children = []
+
     def add_child(self, child: "ParseNode"):
         child.parent = self
         self.children.append(child)
+
     def get_name(self):
         if type(self.production) == str:
             return self.production
         return self.production.name
+
 
 class ProductionParser:
     def __init__(self, production: Production, lexer: Lexer):
@@ -50,13 +54,15 @@ class ProductionParser:
         self.errors = []
         if type(production) == Production:
             self.current_state = parser_states_dict[production]
+
     def parse(self):
         global current_token, errors, file_ended
         if self.current_state == None:
             if current_token.token_type == END_TOKEN:
                 node = ParseNode(self.production, self.production)
             else:
-                node = ParseNode(f'({current_token.token_type}, {current_token.lexeme})', f'({current_token.token_type}, {current_token.lexeme})')
+                node = ParseNode(f'({current_token.token_type}, {current_token.lexeme})',
+                                 f'({current_token.token_type}, {current_token.lexeme})')
             current_token = get_next_valid_token(self.lexer)
             return node
         current_node = ParseNode(self.production, label=self.production.name)
@@ -143,4 +149,3 @@ class ProductionParser:
 
         # print(self.current_state.ID, current_token.lexeme)
         return current_node
-        

@@ -1,4 +1,5 @@
-from constants import *
+from ..Constants.constants import *
+
 
 class ParserState:
     def __init__(self, ID, production, is_begin=False, is_final=False):
@@ -7,6 +8,7 @@ class ParserState:
         self.production = production
         self.is_begin = is_begin
         self.is_final = is_final
+
     def add_edge(self, destination, edge_type, label):
         edge = ParserEdge(self, destination, edge_type, label)
         self.edges.append(edge)
@@ -29,6 +31,7 @@ class ParserState:
                 epsilon_state = edge.destination
         return epsilon_state, False
 
+
 class ParserEdge:
     def __init__(self, source: ParserState, destination: ParserState, edge_type, label):
         self.source = source
@@ -36,10 +39,11 @@ class ParserEdge:
         self.edge_type = edge_type
         self.label = label
 
+
 def get_edge_type(rule_production):
     if rule_production == NUM or rule_production == ID:
         edge_type = NUM_ID_PARSER_EDGE
-    elif type(rule_production) == str: # keywords and terminals
+    elif type(rule_production) == str:  # keywords and terminals
         edge_type = KEYWORD_SYMBOL_PARSER_EDGE
     elif type(rule_production).__name__ == "Production":
         edge_type = PRODUCTION_PARSER_EDGE
@@ -48,9 +52,10 @@ def get_edge_type(rule_production):
         edge_type = None
     return edge_type
 
+
 def generate_parser_states(productions):
     state_num = 0
-    parser_states = [] # TODO delete if not needed
+    parser_states = []  # TODO delete if not needed
     parser_states_dict = {}
     for production in productions:
         initial_state = ParserState(state_num, production=production, is_begin=True)

@@ -1,4 +1,4 @@
-from constants import *
+from ..Constants.constants import *
 
 class LexerOutputGenerator:
 
@@ -46,7 +46,6 @@ class LexerOutputGenerator:
                 tokens[lineno] = " ".join(token_string_list) + " "
         return tokens
 
-    # TODO LEXICAL ERROR SIZE LIMIT
     @staticmethod
     def generate_final_outputs(token_lines: dict):
         symbol_table = LexerOutputGenerator.generate_symbol_table(token_lines)

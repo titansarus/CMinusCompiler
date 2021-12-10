@@ -1,6 +1,6 @@
 import graphviz
-from productions import productions
-from parser_states import generate_parser_states
+from ..Parser.productions import productions
+from ..Parser.parser_states import generate_parser_states
 
 parser_states_dict, parser_states_list = generate_parser_states(productions)
 dot = graphviz.Digraph(comment='Transition Table')

@@ -1,6 +1,0 @@
-1.	(KEYWORD, int) 
-2.	(ID, main) (SYMBOL, () (SYMBOL, )) 
-3.	(SYMBOL, {) 
-4.	(KEYWORD, endif) (NUM, 2) (NUM, 4) (NUM, 6) (NUM, 8) (KEYWORD, if) (ID, k) (KEYWORD, endif) (SYMBOL, ;) 
-5.	(KEYWORD, return) (NUM, 0) (SYMBOL, ;) 
-6.	(SYMBOL, }) (END_TOKEN, $) 

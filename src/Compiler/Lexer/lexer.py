@@ -1,7 +1,8 @@
-import states
-from constants import *
-from BufferedReader import *
-from cminus_token import Token
+from . import lexer_states
+from ..Constants.constants import *
+from .BufferedReader import BufferedReader
+from .cminus_token import Token
+
 
 class Lexer:
     def __init__(self, filename="input.txt"):
@@ -15,7 +16,7 @@ class Lexer:
 
     def get_next_token(self) -> Token:
         token = self.get_next_token_util()
-        if token == None or not self.must_continue:
+        if token is None or not self.must_continue:
             return Token(self.curr_lineno, END_TOKEN, "$", False)
         if not token.must_continue:
             self.must_continue = False
@@ -23,7 +24,7 @@ class Lexer:
         return token
     
     def get_next_token_util(self) -> Token:
-        curr_state: states.State = states.State.states[0]
+        curr_state: lexer_states.LexerStates = lexer_states.LexerStates.states[0]
         lexeme = ""
         start_line = self.curr_lineno
         is_eof_step = False
@@ -58,7 +59,7 @@ class Lexer:
                 self.curr_lineno -= 1
             self.reader.retreat()
         
-        if (not curr_state.is_accept_state and not must_continue and not curr_state == states.State.states[0]) or curr_state.is_panic_state:
+        if (not curr_state.is_accept_state and not must_continue and not curr_state == lexer_states.LexerStates.states[0]) or curr_state.is_panic_state:
             return self.panic_mode(curr_state, lexeme, must_continue, start_line)
 
         return self.final_return(curr_state, lexeme, must_continue, start_line)
