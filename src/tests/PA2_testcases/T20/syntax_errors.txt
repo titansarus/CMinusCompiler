@@ -1,0 +1,10 @@
+#1 : syntax error, illegal =
+#5 : syntax error, illegal NUM
+#7 : syntax error, missing Expression
+#7 : syntax error, missing ;
+#7 : syntax error, illegal )
+#8 : syntax error, missing Expression
+#10 : syntax error, missing Term
+#11 : syntax error, missing Expression
+#12 : syntax error, missing Expression
+#14 : syntax error, illegal NUM

@@ -1,0 +1,12 @@
+/*sample 3*/
+void main (void) {
+int a;
+int b;
+ b = 1;
+ a = 2;
+	repeat {
+		b = b + 1 + 2 * 2;
+		a = a * 2;
+	} until (20 < b)
+	return;
+}

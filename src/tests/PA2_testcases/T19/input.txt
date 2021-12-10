@@ -1,0 +1,6 @@
+void main(void){
+	int a;
+	int b;
+	a = a * 12d;
+	a = b + 123d 1;
+} */

@@ -1,0 +1,21 @@
+void main ( void ) {
+	void function ( int a ) { }
+	int function2 ( int b ) { }
+	if ( 2 = 2) { } else { } ;
+	if ( 2 == 2) { } else { } ;
+	if ( 2 == 2 ) 
+	{
+	int a = 2 ;
+	int b;
+	int p;
+	int q,r,s,t;
+	p ( ) ;
+	function ( ) ;
+	= ; * ; == ; + ; - ;
+	+ = - * ==
+	;
+	;;;
+	} else { } endif;
+	
+
+}

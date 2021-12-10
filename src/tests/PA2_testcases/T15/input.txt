@@ -1,0 +1,27 @@
+int function ( int int int a ; , int a = 2, int b[ , int c], d , e , 2 , [] , ( , & , ) { } ;
+int function2 (int a, int b);
+
+void main (void) {
+	function ( * );
+	function ( 2 , 3 );
+	function ( if );
+	function ( /* a */ q );
+	s = 2;
+	return;
+	int a;
+	a = a + 2;
+	// ezhdeha
+	repeat;
+	until;
+	baharvand;
+	== ; = ; * ; = * + - ;
+	if;
+	else;
+	if else if else;
+	if ( mamad ) { } endif;
+	if ( int int int ) { } else { } endif;
+	if ( void ) { } else { } endif;
+	if ( repeat; ) { } else { } endif;
+	if (until ( a < 2 ) ) { } else { } endif;
+	if ( mamad ) { } else { } endif;
+}

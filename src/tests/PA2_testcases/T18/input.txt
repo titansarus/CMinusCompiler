@@ -1,0 +1,19 @@
+void asd ( void ) { } 
+void main ( void ) {
+	repeat {
+	asd ( );
+	void soltan ( void ) { }
+	void soltan2 ( void ) { } ;
+	int a = 2 ;
+	int b;
+	int p;
+	int q,r,s,t;
+	p ( ) ;
+	function ( ) ;
+	= ; * ; == ; + ; - ;
+	+ = - * ==
+	;
+	;;;
+	
+	} until ( int a == 2 e? &amp; b < 2);
+}

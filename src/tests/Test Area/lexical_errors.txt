@@ -1,7 +1,0 @@
-1.	(#, Invalid input) (stdio., Invalid input) (h>, Invalid input) 
-2.	(#, Invalid input) (wchar., Invalid input) (h>, Invalid input) 
-6.	(wchar_, Invalid input) (L", Invalid input) (hello$, Invalid input) ($, Invalid input) (world", Invalid input) 
-7.	(wchar_, Invalid input) 
-8.	(", Invalid input) (%, Invalid input) (04X, Invalid number) (", Invalid input) 
-9.	(", Invalid input) (\, Invalid input) (n", Invalid input) 
-12.	(/* lets..., Unclosed comment) 

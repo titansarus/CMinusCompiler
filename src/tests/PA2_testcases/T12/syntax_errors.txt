@@ -1,0 +1,2 @@
+#1 : syntax error, illegal ID
+#1 : syntax error, missing Param

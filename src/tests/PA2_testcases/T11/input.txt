@@ -1,0 +1,47 @@
+
+int function(int a, int b, c) {
+/* comment */
+// comment
+         if (a = b) {
+                                        c = b = a;
+                                 }
+         else
+               a == b;
+          endif
+}
+
+int anotherfunction(int a, int b, int c) {
+      if ( a = b) { c = b = a;}
+      else
+               a == b;
+      endif
+}
+
+int yetanotherfunction(int a, int b, int c) {
+	if ( a == b){
+                     c = b = a;}
+	else
+	a == b;
+	int d;
+	int ;
+	int =& 12& e;
+	int ; f ;
+	int 2 g;
+	int 3s2;
+	int == = * + - h;
+	int repeat i;
+	int if j;
+	int [ ( k;
+	int int l;
+	int { } m;
+	endif
+}
+
+int lastbutnotleast (int a, int b, int c) {
+	if (a == b)
+		c = b = a;
+	else
+		a = b;
+	endif
+}
+

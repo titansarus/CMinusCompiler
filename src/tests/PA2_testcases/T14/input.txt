@@ -1,0 +1,37 @@
+int f ( int a, int b) {
+	a = a + b;
+		return a;
+}
+int g (int a) {
+	return 
+	a
+	;
+}
+int h        (  int    a    ,       int      b    )
+{
+	a=a+b;b=a+b;a=a*2;b=b+2;return (a+b+2);
+}
+
+void mamad ( );
+
+void a;
+
+int a;
+int g;
+int p;
+
+void main ( void ) {
+	mamad();
+	f;
+	f();
+	f(2);
+	f(,);
+	f( ; );
+	f( int a);
+	int g; g=2;
+	int y = 2;
+	int z; z = 2;
+	f(z);
+	f(z,z);
+	f(z,z,z);
+}

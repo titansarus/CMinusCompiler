@@ -1,0 +1,67 @@
+Program
+└── Declaration-list
+    ├── Declaration
+    │   ├── Declaration-initial
+    │   │   ├── Type-specifier
+    │   │   │   └── (KEYWORD, int)
+    │   │   └── (ID, function)
+    │   └── Declaration-prime
+    │       └── Fun-declaration-prime
+    │           ├── (SYMBOL, ()
+    │           ├── Params
+    │           │   ├── (KEYWORD, int)
+    │           │   ├── Param-prime
+    │           │   │   └── epsilon
+    │           │   └── Param-list
+    │           │       ├── (SYMBOL, ,)
+    │           │       ├── Param
+    │           │       │   ├── Declaration-initial
+    │           │       │   │   ├── Type-specifier
+    │           │       │   │   │   └── (KEYWORD, int)
+    │           │       │   │   └── (ID, a)
+    │           │       │   └── Param-prime
+    │           │       │       └── epsilon
+    │           │       └── Param-list
+    │           │           ├── (SYMBOL, ,)
+    │           │           ├── Param
+    │           │           │   ├── Declaration-initial
+    │           │           │   │   ├── Type-specifier
+    │           │           │   │   │   └── (KEYWORD, int)
+    │           │           │   │   └── (ID, b)
+    │           │           │   └── Param-prime
+    │           │           │       └── (SYMBOL, [)
+    │           │           └── Param-list
+    │           │               ├── (SYMBOL, ,)
+    │           │               ├── Param
+    │           │               │   ├── Declaration-initial
+    │           │               │   │   ├── Type-specifier
+    │           │               │   │   │   └── (KEYWORD, int)
+    │           │               │   │   └── (ID, c)
+    │           │               │   └── Param-prime
+    │           │               │       └── epsilon
+    │           │               └── Param-list
+    │           │                   ├── (SYMBOL, ,)
+    │           │                   └── Param-list
+    │           │                       ├── (SYMBOL, ,)
+    │           │                       └── Param-list
+    │           │                           ├── (SYMBOL, ,)
+    │           │                           └── Param-list
+    │           │                               ├── (SYMBOL, ,)
+    │           │                               └── Param-list
+    │           │                                   ├── (SYMBOL, ,)
+    │           │                                   └── Param-list
+    │           │                                       ├── (SYMBOL, ,)
+    │           │                                       └── Param-list
+    │           │                                           ├── (SYMBOL, ,)
+    │           │                                           └── Param-list
+    │           │                                               └── epsilon
+    │           ├── (SYMBOL, ))
+    │           └── Compound-stmt
+    │               ├── (SYMBOL, {)
+    │               ├── Declaration-list
+    │               │   └── epsilon
+    │               ├── Statement-list
+    │               │   └── epsilon
+    │               └── (SYMBOL, })
+    └── Declaration-list
+        └── epsilon

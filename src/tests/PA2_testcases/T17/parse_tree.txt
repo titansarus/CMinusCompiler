@@ -1,0 +1,83 @@
+Program
+└── Declaration-list
+    ├── Declaration
+    │   ├── Declaration-initial
+    │   │   ├── Type-specifier
+    │   │   │   └── (KEYWORD, void)
+    │   │   └── (ID, sth)
+    │   └── Declaration-prime
+    │       └── Fun-declaration-prime
+    │           ├── (SYMBOL, ()
+    │           ├── Params
+    │           │   └── (KEYWORD, void)
+    │           ├── (SYMBOL, ))
+    │           └── Compound-stmt
+    │               ├── (SYMBOL, {)
+    │               ├── Declaration-list
+    │               │   ├── Declaration
+    │               │   │   ├── Declaration-initial
+    │               │   │   │   ├── Type-specifier
+    │               │   │   │   │   └── (KEYWORD, void)
+    │               │   │   │   └── (ID, sthelse)
+    │               │   │   └── Declaration-prime
+    │               │   │       └── Fun-declaration-prime
+    │               │   │           ├── (SYMBOL, ()
+    │               │   │           ├── Params
+    │               │   │           │   └── (KEYWORD, void)
+    │               │   │           ├── (SYMBOL, ))
+    │               │   │           └── Compound-stmt
+    │               │   │               ├── (SYMBOL, {)
+    │               │   │               ├── Declaration-list
+    │               │   │               │   └── epsilon
+    │               │   │               ├── Statement-list
+    │               │   │               │   └── epsilon
+    │               │   │               └── (SYMBOL, })
+    │               │   └── Declaration-list
+    │               │       ├── Declaration
+    │               │       │   ├── Declaration-initial
+    │               │       │   │   ├── Type-specifier
+    │               │       │   │   │   └── (KEYWORD, void)
+    │               │       │   │   └── (ID, sthelse2)
+    │               │       │   └── Declaration-prime
+    │               │       │       └── Fun-declaration-prime
+    │               │       │           ├── (SYMBOL, ()
+    │               │       │           ├── Params
+    │               │       │           │   └── (KEYWORD, void)
+    │               │       │           ├── (SYMBOL, ))
+    │               │       │           └── Compound-stmt
+    │               │       │               ├── (SYMBOL, {)
+    │               │       │               ├── Declaration-list
+    │               │       │               │   └── epsilon
+    │               │       │               ├── Statement-list
+    │               │       │               │   └── epsilon
+    │               │       │               └── (SYMBOL, })
+    │               │       └── Declaration-list
+    │               │           └── epsilon
+    │               ├── Statement-list
+    │               │   ├── Statement
+    │               │   │   └── Expression-stmt
+    │               │   │       └── (SYMBOL, ;)
+    │               │   └── Statement-list
+    │               │       └── epsilon
+    │               └── (SYMBOL, })
+    └── Declaration-list
+        ├── Declaration
+        │   ├── Declaration-initial
+        │   │   ├── Type-specifier
+        │   │   │   └── (KEYWORD, void)
+        │   │   └── (ID, sthelse3)
+        │   └── Declaration-prime
+        │       └── Fun-declaration-prime
+        │           ├── (SYMBOL, ()
+        │           ├── Params
+        │           │   └── (KEYWORD, void)
+        │           ├── (SYMBOL, ))
+        │           └── Compound-stmt
+        │               ├── (SYMBOL, {)
+        │               ├── Declaration-list
+        │               │   └── epsilon
+        │               ├── Statement-list
+        │               │   └── epsilon
+        │               └── (SYMBOL, })
+        └── Declaration-list
+            └── epsilon

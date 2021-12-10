@@ -1,0 +1,16 @@
+void function(int a, b){
+	a = a + b;
+	return a;
+}
+
+void function2 (int a){
+	return a;
+}
+
+int function3(int a, int b){
+	a = a + b;
+}
+
+int function4(int a, int b){
+	a = a + 1 + b + a * b * 2;
+}

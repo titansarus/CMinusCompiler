@@ -1,0 +1,5 @@
+#12 : syntax error, missing endif
+#16 : syntax error, illegal ID
+#17 : syntax error, illegal ;
+#18 : syntax error, illegal }
+#20 : syntax error, Unexpected EOF

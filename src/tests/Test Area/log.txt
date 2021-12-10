@@ -3,139 +3,219 @@
 
 
 
-=====================================>>>>> Running Test ../PA1_input_output_samples/T01...
+=====================================>>>>> Running Test ../PA2_testcases/T01...
 
 
-              *** tokens.txt diffrences ***
+              *** syntax_errors.txt diffrences ***
 
 
-              *** lexical_errors.txt diffrences ***
+              *** parse_tree.txt diffrences ***
 
 
-              *** symbol_table.txt diffrences ***
 
 
+=====================================>>>>> Running Test ../PA2_testcases/T02...
 
 
-=====================================>>>>> Running Test ../PA1_input_output_samples/T02...
+              *** syntax_errors.txt diffrences ***
 
 
-              *** tokens.txt diffrences ***
+              *** parse_tree.txt diffrences ***
 
 
-              *** lexical_errors.txt diffrences ***
 
 
-              *** symbol_table.txt diffrences ***
+=====================================>>>>> Running Test ../PA2_testcases/T03...
 
 
+              *** syntax_errors.txt diffrences ***
 
 
-=====================================>>>>> Running Test ../PA1_input_output_samples/T03...
+              *** parse_tree.txt diffrences ***
 
 
-              *** tokens.txt diffrences ***
 
 
-              *** lexical_errors.txt diffrences ***
+=====================================>>>>> Running Test ../PA2_testcases/T04...
 
 
-              *** symbol_table.txt diffrences ***
+              *** syntax_errors.txt diffrences ***
 
 
+              *** parse_tree.txt diffrences ***
 
 
-=====================================>>>>> Running Test ../PA1_input_output_samples/T04...
 
 
-              *** tokens.txt diffrences ***
+=====================================>>>>> Running Test ../PA2_testcases/T05...
 
 
-              *** lexical_errors.txt diffrences ***
+              *** syntax_errors.txt diffrences ***
 
 
-              *** symbol_table.txt diffrences ***
+              *** parse_tree.txt diffrences ***
 
 
 
 
-=====================================>>>>> Running Test ../PA1_input_output_samples/T05...
+=====================================>>>>> Running Test ../PA2_testcases/T06...
 
 
-              *** tokens.txt diffrences ***
+              *** syntax_errors.txt diffrences ***
 
 
-              *** lexical_errors.txt diffrences ***
+              *** parse_tree.txt diffrences ***
 
 
-              *** symbol_table.txt diffrences ***
 
 
+=====================================>>>>> Running Test ../PA2_testcases/T07...
 
 
-=====================================>>>>> Running Test ../PA1_input_output_samples/T06...
+              *** syntax_errors.txt diffrences ***
 
 
-              *** tokens.txt diffrences ***
+              *** parse_tree.txt diffrences ***
 
 
-              *** lexical_errors.txt diffrences ***
 
 
-              *** symbol_table.txt diffrences ***
+=====================================>>>>> Running Test ../PA2_testcases/T08...
 
 
+              *** syntax_errors.txt diffrences ***
 
 
-=====================================>>>>> Running Test ../PA1_input_output_samples/T07...
+              *** parse_tree.txt diffrences ***
 
 
-              *** tokens.txt diffrences ***
 
 
-              *** lexical_errors.txt diffrences ***
+=====================================>>>>> Running Test ../PA2_testcases/T09...
 
 
-              *** symbol_table.txt diffrences ***
+              *** syntax_errors.txt diffrences ***
 
 
+              *** parse_tree.txt diffrences ***
 
 
-=====================================>>>>> Running Test ../PA1_input_output_samples/T08...
 
 
-              *** tokens.txt diffrences ***
+=====================================>>>>> Running Test ../PA2_testcases/T10...
 
 
-              *** lexical_errors.txt diffrences ***
+              *** syntax_errors.txt diffrences ***
 
 
-              *** symbol_table.txt diffrences ***
+              *** parse_tree.txt diffrences ***
 
 
 
 
-=====================================>>>>> Running Test ../PA1_input_output_samples/T09...
+=====================================>>>>> Running Test ../PA2_testcases/T11...
 
 
-              *** tokens.txt diffrences ***
+              *** syntax_errors.txt diffrences ***
 
 
-              *** lexical_errors.txt diffrences ***
+              *** parse_tree.txt diffrences ***
 
 
-              *** symbol_table.txt diffrences ***
 
 
+=====================================>>>>> Running Test ../PA2_testcases/T12...
 
 
-=====================================>>>>> Running Test ../PA1_input_output_samples/T10...
+              *** syntax_errors.txt diffrences ***
 
 
-              *** tokens.txt diffrences ***
+              *** parse_tree.txt diffrences ***
 
 
-              *** lexical_errors.txt diffrences ***
 
 
-              *** symbol_table.txt diffrences ***
+=====================================>>>>> Running Test ../PA2_testcases/T13...
+
+
+              *** syntax_errors.txt diffrences ***
+
+
+              *** parse_tree.txt diffrences ***
+
+
+
+
+=====================================>>>>> Running Test ../PA2_testcases/T14...
+
+
+              *** syntax_errors.txt diffrences ***
+
+
+              *** parse_tree.txt diffrences ***
+
+
+
+
+=====================================>>>>> Running Test ../PA2_testcases/T15...
+
+
+              *** syntax_errors.txt diffrences ***
+
+
+              *** parse_tree.txt diffrences ***
+
+
+
+
+=====================================>>>>> Running Test ../PA2_testcases/T16...
+
+
+              *** syntax_errors.txt diffrences ***
+
+
+              *** parse_tree.txt diffrences ***
+
+
+
+
+=====================================>>>>> Running Test ../PA2_testcases/T17...
+
+
+              *** syntax_errors.txt diffrences ***
+
+
+              *** parse_tree.txt diffrences ***
+
+
+
+
+=====================================>>>>> Running Test ../PA2_testcases/T18...
+
+
+              *** syntax_errors.txt diffrences ***
+
+
+              *** parse_tree.txt diffrences ***
+
+
+
+
+=====================================>>>>> Running Test ../PA2_testcases/T19...
+
+
+              *** syntax_errors.txt diffrences ***
+
+
+              *** parse_tree.txt diffrences ***
+
+
+
+
+=====================================>>>>> Running Test ../PA2_testcases/T20...
+
+
+              *** syntax_errors.txt diffrences ***
+
+
+              *** parse_tree.txt diffrences ***
