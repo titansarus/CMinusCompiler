@@ -57,7 +57,7 @@ class ProductionParser:
 
     def parse(self):
         global current_token, errors, file_ended
-        if self.current_state == None:
+        if self.current_state is None:
             if current_token.token_type == END_TOKEN:
                 node = ParseNode(self.production, self.production)
             else:
@@ -67,25 +67,28 @@ class ProductionParser:
             return node
         current_node = ParseNode(self.production, label=self.production.name)
         while not self.current_state.is_final:
+
             epsilon_state = None
             error_edge = None
             is_nonterminal_missing = False
             is_token_illegal = False
             is_NUM_or_ID_missing = False
             is_KEYWORD_or_SYMBOL_missing = False
+
             for edge in self.current_state.edges:
                 is_in_first = False
                 is_in_follow = False
                 if edge.edge_type == PRODUCTION_PARSER_EDGE:
                     is_in_first = current_token.lexeme in edge.label.first or current_token.token_type in edge.label.first
                     is_in_follow = current_token.lexeme in edge.label.follow or current_token.token_type in edge.label.follow
+
                 is_valid_NUM_or_ID = edge.edge_type == NUM_ID_PARSER_EDGE and current_token.token_type == edge.label
                 is_valid_KEYWORD_or_SYMBOL = edge.edge_type == KEYWORD_SYMBOL_PARSER_EDGE and current_token.lexeme == edge.label
                 is_valid_Nonterminal = edge.edge_type == PRODUCTION_PARSER_EDGE and is_in_first
                 is_valid_epsilon_nonterminal = edge.edge_type == PRODUCTION_PARSER_EDGE and edge.label.first_has_epsilon and is_in_follow
+
                 if is_valid_NUM_or_ID or is_valid_KEYWORD_or_SYMBOL:
                     epsilon_state = None
-                    # print(self.current_state.ID, current_token.lexeme)
                     next_node = ProductionParser(edge.label, self.lexer).parse()
                     current_node.add_child(next_node)
                     if file_ended:
@@ -93,9 +96,9 @@ class ProductionParser:
                     self.current_state = edge.destination
                     error_edge = None
                     break
+
                 elif is_valid_Nonterminal or is_valid_epsilon_nonterminal:
                     epsilon_state = None
-                    # print(self.current_state.ID, current_token.lexeme)
                     next_node = ProductionParser(edge.label, self.lexer).parse()
                     current_node.add_child(next_node)
                     if file_ended:
@@ -103,6 +106,7 @@ class ProductionParser:
                     self.current_state = edge.destination
                     error_edge = None
                     break
+
                 elif edge.edge_type == EPSILON_PARSER_EDGE:
                     epsilon_state = edge.destination
                 else:
@@ -111,8 +115,8 @@ class ProductionParser:
                     is_NUM_or_ID_missing = edge.edge_type == NUM_ID_PARSER_EDGE and not current_token.token_type == edge.label
                     is_KEYWORD_or_SYMBOL_missing = edge.edge_type == KEYWORD_SYMBOL_PARSER_EDGE and not current_token.lexeme == edge.label
                     error_edge = edge
+
             if epsilon_state:
-                # print(self.current_state.ID, current_token.lexeme)
                 next_node = ParseNode(EPSILON, EPSILON)
                 current_node.add_child(next_node)
                 if file_ended:
@@ -120,32 +124,47 @@ class ProductionParser:
                 self.current_state = epsilon_state
             elif error_edge:
                 try:
-                    if is_nonterminal_missing:
-                        self.current_state = error_edge.destination
-                        raise Exception("missing", error_edge.label.name, current_token)
-                    elif is_NUM_or_ID_missing or is_KEYWORD_or_SYMBOL_missing:
-                        self.current_state = error_edge.destination
-                        raise Exception("missing", error_edge.label, current_token)
-                    elif is_token_illegal:
-                        illegal_token = current_token
-                        current_token = get_next_valid_token(self.lexer)
-                        illegal_lexeme = illegal_token.lexeme
-                        if illegal_token.token_type in [ID, NUM]:
-                            illegal_lexeme = illegal_token.token_type
-                        raise Exception("illegal", illegal_lexeme, illegal_token)
+                    self.generate_panic(error_edge, is_KEYWORD_or_SYMBOL_missing, is_NUM_or_ID_missing,
+                                        is_nonterminal_missing, is_token_illegal)
                 except Exception as e:
-                    message = e.args[0]
-                    lexeme = e.args[1]
-                    token: Token = e.args[2]
-                    error_message = f"#{token.lineno} : syntax error, {message} {lexeme}"
-                    if token.lexeme == "$":
-                        message = "Unexpexted"
-                        error_message = f"#{token.lineno} : syntax error, Unexpected EOF"
-                        file_ended = True
-                        errors.append(error_message)
-                        break
-                    errors.append(error_message)
-                    continue
+                    should_continue = ProductionParser.handle_panic_error_message(e)
+                    if should_continue:
+                        continue
+                    break
 
-        # print(self.current_state.ID, current_token.lexeme)
         return current_node
+
+    @staticmethod
+    def handle_panic_error_message(e: Exception) -> bool:
+        global file_ended
+        message = e.args[0]
+        lexeme = e.args[1]
+        token: Token = e.args[2]
+        error_message = f"#{token.lineno} : syntax error, {message} {lexeme}"
+        if token.lexeme == "$":
+            message = "Unexpected EOF"
+            error_message = f"#{token.lineno} : syntax error, {message}"
+            file_ended = True
+            errors.append(error_message)
+            return False
+        errors.append(error_message)
+        return True
+
+    def generate_panic(self, error_edge, is_KEYWORD_or_SYMBOL_missing, is_NUM_or_ID_missing, is_nonterminal_missing,
+                       is_token_illegal):
+        global current_token
+        if is_nonterminal_missing:
+            self.current_state = error_edge.destination
+            raise Exception("missing", error_edge.label.name, current_token)
+
+        elif is_NUM_or_ID_missing or is_KEYWORD_or_SYMBOL_missing:
+            self.current_state = error_edge.destination
+            raise Exception("missing", error_edge.label, current_token)
+
+        elif is_token_illegal:
+            illegal_token = current_token
+            current_token = get_next_valid_token(self.lexer)
+            illegal_lexeme = illegal_token.lexeme
+            if illegal_token.token_type in [ID, NUM]:
+                illegal_lexeme = illegal_token.token_type
+            raise Exception("illegal", illegal_lexeme, illegal_token)

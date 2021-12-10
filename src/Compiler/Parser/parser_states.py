@@ -13,24 +13,6 @@ class ParserState:
         edge = ParserEdge(self, destination, edge_type, label)
         self.edges.append(edge)
 
-    def get_next_state(self, token, parser_states_dict, diagram_result=None):
-        if diagram_result:
-            for egde in self.edges:
-                if egde.label == diagram_result:
-                    return egde.destination
-        epsilon_state = None
-        for edge in self.edges:
-            is_valid_NUM_or_ID = edge.edge_type == NUM_ID_PARSER_EDGE and token.token_type == edge.label
-            is_valid_KEYWORD_or_SYMBOL = edge.edge_type == KEYWORD_SYMBOL_PARSER_EDGE and token.lexeme == edge.label
-            is_valid_Nonterminal = edge.edge_type == PRODUCTION_PARSER_EDGE and token.lexeme in edge.label.first
-            if is_valid_NUM_or_ID or is_valid_KEYWORD_or_SYMBOL:
-                return edge.destination, False
-            elif is_valid_Nonterminal:
-                return parser_states_dict[edge.label], True
-            elif edge.edge_type == EPSILON_PARSER_EDGE:
-                epsilon_state = edge.destination
-        return epsilon_state, False
-
 
 class ParserEdge:
     def __init__(self, source: ParserState, destination: ParserState, edge_type, label):
