@@ -9,7 +9,8 @@ file_ended = False
 
 def get_next_valid_token(lexer: Lexer):
     token = lexer.get_next_token()
-    while token.token_type in [WHITESPACE, COMMENT]:
+    skip_states = PANIC_STATES + [WHITESPACE, COMMENT]
+    while token.token_type in skip_states:
         token = lexer.get_next_token()
     return token
 
@@ -25,14 +26,7 @@ class Parser:
         root_parser = ProductionParser(Program, self.lexer)
         root = root_parser.parse()
         return root, errors
-    
-    def parse_util(self, production):
-        for edge in edges:
-            self.parse_util(edge)
-            if okay:
-                result = ...
-                break
-        self.parse_util(result)
+
 
 class ParseNode:
     def __init__(self, production=Program, label="Program", parent=None):

@@ -11,7 +11,7 @@ if __name__ == '__main__':
     if len(errors) == 0:
         errors = ["There is no syntax error."]
     tree = get_tree(initial_node)
-    with open("parse_tree.txt", "w") as f:
+    with open("parse_tree.txt", "w" , encoding="utf-8") as f:
         print(render_tree(tree), file=f)
-    with open("syntax_errors.txt", "w") as f:
+    with open("syntax_errors.txt", "w" , encoding="utf-8") as f:
         print("\n".join(errors), file=f)
