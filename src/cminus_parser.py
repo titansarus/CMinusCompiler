@@ -132,7 +132,7 @@ class ProductionParser:
                     lexeme = e.args[1]
                     token: Token = e.args[2]
                     error_message = f"#{token.lineno} : syntax error, {message} {lexeme}"
-                    if lexeme == "$":
+                    if token.lexeme == "$":
                         message = "Unexpexted"
                         error_message = f"#{token.lineno} : syntax error, Unexpected EOF"
                         file_ended = True
