@@ -140,6 +140,7 @@ class ProductionParser:
         message = e.args[0]
         lexeme = e.args[1]
         token: Token = e.args[2]
+        lexer: Lexer = e.args[3]
         error_message = f"#{token.lineno} : syntax error, {message} {lexeme}"
         if token.lexeme == "$":
             message = "Unexpected EOF"
@@ -147,6 +148,10 @@ class ProductionParser:
             file_ended = True
             errors.append(error_message)
             return False
+        elif message == "missing" and lexeme == "$":
+            while token.lexeme != "$":
+                errors.append(f"#{token.lineno} : syntax error, illegal {token.lexeme}")
+                token = get_next_valid_token(lexer)
         errors.append(error_message)
         return True
 
@@ -155,11 +160,11 @@ class ProductionParser:
         global current_token
         if is_nonterminal_missing:
             self.current_state = error_edge.destination
-            raise Exception("missing", error_edge.label.name, current_token)
+            raise Exception("missing", error_edge.label.name, current_token, self.lexer)
 
         elif is_NUM_or_ID_missing or is_KEYWORD_or_SYMBOL_missing:
             self.current_state = error_edge.destination
-            raise Exception("missing", error_edge.label, current_token)
+            raise Exception("missing", error_edge.label, current_token, self.lexer)
 
         elif is_token_illegal:
             illegal_token = current_token
@@ -167,4 +172,4 @@ class ProductionParser:
             illegal_lexeme = illegal_token.lexeme
             if illegal_token.token_type in [ID, NUM]:
                 illegal_lexeme = illegal_token.token_type
-            raise Exception("illegal", illegal_lexeme, illegal_token)
+            raise Exception("illegal", illegal_lexeme, illegal_token, self.lexer)

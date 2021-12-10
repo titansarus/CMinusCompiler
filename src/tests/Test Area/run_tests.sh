@@ -5,7 +5,7 @@ echo "" > brief_results.txt
 #for dir in ../PA1_input_output_samples/*; do
 for dir in ../PA2_testcases/*; do
     cp "${dir}/input.txt" ./input.txt
-    python ../../compiler.py
+    python3 ../../compiler.py
     printf "\n\n\n\n=====================================>>>>> Running Test ${dir}...\n" >> log.txt
     printf "\n\n=====================================>>>>> Running Test ${dir}...\n" >> brief_results.txt
     printf "\n\n              *** syntax_errors.txt diffrences ***\n" >> log.txt
