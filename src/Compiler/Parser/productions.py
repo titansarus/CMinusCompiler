@@ -1,6 +1,5 @@
 from .parser_states import *
 
-
 class Rule:
     def __init__(self, rhs):
         self.rhs = rhs
