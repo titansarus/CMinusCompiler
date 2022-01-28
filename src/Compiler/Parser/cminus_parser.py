@@ -2,6 +2,7 @@ from .productions import *
 from ..Lexer.lexer import Lexer
 from ..Lexer.cminus_token import Token
 
+previous_token = None
 current_token = None
 errors = []
 file_ended = False
@@ -20,9 +21,10 @@ class Parser:
         self.lexer = lexer
 
     def parse(self):
-        global current_token, errors, file_ended
+        global current_token, previous_token, errors, file_ended
         errors = []
         file_ended = False
+        previous_token = current_token
         current_token = get_next_valid_token(self.lexer)
         root_parser = ProductionParser(Program, self.lexer)
         root = root_parser.parse()
@@ -56,13 +58,14 @@ class ProductionParser:
             self.current_state = parser_states_dict[production]
 
     def parse(self):
-        global current_token, errors, file_ended
+        global current_token, previous_token, errors, file_ended
         if self.current_state is None:
             if current_token.token_type == END_TOKEN:
                 node = ParseNode(self.production, self.production)
             else:
                 node = ParseNode(f'({current_token.token_type}, {current_token.lexeme})',
                                  f'({current_token.token_type}, {current_token.lexeme})')
+            previous_token = current_token
             current_token = get_next_valid_token(self.lexer)
             return node
         current_node = ParseNode(self.production, label=self.production.name)
@@ -82,12 +85,19 @@ class ProductionParser:
                     is_in_first = current_token.lexeme in edge.label.first or current_token.token_type in edge.label.first
                     is_in_follow = current_token.lexeme in edge.label.follow or current_token.token_type in edge.label.follow
 
+                is_action_code = edge.edge_type == ACTION_PARSER_EDGE
                 is_valid_NUM_or_ID = edge.edge_type == NUM_ID_PARSER_EDGE and current_token.token_type == edge.label
                 is_valid_KEYWORD_or_SYMBOL = edge.edge_type == KEYWORD_SYMBOL_PARSER_EDGE and current_token.lexeme == edge.label
                 is_valid_Nonterminal = edge.edge_type == PRODUCTION_PARSER_EDGE and is_in_first
                 is_valid_epsilon_nonterminal = edge.edge_type == PRODUCTION_PARSER_EDGE and edge.label.first_has_epsilon and is_in_follow
 
-                if is_valid_NUM_or_ID or is_valid_KEYWORD_or_SYMBOL:
+                if is_action_code:
+                    pass # run codegen
+                    self.current_state = edge.destination
+                    error_edge = None
+                    break
+
+                elif is_valid_NUM_or_ID or is_valid_KEYWORD_or_SYMBOL:
                     epsilon_state = None
                     next_node = ProductionParser(edge.label, self.lexer).parse()
                     current_node.add_child(next_node)
@@ -152,7 +162,7 @@ class ProductionParser:
 
     def generate_panic(self, error_edge, is_KEYWORD_or_SYMBOL_missing, is_NUM_or_ID_missing, is_nonterminal_missing,
                        is_token_illegal):
-        global current_token
+        global current_token, previous_token
         if is_nonterminal_missing:
             self.current_state = error_edge.destination
             raise Exception("missing", error_edge.label.name, current_token)
@@ -163,6 +173,7 @@ class ProductionParser:
 
         elif is_token_illegal:
             illegal_token = current_token
+            previous_token = current_token
             current_token = get_next_valid_token(self.lexer)
             illegal_lexeme = illegal_token.lexeme
             if illegal_token.token_type in [ID, NUM]:

@@ -30,7 +30,6 @@ class Production:
     def add_rule(self, rhs):
         self.rules.append(Rule(rhs))
 
-
 Program = Production("Program")
 Declaration_list = Production("Declaration-list")
 Declaration = Production("Declaration")
@@ -80,20 +79,20 @@ Program.add_rule([Declaration_list, "$", ])
 Declaration_list.add_rule([Declaration, Declaration_list, ])
 Declaration_list.has_epsilon = True
 Declaration.add_rule([Declaration_initial, Declaration_prime, ])
-Declaration_initial.add_rule([Type_specifier, "ID", ])
+Declaration_initial.add_rule([Type_specifier, "ID", "#pid", ])
 Declaration_prime.add_rule([Fun_declaration_prime, ])
 Declaration_prime.add_rule([Var_declaration_prime, ])
 Var_declaration_prime.add_rule([";", ])
-Var_declaration_prime.add_rule(["[", "NUM", "]", ";", ])
+Var_declaration_prime.add_rule(["[", "NUM", "#pnum", "]", "#array", ";", ])
 Fun_declaration_prime.add_rule(["(", Params, ")", Compound_stmt, ])
 Type_specifier.add_rule(["int", ])
 Type_specifier.add_rule(["void", ])
-Params.add_rule(["int", "ID", Param_prime, Param_list, ])
+Params.add_rule(["int", "ID", "#pid", Param_prime, Param_list, ])
 Params.add_rule(["void", ])
 Param_list.add_rule([",", Param, Param_list, ])
 Param_list.has_epsilon = True
-Param.add_rule([Declaration_initial, Param_prime, ])
-Param_prime.add_rule(["[", "]", ])
+Param.add_rule([Declaration_initial, Param_prime, "#popparam", ])
+Param_prime.add_rule(["[", "]", "#array", ])
 Param_prime.has_epsilon = True
 Compound_stmt.add_rule(["{", Declaration_list, Statement_list, "}", ])
 Statement_list.add_rule([Statement, Statement_list, ])
@@ -104,51 +103,51 @@ Statement.add_rule([Selection_stmt, ])
 Statement.add_rule([Iteration_stmt, ])
 Statement.add_rule([Return_stmt, ])
 Expression_stmt.add_rule([Expression, ";", ])
-Expression_stmt.add_rule(["break", ";", ])
+Expression_stmt.add_rule(["break", "#break", ";", ])
 Expression_stmt.add_rule([";", ])
-Selection_stmt.add_rule(["if", "(", Expression, ")", Statement, Else_stmt, ])
-Else_stmt.add_rule(["endif", ])
-Else_stmt.add_rule(["else", Statement, "endif", ])
-Iteration_stmt.add_rule(["repeat", Statement, "until", "(", Expression, ")", ])
+Selection_stmt.add_rule(["if", "(", Expression, ")", "#save", Statement, Else_stmt, ])
+Else_stmt.add_rule(["endif", "#jpf-from-saved", ])
+Else_stmt.add_rule(["else", "#save-and-jpf-from-last-save", Statement, "endif", "#jp-from-saved", ])
+Iteration_stmt.add_rule(["repeat", "#save", "#label", Statement, "until", "(", Expression, ")", "#until", ])
 Return_stmt.add_rule(["return", Return_stmt_prime, ])
 Return_stmt_prime.add_rule([";", ])
 Return_stmt_prime.add_rule([Expression, ";", ])
 Expression.add_rule([Simple_expression_zegond, ])
-Expression.add_rule(["ID", B, ])
+Expression.add_rule(["ID", "#pid", B, ])
 B.add_rule(["=", Expression, ])
-B.add_rule(["[", Expression, "]", H, ])
+B.add_rule(["[", Expression, "]", "#array", H, ])
 B.add_rule([Simple_expression_prime, ])
 H.add_rule(["=", Expression, ])
 H.add_rule([G, D, C, ])
 Simple_expression_zegond.add_rule([Additive_expression_zegond, C, ])
 Simple_expression_prime.add_rule([Additive_expression_prime, C, ])
-C.add_rule([Relop, Additive_expression, ])
+C.add_rule([Relop, Additive_expression, "#execute", ])
 C.has_epsilon = True
-Relop.add_rule(["<", ])
-Relop.add_rule(["==", ])
+Relop.add_rule(["<", "#push_operation", ])
+Relop.add_rule(["==", "#push_operation", ])
 Additive_expression.add_rule([Term, D, ])
 Additive_expression_prime.add_rule([Term_prime, D, ])
 Additive_expression_zegond.add_rule([Term_zegond, D, ])
-D.add_rule([Addop, Term, D, ])
+D.add_rule([Addop, Term, "#execute", D, ])
 D.has_epsilon = True
-Addop.add_rule(["+", ])
-Addop.add_rule(["-", ])
+Addop.add_rule(["+", "#push_operation", ])
+Addop.add_rule(["-", "#push_operation", ])
 Term.add_rule([Factor, G, ])
 Term_prime.add_rule([Factor_prime, G, ])
 Term_zegond.add_rule([Factor_zegond, G, ])
-G.add_rule(["*", Factor, G, ])
+G.add_rule(["*", "#push_operation", Factor, "#execute", G, ])
 G.has_epsilon = True
 Factor.add_rule(["(", Expression, ")", ])
-Factor.add_rule(["ID", Var_call_prime, ])
-Factor.add_rule(["NUM", ])
+Factor.add_rule(["ID", "#pid", Var_call_prime, ])
+Factor.add_rule(["NUM", "#pnum", ])
 Var_call_prime.add_rule(["(", Args, ")", ])
 Var_call_prime.add_rule([Var_prime, ])
-Var_prime.add_rule(["[", Expression, "]", ])
+Var_prime.add_rule(["[", Expression, "]", "#array", ])
 Var_prime.has_epsilon = True
 Factor_prime.add_rule(["(", Args, ")", ])
 Factor_prime.has_epsilon = True
 Factor_zegond.add_rule(["(", Expression, ")", ])
-Factor_zegond.add_rule(["NUM", ])
+Factor_zegond.add_rule(["NUM", "#pnum", ])
 Args.add_rule([Arg_list, ])
 Args.has_epsilon = True
 Arg_list.add_rule([Expression, Arg_list_prime, ])
@@ -220,27 +219,22 @@ Declaration_list.follow = ["$", "{", "break", ";", "if", "repeat", "return", "ID
 Declaration.follow = ["int", "void", "$", "{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", ]
 Declaration_initial.follow = ["(", ";", "[", ",", ")", ]
 Declaration_prime.follow = ["int", "void", "$", "{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", ]
-Var_declaration_prime.follow = ["int", "void", "$", "{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM",
-                                "}", ]
-Fun_declaration_prime.follow = ["int", "void", "$", "{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM",
-                                "}", ]
+Var_declaration_prime.follow = ["int", "void", "$", "{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", ]
+Fun_declaration_prime.follow = ["int", "void", "$", "{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", ]
 Type_specifier.follow = ["ID", ]
 Params.follow = [")", ]
 Param_list.follow = [")", ]
 Param.follow = [",", ")", ]
 Param_prime.follow = [",", ")", ]
-Compound_stmt.follow = ["int", "void", "$", "{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif",
-                        "else", "until", ]
+Compound_stmt.follow = ["int", "void", "$", "{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif", "else", "until", ]
 Statement_list.follow = ["}", ]
 Statement.follow = ["{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif", "else", "until", ]
-Expression_stmt.follow = ["{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif", "else",
-                          "until", ]
+Expression_stmt.follow = ["{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif", "else", "until", ]
 Selection_stmt.follow = ["{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif", "else", "until", ]
 Else_stmt.follow = ["{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif", "else", "until", ]
 Iteration_stmt.follow = ["{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif", "else", "until", ]
 Return_stmt.follow = ["{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif", "else", "until", ]
-Return_stmt_prime.follow = ["{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif", "else",
-                            "until", ]
+Return_stmt_prime.follow = ["{", "break", ";", "if", "repeat", "return", "ID", "(", "NUM", "}", "endif", "else", "until", ]
 Expression.follow = [";", ")", "]", ",", ]
 B.follow = [";", ")", "]", ",", ]
 H.follow = [";", ")", "]", ",", ]
@@ -266,11 +260,5 @@ Args.follow = [")", ]
 Arg_list.follow = [")", ]
 Arg_list_prime.follow = [")", ]
 
-productions = [Program, Declaration_list, Declaration, Declaration_initial, Declaration_prime, Var_declaration_prime,
-               Fun_declaration_prime, Type_specifier, Params, Param_list, Param, Param_prime, Compound_stmt,
-               Statement_list, Statement, Expression_stmt, Selection_stmt, Else_stmt, Iteration_stmt, Return_stmt,
-               Return_stmt_prime, Expression, B, H, Simple_expression_zegond, Simple_expression_prime, C, Relop,
-               Additive_expression, Additive_expression_prime, Additive_expression_zegond, D, Addop, Term, Term_prime,
-               Term_zegond, G, Factor, Var_call_prime, Var_prime, Factor_prime, Factor_zegond, Args, Arg_list,
-               Arg_list_prime, ]
+productions = [Program, Declaration_list, Declaration, Declaration_initial, Declaration_prime, Var_declaration_prime, Fun_declaration_prime, Type_specifier, Params, Param_list, Param, Param_prime, Compound_stmt, Statement_list, Statement, Expression_stmt, Selection_stmt, Else_stmt, Iteration_stmt, Return_stmt, Return_stmt_prime, Expression, B, H, Simple_expression_zegond, Simple_expression_prime, C, Relop, Additive_expression, Additive_expression_prime, Additive_expression_zegond, D, Addop, Term, Term_prime, Term_zegond, G, Factor, Var_call_prime, Var_prime, Factor_prime, Factor_zegond, Args, Arg_list, Arg_list_prime, ]
 parser_states_dict, parser_states_list = generate_parser_states(productions)

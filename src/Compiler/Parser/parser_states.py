@@ -25,8 +25,10 @@ class ParserEdge:
 def get_edge_type(rule_production):
     if rule_production == NUM or rule_production == ID:
         edge_type = NUM_ID_PARSER_EDGE
-    elif type(rule_production) == str:  # keywords and terminals
+    elif type(rule_production) == str:  # keywords and terminals and actions
         edge_type = KEYWORD_SYMBOL_PARSER_EDGE
+        if rule_production[0] == "#":
+            edge_type = ACTION_PARSER_EDGE
     elif type(rule_production).__name__ == "Production":
         edge_type = PRODUCTION_PARSER_EDGE
     else:
