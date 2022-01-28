@@ -1,6 +1,7 @@
 from .productions import *
 from ..Lexer.lexer import Lexer
 from ..Lexer.cminus_token import Token
+from ..CodeGen.codegen import CodeGen
 
 previous_token = None
 current_token = None
@@ -17,8 +18,9 @@ def get_next_valid_token(lexer: Lexer):
 
 
 class Parser:
-    def __init__(self, lexer):
+    def __init__(self, lexer: Lexer, codegen: CodeGen):
         self.lexer = lexer
+        self.codegen = codegen
 
     def parse(self):
         global current_token, previous_token, errors, file_ended
@@ -26,7 +28,7 @@ class Parser:
         file_ended = False
         previous_token = current_token
         current_token = get_next_valid_token(self.lexer)
-        root_parser = ProductionParser(Program, self.lexer)
+        root_parser = ProductionParser(Program, self.lexer, self.codegen)
         root = root_parser.parse()
         return root, errors
 
@@ -49,10 +51,11 @@ class ParseNode:
 
 
 class ProductionParser:
-    def __init__(self, production: Production, lexer: Lexer):
+    def __init__(self, production: Production, lexer: Lexer, codegen: CodeGen):
         self.production = production
         self.lexer = lexer
         self.current_state = None
+        self.codegen = codegen
         self.errors = []
         if type(production) == Production:
             self.current_state = parser_states_dict[production]
@@ -92,14 +95,14 @@ class ProductionParser:
                 is_valid_epsilon_nonterminal = edge.edge_type == PRODUCTION_PARSER_EDGE and edge.label.first_has_epsilon and is_in_follow
 
                 if is_action_code:
-                    pass # run codegen
+                    self.codegen.act(edge.label, previous_token) # TODO
                     self.current_state = edge.destination
                     error_edge = None
                     break
 
                 elif is_valid_NUM_or_ID or is_valid_KEYWORD_or_SYMBOL:
                     epsilon_state = None
-                    next_node = ProductionParser(edge.label, self.lexer).parse()
+                    next_node = ProductionParser(edge.label, self.lexer, self.codegen).parse()
                     current_node.add_child(next_node)
                     if file_ended:
                         return current_node
@@ -109,7 +112,7 @@ class ProductionParser:
 
                 elif is_valid_Nonterminal or is_valid_epsilon_nonterminal:
                     epsilon_state = None
-                    next_node = ProductionParser(edge.label, self.lexer).parse()
+                    next_node = ProductionParser(edge.label, self.lexer, self.codegen).parse()
                     current_node.add_child(next_node)
                     if file_ended:
                         return current_node

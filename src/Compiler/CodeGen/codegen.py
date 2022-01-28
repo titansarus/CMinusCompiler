@@ -1,12 +1,26 @@
-from instructions import *
+from .instructions import *
+from ..Constants.constants import *
+from .action_manager import ActionManager
+from .symbol_table import SymbolTable
 
 class CodeGen:
     def __init__(self):
         self.program = []
         self.i = 0
-        # self.scope_stack = [] TODO
+        self.data_address = DATA_SECTION_START_ADDRESS
+        self.semantic_stack = []
+        self.symbol_table = SymbolTable(self)
+        self.action_manager = ActionManager(self, self.symbol_table)
+        self.actions = {
+            "#pid": self.action_manager.pid,
+        }
 
-    def check_program_size(self, size=self.i):
+    def act(self, action, * args):
+        self.actions[action](* args)
+
+    def check_program_size(self, size=None):
+        if not size:
+            size = self.i
         while len(self.program) <= size:
             self.program.append(None)
 
@@ -25,3 +39,8 @@ class CodeGen:
     def push_instructions(self, instructions):
         for instruction in instructions:
             self.push_instruction(instruction)
+
+    def get_next_data_address(self, size = WORD_SIZE):
+        address = self.data_address
+        self.data_address += size
+        return address
