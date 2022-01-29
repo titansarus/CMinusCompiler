@@ -1,12 +1,10 @@
 /*sample 6*/
-void main(int a){
-	int prod;
+void main(void){
 	int i;
-		prod = 123;
-		i = 125 + 4;
-		i = 125 < 4;
-		i = 125 - 4;
-		i = 125 * 4;
-		i = 125 == 4;
-		i = main(1234, 132, main(3, 5, 2), 87, main(23));
+	if(i) {
+		i = 123;
+	} endif
+	i = 125 * 4;
+	i = 125 == 4;
+	i = main(1234, 132, main(3, 5, 2), 87, main(23));
 }

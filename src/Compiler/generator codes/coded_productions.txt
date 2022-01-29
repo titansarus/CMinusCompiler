@@ -1,7 +1,7 @@
 Program -> Declaration-list $
 Declaration-list -> Declaration Declaration-list | EPSILON 
 Declaration -> Declaration-initial Declaration-prime
-Declaration-initial ->  Type-specifier ID #pid
+Declaration-initial ->  Type-specifier ID #startNoPush #pid #endNoPush
 Declaration-prime -> Fun-declaration-prime | Var-declaration-prime
 Var-declaration-prime -> ; | [ NUM #pnum ] #array ; 
 Fun-declaration-prime -> ( Params ) Compound-stmt
@@ -20,8 +20,8 @@ Iteration-stmt -> repeat #save #label Statement until ( Expression ) #until
 Return-stmt -> return Return-stmt-prime
 Return-stmt-prime -> ; | Expression ;
 Expression -> Simple-expression-zegond | ID #pid B
-B -> = Expression | [ Expression ] #array H | Simple-expression-prime
-H -> = Expression | G D C
+B -> = Expression #assign | [ Expression ] #array H | Simple-expression-prime
+H -> = Expression #assign | G D C
 Simple-expression-zegond -> Additive-expression-zegond C
 Simple-expression-prime -> Additive-expression-prime C
 C -> Relop Additive-expression #execute | EPSILON

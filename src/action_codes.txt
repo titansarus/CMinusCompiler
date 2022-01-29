@@ -1,11 +1,12 @@
 #pid √
 #pnum √
+#assign X
 #array X
 #pushOperation √
 #execute √
 #save √
-#jpFromSaved X
-#jpfFromSaved X
+#jpFromSaved √
+#jpfFromSaved √
 #saveAndJpfFromLastSave X
 #label √
 #until X
@@ -14,3 +15,5 @@
 #popParam X
 #startArgumentList √
 #endArgumentList √
+#startNoPush X
+#endNoPush X

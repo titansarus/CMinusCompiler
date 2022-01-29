@@ -28,6 +28,9 @@ class CodeGen:
             "#execute": self.action_manager.execute,
             "#startArgumentList": self.action_manager.start_argument_list,
             "#endArgumentList": self.action_manager.end_argument_list,
+            "#jpfFromSaved": self.action_manager.jpf_from_saved,
+            "#jpFromSaved": self.action_manager.jp_from_saved,
+            "#assign": self.action_manager.assign,
         }
 
     def act(self, action, * args):

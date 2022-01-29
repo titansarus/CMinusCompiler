@@ -58,7 +58,7 @@ class Assign(Instruction):
         return f"({self.operation}, {self.A}, {self.R}, )"
 
 class JPF(Instruction):
-    def __init__(self, A1, A2, R):
+    def __init__(self, A, L):
         super().__init__("JPF")
         self.A = A
         self.L = L
@@ -73,7 +73,7 @@ class JP(Instruction):
         return f"({self.operation}, {self.L}, , )"
 
 class Print(Instruction):
-    def __init__(self, A1, A2, R):
+    def __init__(self, A):
         super().__init__("PRINT")
         self.A = A
     def to_code(self):

@@ -56,3 +56,20 @@ class ActionManager:
 
     def end_argument_list(self, previous_token: Token, current_token: Token):
         arg_count = self.argument_flags.pop()
+
+    def jp_from_saved(self, previous_token: Token, current_token: Token):
+        instruction = JP(self.codegen.i)
+        destination = self.codegen.semantic_stack.pop()
+        self.codegen.insert_instruction(instruction, destination)
+
+    def jpf_from_saved(self, previous_token: Token, current_token: Token):
+        destination = self.codegen.semantic_stack.pop()
+        condition = self.codegen.semantic_stack.pop()
+        instruction = JPF(condition, self.codegen.i)
+        self.codegen.insert_instruction(instruction, destination)
+    
+    def assign(self, previous_token: Token, current_token: Token):
+        value = self.codegen.semantic_stack.pop()
+        address = self.codegen.semantic_stack.pop()
+        instruction = Assign(value, address)
+        self.codegen.push_instruction(instruction)
