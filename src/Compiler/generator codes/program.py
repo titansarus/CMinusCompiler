@@ -79,7 +79,7 @@ Params.add_rule(["int", "ID", "#pid", Param_prime, Param_list, ])
 Params.add_rule(["void", ])
 Param_list.add_rule([",", Param, Param_list, ])
 Param_list.has_epsilon = True
-Param.add_rule([Declaration_initial, Param_prime, "#popparam", ])
+Param.add_rule([Declaration_initial, Param_prime, "#popParam", ])
 Param_prime.add_rule(["[", "]", "#array", ])
 Param_prime.has_epsilon = True
 Compound_stmt.add_rule(["{", Declaration_list, Statement_list, "}", ])
