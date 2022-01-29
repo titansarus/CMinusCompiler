@@ -16,6 +16,7 @@ class CodeGen:
             "#pnum": self.action_manager.pnum,
             "#label": self.action_manager.label,
             "#save": self.action_manager.save,
+            "#push_operation": self.action_manager.push_operation,
         }
 
     def act(self, action, * args):

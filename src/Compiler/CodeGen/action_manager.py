@@ -22,3 +22,6 @@ class ActionManager:
     def save(self, previous_token: Token, current_token: Token):
         self.codegen.semantic_stack.append(self.codegen.i)
         self.codegen.i += 1
+
+    def push_operation(self, previous_token: Token, current_token: Token):
+        self.codegen.semantic_stack.append(previous_token.lexeme)

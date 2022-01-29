@@ -4,6 +4,6 @@ void main(int a){
 	int i;
 	repeat{
 		prod = 123;
-		i = 125;
+		i = 125 + 4;
 	} until(0);
 }
