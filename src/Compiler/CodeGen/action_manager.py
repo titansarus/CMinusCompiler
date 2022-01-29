@@ -12,3 +12,6 @@ class ActionManager:
     def pid(self, token: Token):
         address = self.symbol_table.find_address(token.lexeme)
         self.codegen.semantic_stack.append(address)
+    
+    def pnum(self, token: Token):
+        self.codegen.semantic_stack.append(int(token.lexeme))

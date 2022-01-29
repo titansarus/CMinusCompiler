@@ -13,6 +13,7 @@ class CodeGen:
         self.action_manager = ActionManager(self, self.symbol_table)
         self.actions = {
             "#pid": self.action_manager.pid,
+            "#pnum": self.action_manager.pnum,
         }
 
     def act(self, action, * args):
