@@ -24,10 +24,10 @@ class CodeGen:
             "#pnum": self.action_manager.pnum,
             "#label": self.action_manager.label,
             "#save": self.action_manager.save,
-            "#push_operation": self.action_manager.push_operation,
+            "#pushOperation": self.action_manager.push_operation,
             "#execute": self.action_manager.execute,
-            "#start_argument_list": self.action_manager.start_argument_list,
-            "#end_argument_list": self.action_manager.end_argument_list,
+            "#startArgumentList": self.action_manager.start_argument_list,
+            "#endArgumentList": self.action_manager.end_argument_list,
         }
 
     def act(self, action, * args):

@@ -15,7 +15,7 @@ Statement-list -> Statement Statement-list | EPSILON
 Statement -> Expression-stmt | Compound-stmt | Selection-stmt | Iteration-stmt | Return-stmt
 Expression-stmt -> Expression ; | break #break ; | ;
 Selection-stmt -> if ( Expression ) #save Statement Else-stmt
-Else-stmt -> endif #jpf-from-saved | else #save-and-jpf-from-last-save Statement endif #jp-from-saved
+Else-stmt -> endif #jpfFromSaved | else #saveAndJpfFromLastSave Statement endif #jpFromSaved
 Iteration-stmt -> repeat #save #label Statement until ( Expression ) #until
 Return-stmt -> return Return-stmt-prime
 Return-stmt-prime -> ; | Expression ;
@@ -25,20 +25,20 @@ H -> = Expression | G D C
 Simple-expression-zegond -> Additive-expression-zegond C
 Simple-expression-prime -> Additive-expression-prime C
 C -> Relop Additive-expression #execute | EPSILON
-Relop -> < #push_operation | == #push_operation
+Relop -> < #pushOperation | == #pushOperation
 Additive-expression -> Term D
 Additive-expression-prime -> Term-prime D
 Additive-expression-zegond -> Term-zegond D
 D -> Addop Term #execute D | EPSILON
-Addop -> + #push_operation | - #push_operation
+Addop -> + #pushOperation | - #pushOperation
 Term -> Factor G
 Term-prime -> Factor-prime G
 Term-zegond -> Factor-zegond G
-G -> * #push_operation Factor #execute G | EPSILON
+G -> * #pushOperation Factor #execute G | EPSILON
 Factor -> ( Expression ) | ID #pid Var-call-prime | NUM #pnum
-Var-call-prime -> ( #start_argument_list Args #end_argument_list ) | Var-prime
+Var-call-prime -> ( #startArgumentList Args #endArgumentList ) | Var-prime
 Var-prime -> [ Expression ] #array | EPSILON
-Factor-prime -> ( #start_argument_list Args #end_argument_list ) | EPSILON
+Factor-prime -> ( #startArgumentList Args #endArgumentList ) | EPSILON
 Factor-zegond -> ( Expression ) | NUM #pnum
 Args -> Arg-list | EPSILON
 Arg-list -> Expression Arg-list-prime
