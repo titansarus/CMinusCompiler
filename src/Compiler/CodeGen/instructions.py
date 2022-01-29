@@ -11,7 +11,7 @@ class Add(Instruction):
         self.A2 = A2
         self.R = R
     def to_code(self):
-        return f"({self.operation}, {A1}, {A2}, {R})"
+        return f"({self.operation}, {self.A1}, {self.A2}, {self.R})"
 
 class Mult(Instruction):
     def __init__(self, A1, A2, R):
@@ -20,7 +20,7 @@ class Mult(Instruction):
         self.A2 = A2
         self.R = R
     def to_code(self):
-        return f"({self.operation}, {A1}, {A2}, {R})"
+        return f"({self.operation}, {self.A1}, {self.A2}, {self.R})"
 
 class Sub(Instruction):
     def __init__(self, A1, A2, R):
@@ -29,7 +29,7 @@ class Sub(Instruction):
         self.A2 = A2
         self.R = R
     def to_code(self):
-        return f"({self.operation}, {A1}, {A2}, {R})"
+        return f"({self.operation}, {self.A1}, {self.A2}, {self.R})"
 
 class Eq(Instruction):
     def __init__(self, A1, A2, R):
@@ -38,7 +38,7 @@ class Eq(Instruction):
         self.A2 = A2
         self.R = R
     def to_code(self):
-        return f"({self.operation}, {A1}, {A2}, {R})"
+        return f"({self.operation}, {self.A1}, {self.A2}, {self.R})"
 
 class LT(Instruction):
     def __init__(self, A1, A2, R):
@@ -47,7 +47,7 @@ class LT(Instruction):
         self.A2 = A2
         self.R = R
     def to_code(self):
-        return f"({self.operation}, {A1}, {A2}, {R})"
+        return f"({self.operation}, {self.A1}, {self.A2}, {self.R})"
 
 class Assign(Instruction):
     def __init__(self, A, R):
@@ -55,7 +55,7 @@ class Assign(Instruction):
         self.A = A
         self.R = R
     def to_code(self):
-        return f"({self.operation}, {A}, {R}, )"
+        return f"({self.operation}, {self.A}, {self.R}, )"
 
 class JPF(Instruction):
     def __init__(self, A1, A2, R):
@@ -63,18 +63,18 @@ class JPF(Instruction):
         self.A = A
         self.L = L
     def to_code(self):
-        return f"({self.operation}, {A}, {L}, )"
+        return f"({self.operation}, {self.A}, {self.L}, )"
 
 class JP(Instruction):
     def __init__(self, L):
         super().__init__("JP")
         self.L = L
     def to_code(self):
-        return f"({self.operation}, {L}, , )"
+        return f"({self.operation}, {self.L}, , )"
 
 class Print(Instruction):
     def __init__(self, A1, A2, R):
         super().__init__("PRINT")
         self.A = A
     def to_code(self):
-        return f"({self.operation}, {A}, , )"
+        return f"({self.operation}, {self.A}, , )"

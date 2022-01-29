@@ -1,14 +1,14 @@
 #pid √
 #pnum √
-#array
-#push_operation
-#execute
+#array X
+#push_operation √
+#execute √
 #save √
-#jp_from_saved
-#jpf_from_saved
-#save_and_jpf_from_last_save
+#jp_from_saved X
+#jpf_from_saved X
+#save_and_jpf_from_last_save X
 #label √
-#until
-#break
-#out
-#pop_param
+#until X
+#break X
+#out X
+#pop_param X

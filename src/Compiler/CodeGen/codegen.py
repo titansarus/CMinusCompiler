@@ -8,6 +8,7 @@ class CodeGen:
         self.program = []
         self.i = 0
         self.data_address = DATA_SECTION_START_ADDRESS
+        self.temp_address = TEMP_SECTION_START_ADDRESS
         self.semantic_stack = []
         self.symbol_table = SymbolTable(self)
         self.action_manager = ActionManager(self, self.symbol_table)
@@ -17,6 +18,7 @@ class CodeGen:
             "#label": self.action_manager.label,
             "#save": self.action_manager.save,
             "#push_operation": self.action_manager.push_operation,
+            "#execute": self.action_manager.execute,
         }
 
     def act(self, action, * args):
@@ -47,4 +49,9 @@ class CodeGen:
     def get_next_data_address(self, size = WORD_SIZE):
         address = self.data_address
         self.data_address += size
+        return address
+
+    def get_next_temp_address(self, size = WORD_SIZE):
+        address = self.temp_address
+        self.temp_address += size
         return address
