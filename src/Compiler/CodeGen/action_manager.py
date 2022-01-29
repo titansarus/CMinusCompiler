@@ -9,13 +9,21 @@ class ActionManager:
     def __init__(self, codegen: "CodeGen", symbol_table: SymbolTable):
         self.codegen = codegen
         self.symbol_table = symbol_table
+        self.argument_flags = []
 
     def pid(self, previous_token: Token, current_token: Token):
         address = self.symbol_table.find_address(previous_token.lexeme)
         self.codegen.semantic_stack.append(address)
+        if self.argument_flags:
+            self.codegen.runtime_stack.push(address)
+            self.argument_flags[-1] += 1
     
     def pnum(self, previous_token: Token, current_token: Token):
-        self.codegen.semantic_stack.append(f"#{previous_token.lexeme}")
+        num = f"#{previous_token.lexeme}"
+        self.codegen.semantic_stack.append(num)
+        if self.argument_flags:
+            self.codegen.runtime_stack.push(num)
+            self.argument_flags[-1] += 1
 
     def label(self, previous_token: Token, current_token: Token):
         self.codegen.semantic_stack.append(self.codegen.i)
@@ -42,3 +50,9 @@ class ActionManager:
         }
         instruction = operation_to_instruction[operation](operand1, operand2, temp_address)
         self.codegen.push_instruction(instruction)
+
+    def start_argument_list(self, previous_token: Token, current_token: Token):
+        self.argument_flags.append(0)
+
+    def end_argument_list(self, previous_token: Token, current_token: Token):
+        arg_count = self.argument_flags.pop()

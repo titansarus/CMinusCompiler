@@ -2,12 +2,11 @@
 void main(int a){
 	int prod;
 	int i;
-	repeat{
 		prod = 123;
 		i = 125 + 4;
 		i = 125 < 4;
 		i = 125 - 4;
 		i = 125 * 4;
 		i = 125 == 4;
-	} until(0);
+		i = main(1234, 132, main(3, 5, 2), 87, main(23));
 }

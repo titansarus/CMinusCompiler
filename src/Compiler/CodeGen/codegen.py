@@ -2,16 +2,23 @@ from .instructions import *
 from ..Constants.constants import *
 from .action_manager import ActionManager
 from .symbol_table import SymbolTable
+from .runtime_stack import RuntimeStack
 
 class CodeGen:
     def __init__(self):
-        self.program = []
         self.i = 0
         self.data_address = DATA_SECTION_START_ADDRESS
         self.temp_address = TEMP_SECTION_START_ADDRESS
         self.semantic_stack = []
+
         self.symbol_table = SymbolTable(self)
+        self.runtime_stack = RuntimeStack(self)
         self.action_manager = ActionManager(self, self.symbol_table)
+
+        self.program = []
+        self.push_instruction(
+            Assign(f"#{STACK_START_ADDRESS}", self.runtime_stack.sp_address))
+
         self.actions = {
             "#pid": self.action_manager.pid,
             "#pnum": self.action_manager.pnum,
@@ -19,6 +26,8 @@ class CodeGen:
             "#save": self.action_manager.save,
             "#push_operation": self.action_manager.push_operation,
             "#execute": self.action_manager.execute,
+            "#start_argument_list": self.action_manager.start_argument_list,
+            "#end_argument_list": self.action_manager.end_argument_list,
         }
 
     def act(self, action, * args):

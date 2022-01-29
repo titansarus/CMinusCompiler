@@ -140,11 +140,11 @@ G.has_epsilon = True
 Factor.add_rule(["(", Expression, ")", ])
 Factor.add_rule(["ID", "#pid", Var_call_prime, ])
 Factor.add_rule(["NUM", "#pnum", ])
-Var_call_prime.add_rule(["(", Args, ")", ])
+Var_call_prime.add_rule(["(", "#start_argument_list", Args, "#end_argument_list", ")", ])
 Var_call_prime.add_rule([Var_prime, ])
 Var_prime.add_rule(["[", Expression, "]", "#array", ])
 Var_prime.has_epsilon = True
-Factor_prime.add_rule(["(", Args, ")", ])
+Factor_prime.add_rule(["(", "#start_argument_list", Args, "#end_argument_list", ")", ])
 Factor_prime.has_epsilon = True
 Factor_zegond.add_rule(["(", Expression, ")", ])
 Factor_zegond.add_rule(["NUM", "#pnum", ])
