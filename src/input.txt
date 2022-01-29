@@ -1,7 +1,9 @@
 /*sample 6*/
-void main(int{
+void main(int a){
 	int prod;
 	int i;
-		prod = 1;
-		i = 1;
+	repeat{
+		prod = 123;
+		i = 125;
+	} until(0);
 }

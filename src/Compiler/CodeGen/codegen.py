@@ -14,6 +14,8 @@ class CodeGen:
         self.actions = {
             "#pid": self.action_manager.pid,
             "#pnum": self.action_manager.pnum,
+            "#label": self.action_manager.label,
+            "#save": self.action_manager.save,
         }
 
     def act(self, action, * args):

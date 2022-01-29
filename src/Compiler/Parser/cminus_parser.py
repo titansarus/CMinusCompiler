@@ -95,7 +95,7 @@ class ProductionParser:
                 is_valid_epsilon_nonterminal = edge.edge_type == PRODUCTION_PARSER_EDGE and edge.label.first_has_epsilon and is_in_follow
 
                 if is_action_code:
-                    self.codegen.act(edge.label, previous_token) # TODO
+                    self.codegen.act(edge.label, previous_token, current_token)
                     self.current_state = edge.destination
                     error_edge = None
                     break

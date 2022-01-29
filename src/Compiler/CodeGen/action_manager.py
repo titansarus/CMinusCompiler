@@ -9,9 +9,16 @@ class ActionManager:
         self.codegen = codegen
         self.symbol_table = symbol_table
 
-    def pid(self, token: Token):
-        address = self.symbol_table.find_address(token.lexeme)
+    def pid(self, previous_token: Token, current_token: Token):
+        address = self.symbol_table.find_address(previous_token.lexeme)
         self.codegen.semantic_stack.append(address)
     
-    def pnum(self, token: Token):
-        self.codegen.semantic_stack.append(int(token.lexeme))
+    def pnum(self, previous_token: Token, current_token: Token):
+        self.codegen.semantic_stack.append(int(previous_token.lexeme))
+
+    def label(self, previous_token: Token, current_token: Token):
+        self.codegen.semantic_stack.append(self.codegen.i)
+
+    def save(self, previous_token: Token, current_token: Token):
+        self.codegen.semantic_stack.append(self.codegen.i)
+        self.codegen.i += 1
