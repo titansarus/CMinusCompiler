@@ -34,6 +34,7 @@ class CodeGen:
             "#startNoPush": self.action_manager.start_no_push,
             "#endNoPush": self.action_manager.end_no_push,
             "#declareArray": self.action_manager.declare_array,
+            "#array": self.action_manager.array,
         }
 
     def act(self, action, * args):

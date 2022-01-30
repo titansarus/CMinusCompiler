@@ -85,6 +85,18 @@ class ActionManager:
         self.no_push_flag = False
 
     def declare_array(self, previous_token: Token, current_token: Token):
-        length = int(self.codegen.semantic_stack.pop())
+        # use [1:] to skip the '#'
+        length = int(self.codegen.semantic_stack.pop()[1:])
         size = (length - 1) * WORD_SIZE
         self.codegen.get_next_data_address(size = size)
+
+    def array(self, previous_token: Token, current_token: Token):
+        offset = self.codegen.semantic_stack.pop()
+        temp = self.codegen.get_next_temp_address()
+        array_start = self.codegen.semantic_stack.pop()
+        instructions = [
+            Mult(offset, f"#{WORD_SIZE}", temp),
+            Add(temp, f"#{array_start}", temp),
+        ]
+        self.codegen.push_instructions(instructions)
+        self.codegen.semantic_stack.append(f"@{temp}")

@@ -83,7 +83,7 @@ Declaration_initial.add_rule([Type_specifier, "ID", "#startNoPush", "#pid", "#en
 Declaration_prime.add_rule([Fun_declaration_prime, ])
 Declaration_prime.add_rule([Var_declaration_prime, ])
 Var_declaration_prime.add_rule([";", ])
-Var_declaration_prime.add_rule(["[", "NUM", "#pnum", "]", "#array", ";", ])
+Var_declaration_prime.add_rule(["[", "NUM", "#pnum", "]", "#declareArray", ";", ])
 Fun_declaration_prime.add_rule(["(", Params, ")", Compound_stmt, ])
 Type_specifier.add_rule(["int", ])
 Type_specifier.add_rule(["void", ])

@@ -1,8 +1,8 @@
 /*sample 6*/
 void main(void){
-	int i;
+	int i[10];
 	if(i) {
-		i = 123;
+		i[1] = 123;
 	} endif
 	i = 125 * 4;
 	i = 125 == 4;
