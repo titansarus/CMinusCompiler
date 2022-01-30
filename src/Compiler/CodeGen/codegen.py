@@ -30,6 +30,7 @@ class CodeGen:
             "#endArgumentList": self.action_manager.end_argument_list,
             "#jpfFromSaved": self.action_manager.jpf_from_saved,
             "#jpFromSaved": self.action_manager.jp_from_saved,
+            "#saveAndJpfFromLastSave": self.action_manager.save_and_jpf_from_last_save,
             "#assign": self.action_manager.assign,
             "#startNoPush": self.action_manager.start_no_push,
             "#endNoPush": self.action_manager.end_no_push,

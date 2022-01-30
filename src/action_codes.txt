@@ -8,7 +8,7 @@
 #save √
 #jpFromSaved √
 #jpfFromSaved √
-#saveAndJpfFromLastSave X
+#saveAndJpfFromLastSave √
 #label √
 #until X
 #break X

@@ -72,6 +72,14 @@ class ActionManager:
         instruction = JPF(condition, self.codegen.i)
         self.codegen.insert_instruction(instruction, destination)
     
+    def save_and_jpf_from_last_save(self, previous_token: Token, current_token: Token):
+        destination = self.codegen.semantic_stack.pop()
+        condition = self.codegen.semantic_stack.pop()
+        instruction = JPF(condition, self.codegen.i + 1)
+        self.codegen.insert_instruction(instruction, destination)
+        self.codegen.semantic_stack.append(self.codegen.i)
+        self.codegen.i += 1
+    
     def assign(self, previous_token: Token, current_token: Token):
         value = self.codegen.semantic_stack.pop()
         address = self.codegen.semantic_stack.pop()

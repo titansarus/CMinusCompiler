@@ -3,6 +3,8 @@ void main(void){
 	int i[10];
 	if(i) {
 		i[1] = 123;
+	} else {
+		i = 3;
 	} endif
 	i = 125 * 4;
 	i = 125 == 4;
