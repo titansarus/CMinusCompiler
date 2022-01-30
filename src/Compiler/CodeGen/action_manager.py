@@ -86,6 +86,7 @@ class ActionManager:
         address = self.codegen.semantic_stack.pop()
         instruction = Assign(value, address)
         self.codegen.push_instruction(instruction)
+        self.codegen.semantic_stack.append(value)
 
     def start_no_push(self, previous_token: Token, current_token: Token):
         self.no_push_flag = True
@@ -124,3 +125,6 @@ class ActionManager:
         for destination in self.breaks:
             instruction = JP(self.codegen.i)
             self.codegen.insert_instruction(instruction, destination)
+
+    def pop(self, previous_token: Token, current_token: Token):
+        self.codegen.semantic_stack.pop()

@@ -39,6 +39,7 @@ class CodeGen:
             "#until": self.action_manager.until,
             "#handleBreaks": self.action_manager.handle_breaks,
             "#break": self.action_manager.add_break,
+            "#pop": self.action_manager.pop,
         }
 
     def act(self, action, * args):

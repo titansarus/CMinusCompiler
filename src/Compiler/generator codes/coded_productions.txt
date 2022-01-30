@@ -13,12 +13,12 @@ Param-prime -> [  ] #array | EPSILON
 Compound-stmt -> { Declaration-list Statement-list }
 Statement-list -> Statement Statement-list | EPSILON
 Statement -> Expression-stmt | Compound-stmt | Selection-stmt | Iteration-stmt | Return-stmt
-Expression-stmt -> Expression ; | break #break ; | ;
+Expression-stmt -> Expression #pop ; | break #break ; | ;
 Selection-stmt -> if ( Expression ) #save Statement Else-stmt
 Else-stmt -> endif #jpfFromSaved | else #saveAndJpfFromLastSave Statement endif #jpFromSaved
 Iteration-stmt -> repeat #label Statement until ( Expression ) #until #handleBreaks
 Return-stmt -> return Return-stmt-prime
-Return-stmt-prime -> ; | Expression ;
+Return-stmt-prime -> ; | Expression #pop ;
 Expression -> Simple-expression-zegond | ID #pid B
 B -> = Expression #assign | [ Expression ] #array H | Simple-expression-prime
 H -> = Expression #assign | G D C
