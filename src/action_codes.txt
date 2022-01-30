@@ -1,7 +1,7 @@
 #pid √
 #pnum √
 #assign √
-#array X
+#array √
 #declareArray √
 #pushOperation √
 #execute √
