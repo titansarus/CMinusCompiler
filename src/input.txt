@@ -6,7 +6,13 @@ void main(void){
 	} else {
 		i = 3;
 	} endif
+	repeat {
 	i = 125 * 4;
+	break;
 	i = 125 == 4;
+	break;
+	i = 3;
+	i = 9;
+	} until (i)
 	i = main(1234, 132, main(3, 5, 2), 87, main(23));
 }

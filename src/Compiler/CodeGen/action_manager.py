@@ -12,6 +12,7 @@ class ActionManager:
         self.symbol_table = symbol_table
         self.argument_counts = []
         self.no_push_flag = False
+        self.breaks = []
 
     def pid(self, previous_token: Token, current_token: Token):
         address = self.symbol_table.find_address(previous_token.lexeme)
@@ -108,3 +109,18 @@ class ActionManager:
         ]
         self.codegen.push_instructions(instructions)
         self.codegen.semantic_stack.append(f"@{temp}")
+        
+    def until(self, previous_token: Token, current_token: Token):
+        condition = self.codegen.semantic_stack.pop()
+        destination = self.codegen.semantic_stack.pop()
+        instruction = JPF(condition, destination)
+        self.codegen.push_instruction(instruction)
+
+    def add_break(self, previous_token: Token, current_token: Token):
+        self.breaks.append(self.codegen.i)
+        self.codegen.i += 1
+
+    def handle_breaks(self, previous_token: Token, current_token: Token):
+        for destination in self.breaks:
+            instruction = JP(self.codegen.i)
+            self.codegen.insert_instruction(instruction, destination)
