@@ -1,6 +1,7 @@
 from ..Lexer.cminus_token import Token
 from .symbol_table import SymbolTable
 from .instructions import *
+from ..Constants.constants import *
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .codegen import CodeGen
@@ -82,3 +83,8 @@ class ActionManager:
 
     def end_no_push(self, previous_token: Token, current_token: Token):
         self.no_push_flag = False
+
+    def declare_array(self, previous_token: Token, current_token: Token):
+        length = int(self.codegen.semantic_stack.pop())
+        size = (length - 1) * WORD_SIZE
+        self.codegen.get_next_data_address(size = size)

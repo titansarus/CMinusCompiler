@@ -3,7 +3,7 @@ Declaration-list -> Declaration Declaration-list | EPSILON
 Declaration -> Declaration-initial Declaration-prime
 Declaration-initial ->  Type-specifier ID #startNoPush #pid #endNoPush
 Declaration-prime -> Fun-declaration-prime | Var-declaration-prime
-Var-declaration-prime -> ; | [ NUM #pnum ] #array ; 
+Var-declaration-prime -> ; | [ NUM #pnum ] #declareArray ; 
 Fun-declaration-prime -> ( Params ) Compound-stmt
 Type-specifier -> int | void
 Params -> int ID #pid Param-prime Param-list | void

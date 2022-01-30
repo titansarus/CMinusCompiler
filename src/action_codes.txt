@@ -2,6 +2,7 @@
 #pnum √
 #assign √
 #array X
+#declareArray √
 #pushOperation √
 #execute √
 #save √
