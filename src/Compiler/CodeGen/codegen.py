@@ -31,6 +31,8 @@ class CodeGen:
             "#jpfFromSaved": self.action_manager.jpf_from_saved,
             "#jpFromSaved": self.action_manager.jp_from_saved,
             "#assign": self.action_manager.assign,
+            "#startNoPush": self.action_manager.start_no_push,
+            "#endNoPush": self.action_manager.end_no_push,
         }
 
     def act(self, action, * args):

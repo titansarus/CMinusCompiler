@@ -67,7 +67,7 @@ Program.add_rule([Declaration_list, "$", ])
 Declaration_list.add_rule([Declaration, Declaration_list, ])
 Declaration_list.has_epsilon = True
 Declaration.add_rule([Declaration_initial, Declaration_prime, ])
-Declaration_initial.add_rule([Type_specifier, "ID", "#pid", ])
+Declaration_initial.add_rule([Type_specifier, "ID", "#startNoPush", "#pid", "#endNoPush", ])
 Declaration_prime.add_rule([Fun_declaration_prime, ])
 Declaration_prime.add_rule([Var_declaration_prime, ])
 Var_declaration_prime.add_rule([";", ])

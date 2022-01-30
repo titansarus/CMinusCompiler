@@ -1,6 +1,6 @@
 #pid √
 #pnum √
-#assign X
+#assign √
 #array X
 #pushOperation √
 #execute √
@@ -15,5 +15,5 @@
 #popParam X
 #startArgumentList √
 #endArgumentList √
-#startNoPush X
-#endNoPush X
+#startNoPush √
+#endNoPush √

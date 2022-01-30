@@ -9,21 +9,24 @@ class ActionManager:
     def __init__(self, codegen: "CodeGen", symbol_table: SymbolTable):
         self.codegen = codegen
         self.symbol_table = symbol_table
-        self.argument_flags = []
+        self.argument_counts = []
+        self.no_push_flag = False
 
     def pid(self, previous_token: Token, current_token: Token):
         address = self.symbol_table.find_address(previous_token.lexeme)
-        self.codegen.semantic_stack.append(address)
-        if self.argument_flags:
+        if not self.no_push_flag:
+            self.codegen.semantic_stack.append(address)
+        if self.argument_counts:
             self.codegen.runtime_stack.push(address)
-            self.argument_flags[-1] += 1
+            self.argument_counts[-1] += 1
     
     def pnum(self, previous_token: Token, current_token: Token):
         num = f"#{previous_token.lexeme}"
-        self.codegen.semantic_stack.append(num)
-        if self.argument_flags:
+        if not self.no_push_flag:
+            self.codegen.semantic_stack.append(num)
+        if self.argument_counts:
             self.codegen.runtime_stack.push(num)
-            self.argument_flags[-1] += 1
+            self.argument_counts[-1] += 1
 
     def label(self, previous_token: Token, current_token: Token):
         self.codegen.semantic_stack.append(self.codegen.i)
@@ -52,10 +55,10 @@ class ActionManager:
         self.codegen.push_instruction(instruction)
 
     def start_argument_list(self, previous_token: Token, current_token: Token):
-        self.argument_flags.append(0)
+        self.argument_counts.append(0)
 
     def end_argument_list(self, previous_token: Token, current_token: Token):
-        arg_count = self.argument_flags.pop()
+        arg_count = self.argument_counts.pop()
 
     def jp_from_saved(self, previous_token: Token, current_token: Token):
         instruction = JP(self.codegen.i)
@@ -73,3 +76,9 @@ class ActionManager:
         address = self.codegen.semantic_stack.pop()
         instruction = Assign(value, address)
         self.codegen.push_instruction(instruction)
+
+    def start_no_push(self, previous_token: Token, current_token: Token):
+        self.no_push_flag = True
+
+    def end_no_push(self, previous_token: Token, current_token: Token):
+        self.no_push_flag = False
