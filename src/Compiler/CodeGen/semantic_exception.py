@@ -1,0 +1,2 @@
+class SemanticException(Exception):
+    pass

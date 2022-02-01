@@ -40,6 +40,12 @@ class CodeGen:
             "#handleBreaks": self.action_manager.handle_breaks,
             "#break": self.action_manager.add_break,
             "#pop": self.action_manager.pop,
+            "#checkDeclaration": self.action_manager.check_declaration,
+            "#uncheckDeclaration": self.action_manager.uncheck_declaration,
+            "#declareFunction": self.action_manager.declare_function,
+            "#openScope": self.action_manager.open_scope,
+            "#closeScope": self.action_manager.close_scope,
+            "#setFunctionScopeFlag": self.action_manager.set_function_scope_flag,
         }
 
     def act(self, action, * args):

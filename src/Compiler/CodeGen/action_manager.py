@@ -12,10 +12,12 @@ class ActionManager:
         self.symbol_table = symbol_table
         self.argument_counts = []
         self.no_push_flag = False
+        self.check_declaration_flag = False
+        self.function_scope_flag = False
         self.breaks = []
 
     def pid(self, previous_token: Token, current_token: Token):
-        address = self.symbol_table.find_address(previous_token.lexeme)
+        address = self.symbol_table.find_address(previous_token.lexeme, self.check_declaration_flag)
         if not self.no_push_flag:
             self.codegen.semantic_stack.append(address)
         if self.argument_counts:
@@ -128,3 +130,23 @@ class ActionManager:
 
     def pop(self, previous_token: Token, current_token: Token):
         self.codegen.semantic_stack.pop()
+
+    def check_declaration(self, previous_token: Token, current_token: Token):
+        self.check_declaration_flag = True
+
+    def uncheck_declaration(self, previous_token: Token, current_token: Token):
+        self.check_declaration_flag = False
+
+    def declare_function(self, previous_token: Token, current_token: Token):
+        pass
+
+    def set_function_scope_flag(self, previous_token: Token, current_token: Token):
+        self.function_scope_flag = True
+
+    def open_scope(self, previous_token: Token, current_token: Token):
+        if not self.function_scope_flag:
+            self.codegen.symbol_table.scopes.append([])
+        self.function_scope_flag = False
+
+    def close_scope(self, previous_token: Token, current_token: Token):
+        self.codegen.symbol_table.scopes.pop()

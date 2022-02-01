@@ -2,10 +2,12 @@ from .productions import *
 from ..Lexer.lexer import Lexer
 from ..Lexer.cminus_token import Token
 from ..CodeGen.codegen import CodeGen
+from ..CodeGen.semantic_exception import SemanticException
 
 previous_token = None
 current_token = None
 errors = []
+semantic_errors = []
 file_ended = False
 
 
@@ -61,7 +63,7 @@ class ProductionParser:
             self.current_state = parser_states_dict[production]
 
     def parse(self):
-        global current_token, previous_token, errors, file_ended
+        global current_token, previous_token, errors, file_ended, semantic_errors
         if self.current_state is None:
             if current_token.token_type == END_TOKEN:
                 node = ParseNode(self.production, self.production)
@@ -95,7 +97,12 @@ class ProductionParser:
                 is_valid_epsilon_nonterminal = edge.edge_type == PRODUCTION_PARSER_EDGE and edge.label.first_has_epsilon and is_in_follow
 
                 if is_action_code:
-                    self.codegen.act(edge.label, previous_token, current_token)
+                    try:
+                        self.codegen.act(edge.label, previous_token, current_token)
+                    except SemanticException as e:
+                        semantic_errors.append(f"#{current_token.lineno} : {e}")
+                    except:
+                        pass
                     self.current_state = edge.destination
                     error_edge = None
                     break

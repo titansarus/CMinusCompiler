@@ -19,3 +19,9 @@
 #startNoPush √
 #endNoPush √
 #pop √
+#declareFunction X
+#checkDeclaration √
+#uncheckDeclaration √
+#openScope X
+#closeScope X
+#setFunctionScopeFlag X
