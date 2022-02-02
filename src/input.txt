@@ -1,15 +1,16 @@
 /*===== sample S1 =====*/
-void f(void) {
+int f(void) {
 	int a;
+	a = 5;
+	return a;
 }
 
 void g(int a) {
-
+	int b;
+	b = 10;
 }
 
 void main(void){
-	int a;
-	if(a) {
-		int b;
-	} endif
+	int b;
+	b = f( 10 );
 }

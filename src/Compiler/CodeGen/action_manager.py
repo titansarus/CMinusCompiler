@@ -1,5 +1,6 @@
 from ..Lexer.cminus_token import Token
 from .symbol_table import SymbolTable
+from .symbol import Symbol
 from .instructions import *
 from ..Constants.constants import *
 from typing import TYPE_CHECKING
@@ -155,3 +156,21 @@ class ActionManager:
     def pop_param(self, previous_token: Token, current_token: Token):
         address = self.codegen.semantic_stack.pop()
         self.codegen.runtime_stack.pop(address)
+
+    def declare_function(self, previous_token: Token, current_token: Token):
+        symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
+        symbol.address = f"#{self.codegen.i}"
+
+    def call(self, previous_token: Token, current_token: Token):
+        address = self.codegen.semantic_stack.pop()
+        instruction = JP(address)
+        self.codegen.push_instruction(instruction)
+        self.codegen.register_file.save_return_address()
+    
+    def set_return_value(self, previous_token: Token, current_token: Token):
+        value = self.codegen.semantic_stack.pop()
+        self.codegen.register_file.save_return_value(value)
+
+    def jump_back(self, previous_token: Token, current_token: Token):
+        instruction = JP(self.codegen.register_file.return_address_register_address)
+        self.codegen.push_instruction(instruction)

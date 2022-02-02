@@ -19,9 +19,12 @@
 #startNoPush √
 #endNoPush √
 #pop √
-#declareFunction X
+#declareFunction √
 #checkDeclaration √
 #uncheckDeclaration √
 #openScope √
 #closeScope √
 #setFunctionScopeFlag √
+#call X
+#setReturnValue X
+#jumpBack X

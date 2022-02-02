@@ -3,6 +3,7 @@ from ..Constants.constants import *
 from .action_manager import ActionManager
 from .symbol_table import SymbolTable
 from .runtime_stack import RuntimeStack
+from .register_file import RegisterFile
 
 class CodeGen:
     def __init__(self):
@@ -12,12 +13,13 @@ class CodeGen:
         self.semantic_stack = []
 
         self.symbol_table = SymbolTable(self)
-        self.runtime_stack = RuntimeStack(self)
+        self.register_file = RegisterFile(self)
+        self.runtime_stack = RuntimeStack(self, self.register_file)
         self.action_manager = ActionManager(self, self.symbol_table)
 
         self.program = []
         self.push_instruction(
-            Assign(f"#{STACK_START_ADDRESS}", self.runtime_stack.sp_address))
+            Assign(f"#{STACK_START_ADDRESS}", self.register_file.stack_pointer_register_address))
 
         self.actions = {
             "#pid": self.action_manager.pid,
@@ -47,6 +49,10 @@ class CodeGen:
             "#closeScope": self.action_manager.close_scope,
             "#setFunctionScopeFlag": self.action_manager.set_function_scope_flag,
             "#popParam": self.action_manager.pop_param,
+            "#declareFunction": self.action_manager.declare_function,
+            "#call": self.action_manager.call,
+            "#setReturnValue": self.action_manager.set_return_value,
+            "#jumpBack": self.action_manager.jump_back,
         }
 
     def act(self, action, * args):
