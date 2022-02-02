@@ -1,16 +1,4 @@
 /*===== sample S1 =====*/
-int f(void) {
-	int a;
-	a = 5;
-	return a;
-}
-
-void g(int a) {
-	int b;
-	b = 10;
-}
-
 void main(void){
-	int b;
-	b = f( 10 );
+	output(10);
 }

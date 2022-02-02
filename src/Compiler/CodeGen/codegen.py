@@ -4,6 +4,7 @@ from .action_manager import ActionManager
 from .symbol_table import SymbolTable
 from .runtime_stack import RuntimeStack
 from .register_file import RegisterFile
+from ..Lexer.cminus_token import Token
 
 class CodeGen:
     def __init__(self):
@@ -22,13 +23,6 @@ class CodeGen:
         self.register_file = RegisterFile(self)
         self.runtime_stack = RuntimeStack(self, self.register_file)
         self.action_manager = ActionManager(self, self.symbol_table)
-
-        self.push_instruction(
-            Assign(f"#{STACK_START_ADDRESS}", self.register_file.stack_pointer_register_address))
-
-        self.jump_to_main_address = len(self.program)
-        self.program.append(None)
-
 
         self.actions = {
             "#pid": self.action_manager.pid,
@@ -64,6 +58,14 @@ class CodeGen:
             "#jumpBack": self.action_manager.jump_back,
         }
 
+        self.push_instruction(
+            Assign(f"#{STACK_START_ADDRESS}", self.register_file.stack_pointer_register_address))
+
+        self.jump_to_main_address = len(self.program)
+        self.program.append(None)
+
+        self.add_output_function()
+
     def act(self, action, * args):
         self.actions[action](* args)
 
@@ -98,3 +100,16 @@ class CodeGen:
         address = self.temp_address
         self.temp_address += size
         return address
+
+    def add_output_function(self):
+        self.act("#pid", Token(lexeme="output"), None)
+        self.act("#declareFunction", None, None)
+        self.act("#openScope", None, None)
+        self.act("#setFunctionScopeFlag", None, None)
+        self.act("#pid", Token(lexeme="a"), None)
+        self.act("#popParam", None, None)
+        self.act("#pid", Token(lexeme="a"), None)
+        self.push_instruction(
+            Print(self.semantic_stack.pop()))
+        self.act("#closeScope", None, None)
+        self.act("#jumpBack", None, None)

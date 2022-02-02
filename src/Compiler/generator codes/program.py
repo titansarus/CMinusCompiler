@@ -75,7 +75,7 @@ Var_declaration_prime.add_rule(["[", "NUM", "#pnum", "]", "#declareArray", ";", 
 Fun_declaration_prime.add_rule(["(", "#declareFunction", "#openScope", "#setFunctionScopeFlag", Params, ")", Compound_stmt, "#jumpBack", ])
 Type_specifier.add_rule(["int", ])
 Type_specifier.add_rule(["void", ])
-Params.add_rule(["int", "ID", "#pid", Param_prime, Param_list, ])
+Params.add_rule(["int", "ID", "#pid", Param_prime, "#popParam", Param_list, ])
 Params.add_rule(["void", ])
 Param_list.add_rule([",", Param, Param_list, ])
 Param_list.has_epsilon = True

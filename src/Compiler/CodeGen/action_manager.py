@@ -178,11 +178,19 @@ class ActionManager:
         instruction = JP(address)
         self.codegen.push_instruction(instruction)
 
+        temp = self.codegen.get_next_temp_address()
+        self.codegen.semantic_stack.append(temp)
+        self.codegen.push_instruction(
+            Assign(self.codegen.register_file.return_value_register_address, temp))
+        self.codegen.temp_address -= WORD_SIZE
+
         self.codegen.register_file.pop_registers()
         for address in range(self.codegen.temp_address - WORD_SIZE, self.codegen.function_temp_start_pointer, -WORD_SIZE):
             self.codegen.runtime_stack.pop(address)
         for address in range(self.codegen.data_address - WORD_SIZE, self.codegen.function_data_start_pointer, -WORD_SIZE):
             self.codegen.runtime_stack.pop(address)
+        
+        self.codegen.temp_address += WORD_SIZE
     
     def set_return_value(self, previous_token: Token, current_token: Token):
         value = self.codegen.semantic_stack.pop()
