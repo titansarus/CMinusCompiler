@@ -22,6 +22,6 @@
 #declareFunction X
 #checkDeclaration √
 #uncheckDeclaration √
-#openScope X
-#closeScope X
-#setFunctionScopeFlag X
+#openScope √
+#closeScope √
+#setFunctionScopeFlag √

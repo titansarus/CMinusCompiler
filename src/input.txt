@@ -1,8 +1,15 @@
 /*===== sample S1 =====*/
+void f(void) {
+	int a;
+}
+
+void g(int a) {
+
+}
+
 void main(void){
 	int a;
 	if(a) {
 		int b;
 	} endif
-	int b;
 }
