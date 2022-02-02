@@ -11,7 +11,7 @@ class RegisterFile:
         self.stack_pointer_register_address = self.codegen.get_next_data_address()
 
     def save_return_address(self):
-        self.codegen.push_instruction(Assign(f"#{self.codegen.i + 1}", self.return_address_register_address))
+        self.codegen.push_instruction(Assign(f"#{self.codegen.i + 2}", self.return_address_register_address))
 
     def save_return_value(self, value):
         self.codegen.push_instruction(Assign(value, self.return_value_register_address))

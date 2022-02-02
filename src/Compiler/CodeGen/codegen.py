@@ -11,15 +11,24 @@ class CodeGen:
         self.data_address = DATA_SECTION_START_ADDRESS
         self.temp_address = TEMP_SECTION_START_ADDRESS
         self.semantic_stack = []
+        self.data_and_temp_stack = []
+
+        self.function_data_start_pointer = 0
+        self.function_temp_start_pointer = 0
+
+        self.program = []
 
         self.symbol_table = SymbolTable(self)
         self.register_file = RegisterFile(self)
         self.runtime_stack = RuntimeStack(self, self.register_file)
         self.action_manager = ActionManager(self, self.symbol_table)
 
-        self.program = []
         self.push_instruction(
             Assign(f"#{STACK_START_ADDRESS}", self.register_file.stack_pointer_register_address))
+
+        self.jump_to_main_address = len(self.program)
+        self.program.append(None)
+
 
         self.actions = {
             "#pid": self.action_manager.pid,

@@ -25,6 +25,6 @@
 #openScope √
 #closeScope √
 #setFunctionScopeFlag √
-#call X
-#setReturnValue X
-#jumpBack X
+#call √
+#setReturnValue √
+#jumpBack √

@@ -149,9 +149,11 @@ class ActionManager:
         if not self.function_scope_flag:
             self.codegen.symbol_table.scopes.append([])
         self.function_scope_flag = False
+        self.codegen.data_and_temp_stack.append((self.codegen.data_address, self.codegen.temp_address))
 
     def close_scope(self, previous_token: Token, current_token: Token):
         self.codegen.symbol_table.scopes.pop()
+        self.codegen.data_address, self.codegen.temp_address = self.codegen.data_and_temp_stack.pop()
     
     def pop_param(self, previous_token: Token, current_token: Token):
         address = self.codegen.semantic_stack.pop()
@@ -160,12 +162,27 @@ class ActionManager:
     def declare_function(self, previous_token: Token, current_token: Token):
         symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
         symbol.address = f"#{self.codegen.i}"
+        self.codegen.function_data_start_pointer = self.codegen.data_address
+        self.codegen.function_temp_start_pointer = self.codegen.temp_address
 
     def call(self, previous_token: Token, current_token: Token):
+        for address in range(self.codegen.function_data_start_pointer, self.codegen.data_address, WORD_SIZE):
+            self.codegen.runtime_stack.push(address)
+        for address in range(self.codegen.function_temp_start_pointer, self.codegen.temp_address, WORD_SIZE):
+            self.codegen.runtime_stack.push(address)
+        self.codegen.register_file.push_registers()
+        
+        self.codegen.register_file.save_return_address()
+
         address = self.codegen.semantic_stack.pop()
         instruction = JP(address)
         self.codegen.push_instruction(instruction)
-        self.codegen.register_file.save_return_address()
+
+        self.codegen.register_file.pop_registers()
+        for address in range(self.codegen.temp_address - WORD_SIZE, self.codegen.function_temp_start_pointer, -WORD_SIZE):
+            self.codegen.runtime_stack.pop(address)
+        for address in range(self.codegen.data_address - WORD_SIZE, self.codegen.function_data_start_pointer, -WORD_SIZE):
+            self.codegen.runtime_stack.pop(address)
     
     def set_return_value(self, previous_token: Token, current_token: Token):
         value = self.codegen.semantic_stack.pop()
