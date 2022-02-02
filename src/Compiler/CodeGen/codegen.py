@@ -46,6 +46,7 @@ class CodeGen:
             "#openScope": self.action_manager.open_scope,
             "#closeScope": self.action_manager.close_scope,
             "#setFunctionScopeFlag": self.action_manager.set_function_scope_flag,
+            "#popParam": self.action_manager.pop_param,
         }
 
     def act(self, action, * args):

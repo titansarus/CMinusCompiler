@@ -21,7 +21,6 @@ class ActionManager:
         if not self.no_push_flag:
             self.codegen.semantic_stack.append(address)
         if self.argument_counts:
-            self.codegen.runtime_stack.push(address)
             self.argument_counts[-1] += 1
     
     def pnum(self, previous_token: Token, current_token: Token):
@@ -29,7 +28,6 @@ class ActionManager:
         if not self.no_push_flag:
             self.codegen.semantic_stack.append(num)
         if self.argument_counts:
-            self.codegen.runtime_stack.push(num)
             self.argument_counts[-1] += 1
 
     def label(self, previous_token: Token, current_token: Token):
@@ -63,6 +61,9 @@ class ActionManager:
 
     def end_argument_list(self, previous_token: Token, current_token: Token):
         arg_count = self.argument_counts.pop()
+        for i in range(arg_count):
+            data = self.codegen.semantic_stack.pop()
+            self.codegen.runtime_stack.push(data)
 
     def jp_from_saved(self, previous_token: Token, current_token: Token):
         instruction = JP(self.codegen.i)
@@ -150,3 +151,7 @@ class ActionManager:
 
     def close_scope(self, previous_token: Token, current_token: Token):
         self.codegen.symbol_table.scopes.pop()
+    
+    def pop_param(self, previous_token: Token, current_token: Token):
+        address = self.codegen.semantic_stack.pop()
+        self.codegen.runtime_stack.pop(address)
