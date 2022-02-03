@@ -1,0 +1,2 @@
+#4 : Semantic Error! Illegal type of void for 'a'.
+#5 : Semantic Error! 'a' is not defined.

@@ -6,12 +6,18 @@
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/O1...
 
 
+              *** semantic_errors.txt diffrences ***
+
+
               *** result.txt diffrences ***
 
 
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/O2...
+
+
+              *** semantic_errors.txt diffrences ***
 
 
               *** result.txt diffrences ***
@@ -22,12 +28,23 @@
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S1...
 
 
+              *** semantic_errors.txt diffrences ***
+The input program is semantically correct.										    |	#9 : Semantic Error! 'c' is not defined.																
+															    >	#15 : Semantic Error! Mismatch in numbers of arguments of 'foo'.																
+															    >	#17 : Semantic Error! Mismatch in type of argument 1 of 'foo'. Expected 'int' but got 'array' instead.																
+
+
               *** result.txt diffrences ***
 
 
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S2...
+
+
+              *** semantic_errors.txt diffrences ***
+															    >	#10 : Semantic Error! Type mismatch in operands, Got array instead of int.
+															    >	#11 : Semantic Error! Type mismatch in operands, Got array instead of int.
 
 
               *** result.txt diffrences ***
@@ -38,12 +55,27 @@
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S3...
 
 
+              *** semantic_errors.txt diffrences ***
+#8 : Semantic Error! 'e' is not defined.										    |	#6 : Semantic Error! 'count' is not defined.																
+															    >	#6 : Semantic Error! 'count' is not defined.																
+															    >	#17 : Semantic Error! Mismatch in type of argument 2 of 'f'. Expected 'array' but got 'int' instead.																
+															    >	#28 : Semantic Error! Type mismatch in operands, Got array instead of int.																
+															    >	#30 : Semantic Error! 'count' is not defined.																
+															    >	#32 : Semantic Error! 'count' is not defined.																
+
+
               *** result.txt diffrences ***
 
 
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S4...
+
+
+              *** semantic_errors.txt diffrences ***
+#5 : Semantic Error! Illegal type of void for 'j'.									    |	#4 : Semantic Error! Illegal type of void for 'j'.																
+															    >	#15 : Semantic Error! Mismatch in numbers of arguments of 'foo'.																
+															    >	#16 : Semantic Error! Mismatch in type of argument 1 of 'foo'. Expected 'int' but got 'array' instead.																
 
 
               *** result.txt diffrences ***
@@ -54,12 +86,23 @@
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S5...
 
 
+              *** semantic_errors.txt diffrences ***
+#5 : Semantic Error! Illegal type of void for 'j'.									    |	#17 : Semantic Error! No 'repeat ... until' found for 'break'.																
+															    >	#37 : Semantic Error! Mismatch in numbers of arguments of 'abs'.																
+															    >	#45 : Semantic Error! Type mismatch in operands, Got array instead of int.																
+															    >	#52 : Semantic Error! Illegal type of void for 'b'.																
+															    >	#65 : Semantic Error! 'max' is not defined.																
+
+
               *** result.txt diffrences ***
 
 
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T1...
+
+
+              *** semantic_errors.txt diffrences ***
 
 
               *** result.txt diffrences ***
@@ -70,6 +113,9 @@
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T10...
 
 
+              *** semantic_errors.txt diffrences ***
+
+
               *** result.txt diffrences ***
 
 
@@ -78,40 +124,19 @@
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T2...
 
 
-              *** result.txt diffrences ***
-
-
-
-
-=====================================>>>>> Running Test ../PA3-Resources/TestCases/T28...
+              *** semantic_errors.txt diffrences ***
+The input program is semantically correct.										    /	The input program is semantically correct
 
 
               *** result.txt diffrences ***
-ERROR : Invalid access to memory											    |	PRINT    0
-																
-															    >	PRINT    1
-																
-															    >	PRINT    4
-																
-															    >	PRINT    9
-																
-															    >	PRINT    16
-																
-															    >	PRINT    25
-																
-															    >	PRINT    36
-																
-															    >	PRINT    49
-																
-															    >	PRINT    64
-																
-															    >	PRINT    81
-																
 
 
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T3...
+
+
+              *** semantic_errors.txt diffrences ***
 
 
               *** result.txt diffrences ***
@@ -122,30 +147,18 @@ ERROR : Invalid access to memory											    |	PRINT    0
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T4...
 
 
+              *** semantic_errors.txt diffrences ***
+
+
               *** result.txt diffrences ***
-															    >	PRINT    1
-																
-															    >	PRINT    4
-																
-															    >	PRINT    4
-																
-															    >	PRINT    9
-																
-															    >	PRINT    9
-																
-															    >	PRINT    16
-																
-															    >	PRINT    16
-																
-															    >	PRINT    25
-																
-															    >	PRINT    25
-																
 
 
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T5...
+
+
+              *** semantic_errors.txt diffrences ***
 
 
               *** result.txt diffrences ***
@@ -156,6 +169,9 @@ ERROR : Invalid access to memory											    |	PRINT    0
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T6...
 
 
+              *** semantic_errors.txt diffrences ***
+
+
               *** result.txt diffrences ***
 
 
@@ -164,12 +180,30 @@ ERROR : Invalid access to memory											    |	PRINT    0
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T7...
 
 
+              *** semantic_errors.txt diffrences ***
+
+
               *** result.txt diffrences ***
 
 
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T8...
+
+
+              *** semantic_errors.txt diffrences ***
+The input program is semantically correct.										    <
+
+
+              *** result.txt diffrences ***
+
+
+
+
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T9...
+
+
+              *** semantic_errors.txt diffrences ***
 
 
               *** result.txt diffrences ***

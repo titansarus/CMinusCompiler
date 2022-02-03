@@ -3,6 +3,7 @@ from .symbol_table import SymbolTable
 from .symbol import Symbol
 from .instructions import *
 from ..Constants.constants import *
+from .semantic_exception import SemanticException
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .codegen import CodeGen
@@ -17,9 +18,13 @@ class ActionManager:
         self.function_scope_flag = False
         self.breaks = []
         self.has_reached_main = False
+        self.force_declaration_flag = False
+        self.current_id = ""
+        self.void_flag = False
 
     def pid(self, previous_token: Token, current_token: Token):
-        address = self.symbol_table.find_address(previous_token.lexeme, self.check_declaration_flag)
+        self.current_id = previous_token.lexeme
+        address = self.symbol_table.find_address(previous_token.lexeme, self.check_declaration_flag, self.force_declaration_flag)
         if previous_token.lexeme == "main":
             self.codegen.insert_instruction(JP(f"#{self.codegen.i}"), self.codegen.jump_to_main_address)
             if not self.has_reached_main:
@@ -134,14 +139,18 @@ class ActionManager:
         instruction = JPF(condition, destination)
         self.codegen.push_instruction(instruction)
 
+    def start_break_scope(self, previous_token: Token, current_token: Token):
+        self.breaks.append([])
+
     def add_break(self, previous_token: Token, current_token: Token):
-        self.breaks.append(self.codegen.i)
+        self.breaks[-1].append(self.codegen.i)
         self.codegen.i += 1
 
     def handle_breaks(self, previous_token: Token, current_token: Token):
-        for destination in self.breaks:
+        for destination in self.breaks[-1]:
             instruction = JP(f"#{self.codegen.i}")
             self.codegen.insert_instruction(instruction, destination)
+        self.breaks.pop()
 
     def pop(self, previous_token: Token, current_token: Token):
         self.codegen.semantic_stack.pop()
@@ -176,6 +185,7 @@ class ActionManager:
         symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
         symbol.address = f"#{self.codegen.i}"
         symbol.is_function = True
+        self.void_flag = False
         self.codegen.function_data_start_pointer = self.codegen.data_address
         self.codegen.function_temp_start_pointer = self.codegen.temp_address
 
@@ -233,3 +243,18 @@ class ActionManager:
     def array_param(self, previous_token: Token, current_token: Token):
         symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
         symbol.is_array = True
+
+    def set_force_declaration_flag(self, previous_token: Token, current_token: Token):
+        self.force_declaration_flag = True
+
+    def unset_force_declaration_flag(self, previous_token: Token, current_token: Token):
+        self.force_declaration_flag = False
+
+    def void_check(self, previous_token: Token, current_token: Token):
+        self.void_flag = True
+
+    def void_check_throw(self, previous_token: Token, current_token: Token):
+        if self.void_flag:
+            self.void_flag = False
+            self.codegen.symbol_table.remove_symbol(self.current_id)
+            raise SemanticException(VOID_SEMANTIC_ERROR.format(self.current_id))

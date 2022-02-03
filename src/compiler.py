@@ -12,13 +12,17 @@ if __name__ == '__main__':
     lexer = Lexer("input.txt")
     codegen = CodeGen()
     parser = Parser(lexer, codegen)
-    initial_node, errors, program = parser.parse()
-    if len(errors) == 0:
-        errors = ["There is no syntax error."]
+    initial_node, errors, program, semantic_errors = parser.parse()
+    if len(semantic_errors) == 0:
+        result_program = generate_code(program)
+        semantic_errors = ["The input program is semantically correct."]
+    else:
+        result_program = "The output code has not been generated."
     with open("output.txt", "w", encoding="utf-8") as f:
-        print(generate_code(program), file=f)
-    with open("syntax_errors.txt", "w", encoding="utf-8") as f:
-        print("\n".join(errors), file=f)
+        print(result_program, file=f)
+    with open("semantic_errors.txt", "w", encoding="utf-8") as f:
+        print("\n".join(semantic_errors), file=f)
+
     if DEBUG:
         with open("debug.txt", "w", encoding="utf-8") as f:
             for line in codegen.line_map:

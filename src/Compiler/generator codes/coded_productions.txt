@@ -1,12 +1,12 @@
 Program -> Declaration-list $
 Declaration-list -> Declaration Declaration-list | EPSILON 
 Declaration -> Declaration-initial Declaration-prime
-Declaration-initial ->  Type-specifier ID #startNoPush #pid #endNoPush
-Declaration-prime -> Fun-declaration-prime | Var-declaration-prime #zeroInitialize
+Declaration-initial ->  Type-specifier #setForceDeclarationFlag ID #startNoPush #pid #endNoPush #unsetForceDeclarationFlag
+Declaration-prime -> Fun-declaration-prime | Var-declaration-prime #zeroInitialize #voidCheckThrow
 Var-declaration-prime -> ; | [ NUM #pnum ] #declareArray ; 
 Fun-declaration-prime -> ( #declareFunction #openScope #setFunctionScopeFlag Params ) Compound-stmt #jumpBack
-Type-specifier -> int | void
-Params -> int ID #pid Param-prime #popParam Param-list | void
+Type-specifier -> int | void #voidCheck
+Params -> int #setForceDeclarationFlag ID #pid #unsetForceDeclarationFlag Param-prime #popParam Param-list | void
 Param-list -> , Param Param-list | EPSILON
 Param -> Declaration-initial Param-prime #popParam
 Param-prime -> [  ] #arrayParam | EPSILON
@@ -16,7 +16,7 @@ Statement -> Expression-stmt | Compound-stmt | Selection-stmt | Iteration-stmt |
 Expression-stmt -> Expression #pop ; | break #break ; | ;
 Selection-stmt -> if ( Expression ) #save Statement Else-stmt
 Else-stmt -> endif #jpfFromSaved | else #saveAndJpfFromLastSave Statement endif #jpFromSaved
-Iteration-stmt -> repeat #label Statement until ( Expression ) #until #handleBreaks
+Iteration-stmt -> repeat #label #startBreakScope Statement until ( Expression ) #until #handleBreaks
 Return-stmt -> return Return-stmt-prime #jumpBack
 Return-stmt-prime -> ; | Expression #setReturnValue ;
 Expression -> Simple-expression-zegond | ID #checkDeclaration #pid #uncheckDeclaration B

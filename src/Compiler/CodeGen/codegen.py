@@ -61,6 +61,11 @@ class CodeGen:
             "#addArgumentCount": self.action_manager.add_argument_count,
             "#zeroInitialize": self.action_manager.zero_initialize,
             "#arrayParam": self.action_manager.array_param,
+            "#startBreakScope": self.action_manager.start_break_scope,
+            "#setForceDeclarationFlag": self.action_manager.set_force_declaration_flag,
+            "#unsetForceDeclarationFlag": self.action_manager.unset_force_declaration_flag,
+            "#voidCheck": self.action_manager.void_check,
+            "#voidCheckThrow": self.action_manager.void_check_throw,
         }
 
         initialization_instructions = [

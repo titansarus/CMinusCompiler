@@ -32,7 +32,7 @@ class Parser:
         current_token = get_next_valid_token(self.lexer)
         root_parser = ProductionParser(Program, self.lexer, self.codegen)
         root = root_parser.parse()
-        return root, errors, self.codegen.program
+        return root, errors, self.codegen.program, semantic_errors
 
 
 class ParseNode:
@@ -100,7 +100,7 @@ class ProductionParser:
                     try:
                         self.codegen.act(edge.label, previous_token, current_token)
                     except SemanticException as e:
-                        semantic_errors.append(f"#{current_token.lineno} : {e}")
+                        semantic_errors.append(f"#{previous_token.lineno} : {e}")
                     # except:
                     #     pass
                     self.current_state = edge.destination

@@ -8,18 +8,23 @@
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S1...
+Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S1/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S2...
+Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S2/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S3...
+Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S3/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S4...
+Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S4/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S5...
+Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S5/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T1...
@@ -29,17 +34,13 @@
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T2...
-
-
-=====================================>>>>> Running Test ../PA3-Resources/TestCases/T28...
-Files ./result.txt and ../PA3-Resources/TestCases/T28/expected.txt differ
+Files ./semantic_errors.txt and ../PA3-Resources/TestCases/T2/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T3...
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T4...
-Files ./result.txt and ../PA3-Resources/TestCases/T4/expected.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T5...
@@ -52,3 +53,7 @@ Files ./result.txt and ../PA3-Resources/TestCases/T4/expected.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T8...
+Files ./semantic_errors.txt and ../PA3-Resources/TestCases/T8/semantic_errors.txt differ
+
+
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T9...

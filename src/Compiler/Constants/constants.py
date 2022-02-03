@@ -47,3 +47,8 @@ STACK_START_ADDRESS = TEMP_SECTION_START_ADDRESS - WORD_SIZE
 STACK_PUSH_INSTRUCTION_COUNT = 2
 
 SCOPE_SEMANTIC_ERROR = "Semantic Error! '{}' is not defined."
+VOID_SEMANTIC_ERROR = "Semantic Error! Illegal type of void for '{}'."
+ARG_COUNT_MISMATCH_SEMANTIC_ERROR = "Semantic Error! Mismatch in numbers of arguments of '{}'."
+BREAK_SEMANTIC_ERROR = "Semantic Error! No 'repeat ... until' found for 'break'."
+OPERAND_TYPE_MISMATCH_SEMANTIC_ERROR = "Semantic Error! Type mismatch in operands, Got '{}' instead of '{}'."
+ARG_TYPE_MISMATCH_SEMANTIC_ERROR = "Semantic Error! Mismatch in type of argument {} for '{}'. Expected '{}' but got '{}' instead."

@@ -1,18 +1,7 @@
-/* === sample 9 ==== */
-
-int f(int n) {
-	if(n < 2) {
-		return 1;
-	} else {
-		return f(n - 1) + f(n - 2);
-	} endif
+/*==== Sample S4 ====*/
+void main ( void )
+{
+	void a;
+	a = 1;
 }
 
-void main(void){
-	int n;
-	n = 0;
-	repeat {
-		output(f(n));
-		n = n + 1;
-	} until(n == 10)
-}
