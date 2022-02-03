@@ -101,8 +101,8 @@ class ProductionParser:
                         self.codegen.act(edge.label, previous_token, current_token)
                     except SemanticException as e:
                         semantic_errors.append(f"#{previous_token.lineno} : {e}")
-                    # except:
-                    #     pass
+                    except:
+                        pass
                     self.current_state = edge.destination
                     error_edge = None
                     break

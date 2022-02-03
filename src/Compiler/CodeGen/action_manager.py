@@ -143,6 +143,8 @@ class ActionManager:
         self.breaks.append([])
 
     def add_break(self, previous_token: Token, current_token: Token):
+        if not self.breaks:
+            raise SemanticException(BREAK_SEMANTIC_ERROR)
         self.breaks[-1].append(self.codegen.i)
         self.codegen.i += 1
 

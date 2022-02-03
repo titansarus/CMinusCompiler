@@ -1,2 +1,3 @@
-#4 : Semantic Error! Illegal type of void for 'a'.
-#5 : Semantic Error! 'a' is not defined.
+#17 : Semantic Error! No 'repeat ... until' found for 'break'.
+#52 : Semantic Error! Illegal type of void for 'b'.
+#65 : Semantic Error! 'max' is not defined.
