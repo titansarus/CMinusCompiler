@@ -1,4 +1,4 @@
-from Compiler.Parser.parse_tree_generator import *
+from Compiler.CodeGen.three_address_generator import *
 from Compiler.Lexer import lexer_states
 from Compiler.Lexer.lexer import Lexer
 from Compiler.Parser.cminus_parser import Parser
@@ -9,11 +9,10 @@ if __name__ == '__main__':
     lexer = Lexer("input.txt")
     codegen = CodeGen()
     parser = Parser(lexer, codegen)
-    initial_node, errors = parser.parse()
+    initial_node, errors, program = parser.parse()
     if len(errors) == 0:
         errors = ["There is no syntax error."]
-    tree = get_tree(initial_node)
-    with open("parse_tree.txt", "w", encoding="utf-8") as f:
-        print(render_tree(tree), file=f)
+    with open("output.txt", "w", encoding="utf-8") as f:
+        print(generate_code(program), file=f)
     with open("syntax_errors.txt", "w", encoding="utf-8") as f:
         print("\n".join(errors), file=f)

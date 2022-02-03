@@ -2,7 +2,7 @@ Program -> Declaration-list $
 Declaration-list -> Declaration Declaration-list | EPSILON 
 Declaration -> Declaration-initial Declaration-prime
 Declaration-initial ->  Type-specifier ID #startNoPush #pid #endNoPush
-Declaration-prime -> Fun-declaration-prime | Var-declaration-prime
+Declaration-prime -> Fun-declaration-prime | Var-declaration-prime #zeroInitialize
 Var-declaration-prime -> ; | [ NUM #pnum ] #declareArray ; 
 Fun-declaration-prime -> ( #declareFunction #openScope #setFunctionScopeFlag Params ) Compound-stmt #jumpBack
 Type-specifier -> int | void
@@ -41,5 +41,5 @@ Var-prime -> [ Expression ] #array | EPSILON
 Factor-prime -> ( #startArgumentList Args #endArgumentList ) #call | EPSILON
 Factor-zegond -> ( Expression ) | NUM #pnum
 Args -> Arg-list | EPSILON
-Arg-list -> Expression Arg-list-prime
-Arg-list-prime -> , Expression Arg-list-prime | EPSILON
+Arg-list -> Expression Arg-list-prime #addArgumentCount
+Arg-list-prime -> , Expression Arg-list-prime #addArgumentCount | EPSILON

@@ -69,7 +69,7 @@ Declaration_list.has_epsilon = True
 Declaration.add_rule([Declaration_initial, Declaration_prime, ])
 Declaration_initial.add_rule([Type_specifier, "ID", "#startNoPush", "#pid", "#endNoPush", ])
 Declaration_prime.add_rule([Fun_declaration_prime, ])
-Declaration_prime.add_rule([Var_declaration_prime, ])
+Declaration_prime.add_rule([Var_declaration_prime, "#zeroInitialize", ])
 Var_declaration_prime.add_rule([";", ])
 Var_declaration_prime.add_rule(["[", "NUM", "#pnum", "]", "#declareArray", ";", ])
 Fun_declaration_prime.add_rule(["(", "#declareFunction", "#openScope", "#setFunctionScopeFlag", Params, ")", Compound_stmt, "#jumpBack", ])
@@ -138,8 +138,8 @@ Factor_zegond.add_rule(["(", Expression, ")", ])
 Factor_zegond.add_rule(["NUM", "#pnum", ])
 Args.add_rule([Arg_list, ])
 Args.has_epsilon = True
-Arg_list.add_rule([Expression, Arg_list_prime, ])
-Arg_list_prime.add_rule([",", Expression, Arg_list_prime, ])
+Arg_list.add_rule([Expression, Arg_list_prime, "#addArgumentCount", ])
+Arg_list_prime.add_rule([",", Expression, Arg_list_prime, "#addArgumentCount", ])
 Arg_list_prime.has_epsilon = True
 Program.first = ["$", "int", "void", ]
 Declaration_list.first_has_epsilon = True

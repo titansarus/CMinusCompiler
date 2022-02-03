@@ -61,16 +61,26 @@ class JPF(Instruction):
     def __init__(self, A, L):
         super().__init__("JPF")
         self.A = A
-        self.L = L
+        self.L = str(L)
     def to_code(self):
-        return f"({self.operation}, {self.A}, {self.L}, )"
+        L = self.L
+        if L[0] == "#":
+            L = L[1:]
+        else:
+            L = "@" + L
+        return f"({self.operation}, {self.A}, {L}, )"
 
 class JP(Instruction):
     def __init__(self, L):
         super().__init__("JP")
-        self.L = L
+        self.L = str(L)
     def to_code(self):
-        return f"({self.operation}, {self.L}, , )"
+        L = self.L
+        if L[0] == "#":
+            L = L[1:]
+        else:
+            L = "@" + L
+        return f"({self.operation}, {L}, , )"
 
 class Print(Instruction):
     def __init__(self, A):

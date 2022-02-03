@@ -29,6 +29,15 @@ class SymbolTable:
             result_symbol = self.add_symbol(lexeme=lexeme, address=address)
         return result_symbol
 
+    def find_symbol_by_address(self, address):
+        result_symbol = None
+        for scope in self.scopes[::-1]:
+            for symbol in scope:
+                if symbol.address == address:
+                    result_symbol = symbol
+                    break
+        return result_symbol
+
     def add_symbol(self, lexeme, address):
         symbol = Symbol(lexeme=lexeme, address=address)
         self.scopes[-1].append(symbol)

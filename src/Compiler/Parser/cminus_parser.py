@@ -32,7 +32,7 @@ class Parser:
         current_token = get_next_valid_token(self.lexer)
         root_parser = ProductionParser(Program, self.lexer, self.codegen)
         root = root_parser.parse()
-        return root, errors
+        return root, errors, self.codegen.program
 
 
 class ParseNode:

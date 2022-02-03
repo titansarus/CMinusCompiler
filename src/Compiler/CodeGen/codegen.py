@@ -56,13 +56,21 @@ class CodeGen:
             "#call": self.action_manager.call,
             "#setReturnValue": self.action_manager.set_return_value,
             "#jumpBack": self.action_manager.jump_back,
+            "#addArgumentCount": self.action_manager.add_argument_count,
+            "#zeroInitialize": self.action_manager.zero_initialize,
         }
 
-        self.push_instruction(
-            Assign(f"#{STACK_START_ADDRESS}", self.register_file.stack_pointer_register_address))
+        initialization_instructions = [
+            Assign(f"#{STACK_START_ADDRESS}", self.register_file.stack_pointer_register_address),
+            Assign("#0", self.register_file.return_address_register_address),
+            Assign("#0", self.register_file.return_value_register_address),
+        ]
+
+        self.push_instructions(initialization_instructions)
 
         self.jump_to_main_address = len(self.program)
         self.program.append(None)
+        self.i += 1
 
         self.add_output_function()
 
@@ -72,6 +80,10 @@ class CodeGen:
     def check_program_size(self, size=None):
         if not size:
             size = self.i
+        if type(size) == str:
+            if size[0] == "#":
+                size = size[1:]
+            size = int(size)
         while len(self.program) <= size:
             self.program.append(None)
 
@@ -84,6 +96,10 @@ class CodeGen:
         self.i += 1
 
     def insert_instruction(self, instruction, destination):
+        if type(destination) == str:
+            if destination[0] == "#":
+                destination = destination[1:]
+            destination = int(destination)
         self.check_program_size(destination)
         self.program[destination] = instruction.to_code()
 
@@ -109,6 +125,7 @@ class CodeGen:
         self.act("#pid", Token(lexeme="a"), None)
         self.act("#popParam", None, None)
         self.act("#pid", Token(lexeme="a"), None)
+        self.act("#openScope", None, None)
         self.push_instruction(
             Print(self.semantic_stack.pop()))
         self.act("#closeScope", None, None)

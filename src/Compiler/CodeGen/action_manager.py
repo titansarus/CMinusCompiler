@@ -16,26 +16,31 @@ class ActionManager:
         self.check_declaration_flag = False
         self.function_scope_flag = False
         self.breaks = []
+        self.has_reached_main = False
 
     def pid(self, previous_token: Token, current_token: Token):
         address = self.symbol_table.find_address(previous_token.lexeme, self.check_declaration_flag)
+        if previous_token.lexeme == "main":
+            self.codegen.insert_instruction(JP(f"#{self.codegen.i}"), self.codegen.jump_to_main_address)
+            if not self.has_reached_main:
+                for symbol in self.codegen.symbol_table.scopes[0]:
+                    if not symbol.is_function:
+                        self.codegen.push_instruction(
+                            Assign("#0", symbol.address))
+            self.has_reached_main = True
         if not self.no_push_flag:
             self.codegen.semantic_stack.append(address)
-        if self.argument_counts:
-            self.argument_counts[-1] += 1
     
     def pnum(self, previous_token: Token, current_token: Token):
         num = f"#{previous_token.lexeme}"
         if not self.no_push_flag:
             self.codegen.semantic_stack.append(num)
-        if self.argument_counts:
-            self.argument_counts[-1] += 1
 
     def label(self, previous_token: Token, current_token: Token):
-        self.codegen.semantic_stack.append(self.codegen.i)
+        self.codegen.semantic_stack.append(f"#{self.codegen.i}")
 
     def save(self, previous_token: Token, current_token: Token):
-        self.codegen.semantic_stack.append(self.codegen.i)
+        self.codegen.semantic_stack.append(f"#{self.codegen.i}")
         self.codegen.i += 1
 
     def push_operation(self, previous_token: Token, current_token: Token):
@@ -61,28 +66,25 @@ class ActionManager:
         self.argument_counts.append(0)
 
     def end_argument_list(self, previous_token: Token, current_token: Token):
-        arg_count = self.argument_counts.pop()
-        for i in range(arg_count):
-            data = self.codegen.semantic_stack.pop()
-            self.codegen.runtime_stack.push(data)
+        pass
 
     def jp_from_saved(self, previous_token: Token, current_token: Token):
-        instruction = JP(self.codegen.i)
+        instruction = JP(f"#{self.codegen.i}")
         destination = self.codegen.semantic_stack.pop()
         self.codegen.insert_instruction(instruction, destination)
 
     def jpf_from_saved(self, previous_token: Token, current_token: Token):
         destination = self.codegen.semantic_stack.pop()
         condition = self.codegen.semantic_stack.pop()
-        instruction = JPF(condition, self.codegen.i)
+        instruction = JPF(condition, f"#{self.codegen.i}")
         self.codegen.insert_instruction(instruction, destination)
     
     def save_and_jpf_from_last_save(self, previous_token: Token, current_token: Token):
         destination = self.codegen.semantic_stack.pop()
         condition = self.codegen.semantic_stack.pop()
-        instruction = JPF(condition, self.codegen.i + 1)
+        instruction = JPF(condition, f"#{self.codegen.i + 1}")
         self.codegen.insert_instruction(instruction, destination)
-        self.codegen.semantic_stack.append(self.codegen.i)
+        self.codegen.semantic_stack.append(f"#{self.codegen.i}")
         self.codegen.i += 1
     
     def assign(self, previous_token: Token, current_token: Token):
@@ -91,9 +93,13 @@ class ActionManager:
         instruction = Assign(value, address)
         self.codegen.push_instruction(instruction)
         self.codegen.semantic_stack.append(value)
+        symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address)
+        if symbol:
+            symbol.is_initialized = True
 
     def start_no_push(self, previous_token: Token, current_token: Token):
-        self.no_push_flag = True
+        if not self.function_scope_flag:
+            self.no_push_flag = True
 
     def end_no_push(self, previous_token: Token, current_token: Token):
         self.no_push_flag = False
@@ -127,7 +133,7 @@ class ActionManager:
 
     def handle_breaks(self, previous_token: Token, current_token: Token):
         for destination in self.breaks:
-            instruction = JP(self.codegen.i)
+            instruction = JP(f"#{self.codegen.i}")
             self.codegen.insert_instruction(instruction, destination)
 
     def pop(self, previous_token: Token, current_token: Token):
@@ -138,9 +144,6 @@ class ActionManager:
 
     def uncheck_declaration(self, previous_token: Token, current_token: Token):
         self.check_declaration_flag = False
-
-    def declare_function(self, previous_token: Token, current_token: Token):
-        pass
 
     def set_function_scope_flag(self, previous_token: Token, current_token: Token):
         self.function_scope_flag = True
@@ -162,17 +165,25 @@ class ActionManager:
     def declare_function(self, previous_token: Token, current_token: Token):
         symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
         symbol.address = f"#{self.codegen.i}"
+        symbol.is_function = True
         self.codegen.function_data_start_pointer = self.codegen.data_address
         self.codegen.function_temp_start_pointer = self.codegen.temp_address
 
     def call(self, previous_token: Token, current_token: Token):
         for address in range(self.codegen.function_data_start_pointer, self.codegen.data_address, WORD_SIZE):
-            self.codegen.runtime_stack.push(address)
+            symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address)
+            if symbol and symbol.is_initialized:
+                self.codegen.runtime_stack.push(address)
         for address in range(self.codegen.function_temp_start_pointer, self.codegen.temp_address, WORD_SIZE):
             self.codegen.runtime_stack.push(address)
         self.codegen.register_file.push_registers()
         
-        self.codegen.register_file.save_return_address()
+        arg_count = self.argument_counts.pop()
+        self.codegen.register_file.save_return_address(arg_count)
+
+        for i in range(arg_count):
+            data = self.codegen.semantic_stack.pop()
+            self.codegen.runtime_stack.push(data)
 
         address = self.codegen.semantic_stack.pop()
         instruction = JP(address)
@@ -185,10 +196,12 @@ class ActionManager:
         self.codegen.temp_address -= WORD_SIZE
 
         self.codegen.register_file.pop_registers()
-        for address in range(self.codegen.temp_address - WORD_SIZE, self.codegen.function_temp_start_pointer, -WORD_SIZE):
-            self.codegen.runtime_stack.pop(address)
-        for address in range(self.codegen.data_address - WORD_SIZE, self.codegen.function_data_start_pointer, -WORD_SIZE):
-            self.codegen.runtime_stack.pop(address)
+        for address in range(self.codegen.temp_address, self.codegen.function_temp_start_pointer, -WORD_SIZE):
+            self.codegen.runtime_stack.pop(address - WORD_SIZE)
+        for address in range(self.codegen.data_address, self.codegen.function_data_start_pointer, -WORD_SIZE):
+            symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address - WORD_SIZE)
+            if symbol and symbol.is_initialized:
+                self.codegen.runtime_stack.pop(address - WORD_SIZE)
         
         self.codegen.temp_address += WORD_SIZE
     
@@ -197,5 +210,15 @@ class ActionManager:
         self.codegen.register_file.save_return_value(value)
 
     def jump_back(self, previous_token: Token, current_token: Token):
-        instruction = JP(self.codegen.register_file.return_address_register_address)
-        self.codegen.push_instruction(instruction)
+        if not self.has_reached_main:
+            instruction = JP(self.codegen.register_file.return_address_register_address)
+            self.codegen.push_instruction(instruction)
+
+    def add_argument_count(self, previous_token: Token, current_token: Token):
+        self.argument_counts[-1] += 1
+
+    def zero_initialize(self, previous_token: Token, current_token: Token):
+        if len(self.codegen.symbol_table.scopes) > 1:
+            symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
+            self.codegen.push_instruction(
+                Assign("#0", symbol.address))

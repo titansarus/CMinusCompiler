@@ -5,3 +5,5 @@ class Symbol:
         self.symbol_type = symbol_type
         self.size = size
         self.param_count = param_count
+        self.is_initialized = False
+        self.is_function = False
