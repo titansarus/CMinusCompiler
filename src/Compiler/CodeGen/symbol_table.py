@@ -27,6 +27,8 @@ class SymbolTable:
                 raise SemanticException(SCOPE_SEMANTIC_ERROR.format(lexeme))
             address = self.codegen.get_next_data_address()
             result_symbol = self.add_symbol(lexeme=lexeme, address=address)
+        if address in [1100, 1084]:
+            print(address, result_symbol.lexeme)
         return result_symbol
 
     def find_symbol_by_address(self, address):

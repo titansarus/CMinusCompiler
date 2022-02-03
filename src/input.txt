@@ -1,20 +1,18 @@
-/*===== sample S1 =====*/
+/* === sample 9 ==== */
 
-/*int fib(int n) {
-	int a;
-	int b;
+int f(int n) {
 	if(n < 2) {
 		return 1;
 	} else {
-		a = fib(n - 1);
-		b = fib(n - 2);
-		return a + b;
+		return f(n - 1) + f(n - 2);
 	} endif
-}*/
+}
 
 void main(void){
-	int a[10];
-	a[1] = 5;
-	a[2] = 2 * a[1];
-	output(a[2]);
+	int n;
+	n = 0;
+	repeat {
+		output(f(n));
+		n = n + 1;
+	} until(n == 10)
 }

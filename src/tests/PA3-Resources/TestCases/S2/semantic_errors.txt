@@ -1,0 +1,3 @@
+#8 : Semantic Error! 'e' is not defined.
+#10 : Semantic Error! Type mismatch in operands, Got array instead of int.
+#11 : Semantic Error! Type mismatch in operands, Got array instead of int.

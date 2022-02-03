@@ -3,219 +3,173 @@
 
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T01...
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/O1...
 
 
-              *** syntax_errors.txt diffrences ***
+              *** result.txt diffrences ***
 
 
-              *** parse_tree.txt diffrences ***
 
 
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/O2...
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T02...
+              *** result.txt diffrences ***
 
 
-              *** syntax_errors.txt diffrences ***
 
 
-              *** parse_tree.txt diffrences ***
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/S1...
 
 
+              *** result.txt diffrences ***
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T03...
 
 
-              *** syntax_errors.txt diffrences ***
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/S2...
 
 
-              *** parse_tree.txt diffrences ***
+              *** result.txt diffrences ***
 
 
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T04...
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/S3...
 
 
-              *** syntax_errors.txt diffrences ***
+              *** result.txt diffrences ***
 
 
-              *** parse_tree.txt diffrences ***
 
 
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/S4...
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T05...
+              *** result.txt diffrences ***
 
 
-              *** syntax_errors.txt diffrences ***
 
 
-              *** parse_tree.txt diffrences ***
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/S5...
 
 
+              *** result.txt diffrences ***
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T06...
 
 
-              *** syntax_errors.txt diffrences ***
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T1...
 
 
-              *** parse_tree.txt diffrences ***
+              *** result.txt diffrences ***
 
 
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T07...
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T10...
 
 
-              *** syntax_errors.txt diffrences ***
+              *** result.txt diffrences ***
 
 
-              *** parse_tree.txt diffrences ***
 
 
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T2...
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T08...
+              *** result.txt diffrences ***
 
 
-              *** syntax_errors.txt diffrences ***
 
 
-              *** parse_tree.txt diffrences ***
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T28...
 
 
+              *** result.txt diffrences ***
+ERROR : Invalid access to memory											    |	PRINT    0
+																
+															    >	PRINT    1
+																
+															    >	PRINT    4
+																
+															    >	PRINT    9
+																
+															    >	PRINT    16
+																
+															    >	PRINT    25
+																
+															    >	PRINT    36
+																
+															    >	PRINT    49
+																
+															    >	PRINT    64
+																
+															    >	PRINT    81
+																
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T09...
 
 
-              *** syntax_errors.txt diffrences ***
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T3...
 
 
-              *** parse_tree.txt diffrences ***
+              *** result.txt diffrences ***
 
 
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T10...
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T4...
 
 
-              *** syntax_errors.txt diffrences ***
+              *** result.txt diffrences ***
+															    >	PRINT    1
+																
+															    >	PRINT    4
+																
+															    >	PRINT    4
+																
+															    >	PRINT    9
+																
+															    >	PRINT    9
+																
+															    >	PRINT    16
+																
+															    >	PRINT    16
+																
+															    >	PRINT    25
+																
+															    >	PRINT    25
+																
 
 
-              *** parse_tree.txt diffrences ***
 
 
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T5...
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T11...
+              *** result.txt diffrences ***
 
 
-              *** syntax_errors.txt diffrences ***
 
 
-              *** parse_tree.txt diffrences ***
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T6...
 
 
+              *** result.txt diffrences ***
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T12...
 
 
-              *** syntax_errors.txt diffrences ***
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T7...
 
 
-              *** parse_tree.txt diffrences ***
+              *** result.txt diffrences ***
 
 
 
 
-=====================================>>>>> Running Test ../PA2_testcases/T13...
+=====================================>>>>> Running Test ../PA3-Resources/TestCases/T8...
 
 
-              *** syntax_errors.txt diffrences ***
-
-
-              *** parse_tree.txt diffrences ***
-
-
-
-
-=====================================>>>>> Running Test ../PA2_testcases/T14...
-
-
-              *** syntax_errors.txt diffrences ***
-
-
-              *** parse_tree.txt diffrences ***
-
-
-
-
-=====================================>>>>> Running Test ../PA2_testcases/T15...
-
-
-              *** syntax_errors.txt diffrences ***
-
-
-              *** parse_tree.txt diffrences ***
-
-
-
-
-=====================================>>>>> Running Test ../PA2_testcases/T16...
-
-
-              *** syntax_errors.txt diffrences ***
-
-
-              *** parse_tree.txt diffrences ***
-
-
-
-
-=====================================>>>>> Running Test ../PA2_testcases/T17...
-
-
-              *** syntax_errors.txt diffrences ***
-
-
-              *** parse_tree.txt diffrences ***
-
-
-
-
-=====================================>>>>> Running Test ../PA2_testcases/T18...
-
-
-              *** syntax_errors.txt diffrences ***
-
-
-              *** parse_tree.txt diffrences ***
-
-
-
-
-=====================================>>>>> Running Test ../PA2_testcases/T19...
-
-
-              *** syntax_errors.txt diffrences ***
-
-
-              *** parse_tree.txt diffrences ***
-
-
-
-
-=====================================>>>>> Running Test ../PA2_testcases/T20...
-
-
-              *** syntax_errors.txt diffrences ***
-
-
-              *** parse_tree.txt diffrences ***
+              *** result.txt diffrences ***

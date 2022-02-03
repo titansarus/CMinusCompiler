@@ -7,3 +7,4 @@ class Symbol:
         self.param_count = param_count
         self.is_initialized = False
         self.is_function = False
+        self.is_array = False

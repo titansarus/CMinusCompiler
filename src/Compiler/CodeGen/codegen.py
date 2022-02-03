@@ -13,6 +13,8 @@ class CodeGen:
         self.temp_address = TEMP_SECTION_START_ADDRESS
         self.semantic_stack = []
         self.data_and_temp_stack = []
+        if DEBUG:
+            self.line_map = []
 
         self.function_data_start_pointer = 0
         self.function_temp_start_pointer = 0
@@ -58,6 +60,7 @@ class CodeGen:
             "#jumpBack": self.action_manager.jump_back,
             "#addArgumentCount": self.action_manager.add_argument_count,
             "#zeroInitialize": self.action_manager.zero_initialize,
+            "#arrayParam": self.action_manager.array_param,
         }
 
         initialization_instructions = [
@@ -75,6 +78,8 @@ class CodeGen:
         self.add_output_function()
 
     def act(self, action, * args):
+        if DEBUG:
+            self.line_map.append((self.i, args))
         self.actions[action](* args)
 
     def check_program_size(self, size=None):

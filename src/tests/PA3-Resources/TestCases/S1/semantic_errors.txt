@@ -1,0 +1,3 @@
+#9 : Semantic Error! 'c' is not defined.
+#15 : Semantic Error! Mismatch in numbers of arguments of 'foo'.
+#17 : Semantic Error! Mismatch in type of argument 1 of 'foo'. Expected 'int' but got 'array' instead.

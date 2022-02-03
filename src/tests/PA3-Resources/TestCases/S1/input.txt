@@ -1,0 +1,19 @@
+/*===== sample S1 =====*/
+int foo(int x){
+	if (x < 0){
+		output(x);
+		return 1;
+	}
+	else {
+		output(x);
+		return x + c;
+	} endif
+}
+void main(void){
+	int i;
+	int a[10];	
+	i= foo(0,1);
+	output(i);
+	i=foo(a);
+	output(i);
+}

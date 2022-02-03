@@ -9,7 +9,7 @@ Type-specifier -> int | void
 Params -> int ID #pid Param-prime #popParam Param-list | void
 Param-list -> , Param Param-list | EPSILON
 Param -> Declaration-initial Param-prime #popParam
-Param-prime -> [  ] #array | EPSILON
+Param-prime -> [  ] #arrayParam | EPSILON
 Compound-stmt -> { #openScope Declaration-list Statement-list #closeScope }
 Statement-list -> Statement Statement-list | EPSILON
 Statement -> Expression-stmt | Compound-stmt | Selection-stmt | Iteration-stmt | Return-stmt

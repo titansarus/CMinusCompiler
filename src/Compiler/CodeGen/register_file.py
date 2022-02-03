@@ -19,10 +19,10 @@ class RegisterFile:
 
     def push_registers(self):
         self.codegen.runtime_stack.push(self.return_address_register_address)
-        self.codegen.runtime_stack.push(self.return_value_register_address)
+        # self.codegen.runtime_stack.push(self.return_value_register_address)
         self.codegen.runtime_stack.push(self.stack_pointer_register_address)
 
     def pop_registers(self):
         self.codegen.runtime_stack.pop(self.stack_pointer_register_address)
-        self.codegen.runtime_stack.pop(self.return_value_register_address)
+        # self.codegen.runtime_stack.pop(self.return_value_register_address)
         self.codegen.runtime_stack.pop(self.return_address_register_address)

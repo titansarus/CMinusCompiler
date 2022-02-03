@@ -1,0 +1,13 @@
+/*==== sample S2  ====*/
+void main(void){
+	int a;	
+	int c;
+	int b;
+        int d[10];
+	a = 10 * 2 + 3 * (1 < 0);
+	e = 3 * c;
+	c = b * d[4];
+	a = 10 * 2 + 3 * (1 < d);
+	b = (a == d) * 4 + 3;
+	output(b);
+}

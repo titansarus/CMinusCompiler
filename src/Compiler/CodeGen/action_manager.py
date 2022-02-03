@@ -107,8 +107,15 @@ class ActionManager:
     def declare_array(self, previous_token: Token, current_token: Token):
         # use [1:] to skip the '#'
         length = int(self.codegen.semantic_stack.pop()[1:])
-        size = (length - 1) * WORD_SIZE
-        self.codegen.get_next_data_address(size = size)
+        symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
+        symbol.is_array = True
+        size = length * WORD_SIZE
+        array_start_address = self.codegen.get_next_data_address(size = size)
+        self.codegen.push_instruction(Assign(f"#{array_start_address}", symbol.address))
+        if len(self.codegen.symbol_table.scopes) > 1:
+            for address in range(array_start_address, array_start_address + size, WORD_SIZE):
+                self.codegen.push_instruction(
+                    Assign("#0", address))
 
     def array(self, previous_token: Token, current_token: Token):
         offset = self.codegen.semantic_stack.pop()
@@ -116,7 +123,7 @@ class ActionManager:
         array_start = self.codegen.semantic_stack.pop()
         instructions = [
             Mult(offset, f"#{WORD_SIZE}", temp),
-            Add(temp, f"#{array_start}", temp),
+            Add(temp, f"{array_start}", temp),
         ]
         self.codegen.push_instructions(instructions)
         self.codegen.semantic_stack.append(f"@{temp}")
@@ -161,6 +168,9 @@ class ActionManager:
     def pop_param(self, previous_token: Token, current_token: Token):
         address = self.codegen.semantic_stack.pop()
         self.codegen.runtime_stack.pop(address)
+        symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address)
+        if symbol:
+            symbol.is_initialized = True
 
     def declare_function(self, previous_token: Token, current_token: Token):
         symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
@@ -188,13 +198,7 @@ class ActionManager:
         address = self.codegen.semantic_stack.pop()
         instruction = JP(address)
         self.codegen.push_instruction(instruction)
-
-        temp = self.codegen.get_next_temp_address()
-        self.codegen.semantic_stack.append(temp)
-        self.codegen.push_instruction(
-            Assign(self.codegen.register_file.return_value_register_address, temp))
-        self.codegen.temp_address -= WORD_SIZE
-
+        
         self.codegen.register_file.pop_registers()
         for address in range(self.codegen.temp_address, self.codegen.function_temp_start_pointer, -WORD_SIZE):
             self.codegen.runtime_stack.pop(address - WORD_SIZE)
@@ -202,8 +206,11 @@ class ActionManager:
             symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address - WORD_SIZE)
             if symbol and symbol.is_initialized:
                 self.codegen.runtime_stack.pop(address - WORD_SIZE)
-        
-        self.codegen.temp_address += WORD_SIZE
+
+        temp = self.codegen.get_next_temp_address()
+        self.codegen.semantic_stack.append(temp)
+        self.codegen.push_instruction(
+            Assign(self.codegen.register_file.return_value_register_address, temp))
     
     def set_return_value(self, previous_token: Token, current_token: Token):
         value = self.codegen.semantic_stack.pop()
@@ -222,3 +229,7 @@ class ActionManager:
             symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
             self.codegen.push_instruction(
                 Assign("#0", symbol.address))
+
+    def array_param(self, previous_token: Token, current_token: Token):
+        symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
+        symbol.is_array = True

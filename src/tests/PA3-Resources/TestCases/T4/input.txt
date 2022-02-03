@@ -1,0 +1,75 @@
+/*=== Sample 4 == */
+int abs(int a) {
+    if (a < 0) {
+        return 0-a;
+    } else {
+        return a;
+    } endif
+}
+
+int isMultiplier(int a, int b) {
+    int i;
+    int step;
+    int flag;
+
+    if (b == 0) {
+        return 0;
+    } else {
+        i = 1;
+        flag = 0;
+    } endif
+
+    if (a < 0) {
+        if (b < 0) {
+            i = 1;
+        } else {
+            i = 0-1;
+        } endif
+    } else {
+        if (b < 0) {
+            i = 0-1;
+        } else {
+            i = 1;
+        } endif
+    } endif
+
+    step = i;
+    i = i - abs(i);
+    if (abs(i) < abs(a) + 1) {
+    repeat {
+        if (i * b == a) {
+            flag = 1;
+            break;
+        } else {
+            i = i + step;
+        } endif
+    } until (abs(a) < abs(i))
+    } endif
+    return flag;
+
+}
+
+
+void main(void) {
+    int i;
+    int j;
+    int sum;
+    i = 1;
+    j = 1;
+    repeat {
+        sum = 0;
+        j = 0;
+        repeat {
+            j = j + 1;
+            if (isMultiplier(j, 2)) {
+                sum = sum + 0;
+            } else {
+                sum = sum + j;
+            } endif
+        }  until (i < j + 1)
+        output(sum);
+        i = i + 1;
+
+    } until (10 < i)
+
+}

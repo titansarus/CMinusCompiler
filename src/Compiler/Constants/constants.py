@@ -1,4 +1,6 @@
 
+DEBUG = True
+
 letters = "qwertyuiopasdfghjklmnbvcxzQWERTYUIOPLKJHGFDSAZXCVBNM"
 digits = "0123456789"
 symbol = ";:,[](){}+-*=<"
