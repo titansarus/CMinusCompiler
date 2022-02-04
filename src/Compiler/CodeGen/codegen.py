@@ -54,7 +54,6 @@ class CodeGen:
             "#closeScope": self.action_manager.close_scope,
             "#setFunctionScopeFlag": self.action_manager.set_function_scope_flag,
             "#popParam": self.action_manager.pop_param,
-            "#declareFunction": self.action_manager.declare_function,
             "#call": self.action_manager.call,
             "#setReturnValue": self.action_manager.set_return_value,
             "#jumpBack": self.action_manager.jump_back,

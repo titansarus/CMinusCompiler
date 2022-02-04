@@ -2,8 +2,10 @@ from .symbol import Symbol
 from ..Constants.constants import *
 from .semantic_exception import SemanticException
 from typing import TYPE_CHECKING
+
 if TYPE_CHECKING:
     from .codegen import CodeGen
+
 
 class SymbolTable:
     def __init__(self, codegen: "CodeGen"):

@@ -5,8 +5,10 @@ from .instructions import *
 from ..Constants.constants import *
 from .semantic_exception import SemanticException
 from typing import TYPE_CHECKING
+
 if TYPE_CHECKING:
     from .codegen import CodeGen
+
 
 class ActionManager:
     def __init__(self, codegen: "CodeGen", symbol_table: SymbolTable):
@@ -26,10 +28,20 @@ class ActionManager:
         self.force_declaration_flag = False
         self.current_id = ""
         self.void_flag = False
+        self.found_arg_type_mismtach = []
+
+    def raise_arg_type_mismatch_exception(self, index, lexeme, expected, got):
+        if not self.found_arg_type_mismtach or not self.found_arg_type_mismtach[-1]:
+            if len(self.found_arg_type_mismtach) == 0:
+                self.found_arg_type_mismtach.append(True)
+            self.found_arg_type_mismtach[-1] = True
+            raise SemanticException(
+                ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index, lexeme, expected, got))
 
     def pid(self, previous_token: Token, current_token: Token):
         self.current_id = previous_token.lexeme
-        address = self.symbol_table.find_address(previous_token.lexeme, self.check_declaration_flag, self.force_declaration_flag)
+        address = self.symbol_table.find_address(previous_token.lexeme, self.check_declaration_flag,
+                                                 self.force_declaration_flag)
         if previous_token.lexeme == "main":
             self.codegen.insert_instruction(JP(f"#{self.codegen.i}"), self.codegen.jump_to_main_address)
             if not self.has_reached_main:
@@ -56,18 +68,17 @@ class ActionManager:
             current_symbol: Symbol = self.codegen.symbol_table.find_symbol(previous_token.lexeme, prevent_add=True)
             if param_symbol.symbol_type == INT:
                 if current_symbol.symbol_type == ARRAY and current_token.lexeme != "[":
-                    raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, INT, ARRAY))
+                    self.raise_arg_type_mismatch_exception(index + 1, symbol.lexeme, INT, ARRAY)
                 if current_symbol.symbol_type == VOID:
-                    raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, INT, VOID))
+                    self.raise_arg_type_mismatch_exception(index + 1, symbol.lexeme, INT, VOID)
             if param_symbol.symbol_type == ARRAY:
                 if current_symbol.symbol_type == INT:
-                    raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, ARRAY, INT))
+                    self.raise_arg_type_mismatch_exception(index + 1, symbol.lexeme, ARRAY, INT)
                 if current_symbol.symbol_type == ARRAY and current_token.lexeme == "[":
-                    raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, ARRAY, INT))
+                    self.raise_arg_type_mismatch_exception(index + 1, symbol.lexeme, ARRAY, INT)
                 if current_symbol.symbol_type == VOID:
-                    raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, ARRAY, VOID))
+                    self.raise_arg_type_mismatch_exception(index + 1, symbol.lexeme, ARRAY, VOID)
 
-    
     def pnum(self, previous_token: Token, current_token: Token):
         num = f"#{previous_token.lexeme}"
         if not self.no_push_flag:
@@ -77,7 +88,7 @@ class ActionManager:
             symbol: Symbol = self.symbol_table.find_symbol(self.called_functions[-1], prevent_add=True)
             param_symbol: Symbol = symbol.param_symbols[index]
             if param_symbol.symbol_type == ARRAY:
-                raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, ARRAY, INT))
+                self.raise_arg_type_mismatch_exception(index + 1, symbol.lexeme, ARRAY, INT)
 
     def label(self, previous_token: Token, current_token: Token):
         self.codegen.semantic_stack.append(f"#{self.codegen.i}")
@@ -108,9 +119,10 @@ class ActionManager:
     def start_argument_list(self, previous_token: Token, current_token: Token):
         self.argument_counts.append(0)
         self.called_functions.append(self.current_id)
+        self.found_arg_type_mismtach.append(False)
 
     def end_argument_list(self, previous_token: Token, current_token: Token):
-        pass
+        self.found_arg_type_mismtach.pop()
 
     def jp_from_saved(self, previous_token: Token, current_token: Token):
         instruction = JP(f"#{self.codegen.i}")
@@ -122,7 +134,7 @@ class ActionManager:
         condition = self.codegen.semantic_stack.pop()
         instruction = JPF(condition, f"#{self.codegen.i}")
         self.codegen.insert_instruction(instruction, destination)
-    
+
     def save_and_jpf_from_last_save(self, previous_token: Token, current_token: Token):
         destination = self.codegen.semantic_stack.pop()
         condition = self.codegen.semantic_stack.pop()
@@ -130,7 +142,7 @@ class ActionManager:
         self.codegen.insert_instruction(instruction, destination)
         self.codegen.semantic_stack.append(f"#{self.codegen.i}")
         self.codegen.i += 1
-    
+
     def assign(self, previous_token: Token, current_token: Token):
         value = self.codegen.semantic_stack.pop()
         address = self.codegen.semantic_stack.pop()
@@ -155,7 +167,7 @@ class ActionManager:
         symbol.is_array = True
         symbol.symbol_type = ARRAY
         size = length * WORD_SIZE
-        array_start_address = self.codegen.get_next_data_address(size = size)
+        array_start_address = self.codegen.get_next_data_address(size=size)
         self.codegen.push_instruction(Assign(f"#{array_start_address}", symbol.address))
         if len(self.codegen.symbol_table.scopes) > 1:
             for address in range(array_start_address, array_start_address + size, WORD_SIZE):
@@ -172,7 +184,7 @@ class ActionManager:
         ]
         self.codegen.push_instructions(instructions)
         self.codegen.semantic_stack.append(f"@{temp}")
-        
+
     def until(self, previous_token: Token, current_token: Token):
         condition = self.codegen.semantic_stack.pop()
         destination = self.codegen.semantic_stack.pop()
@@ -215,7 +227,7 @@ class ActionManager:
     def close_scope(self, previous_token: Token, current_token: Token):
         self.codegen.symbol_table.scopes.pop()
         self.codegen.data_address, self.codegen.temp_address = self.codegen.data_and_temp_stack.pop()
-    
+
     def pop_param(self, previous_token: Token, current_token: Token):
         address = self.codegen.semantic_stack.pop()
         self.codegen.runtime_stack.pop(address)
@@ -241,26 +253,31 @@ class ActionManager:
         self.codegen.function_temp_start_pointer = self.codegen.temp_address
 
     def call(self, previous_token: Token, current_token: Token):
-        for address in range(self.codegen.function_data_start_pointer, self.codegen.data_address, WORD_SIZE):
-            symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address)
-            if symbol and symbol.is_initialized:
-                self.codegen.runtime_stack.push(address)
-        for address in range(self.codegen.function_temp_start_pointer, self.codegen.temp_address, WORD_SIZE):
-            self.codegen.runtime_stack.push(address)
+        self.store_data_and_temp()
         self.codegen.register_file.push_registers()
-        
+
         arg_count = self.argument_counts.pop()
         self.codegen.register_file.save_return_address(arg_count)
 
-        for i in range(arg_count):
-            data = self.codegen.semantic_stack.pop()
-            self.codegen.runtime_stack.push(data)
+        self.make_call(arg_count)
 
-        address = self.codegen.semantic_stack.pop()
-        instruction = JP(address)
-        self.codegen.push_instruction(instruction)
-        
         self.codegen.register_file.pop_registers()
+        self.restore_data_and_temp()
+
+        self.retrieve_return_value()
+
+        function_name = self.called_functions.pop()
+        symbol = self.codegen.symbol_table.find_symbol(function_name)
+        if symbol.param_count != arg_count:
+            raise SemanticException(ARG_COUNT_MISMATCH_SEMANTIC_ERROR.format(function_name))
+
+    def retrieve_return_value(self):
+        temp = self.codegen.get_next_temp_address()
+        self.codegen.semantic_stack.append(temp)
+        self.codegen.push_instruction(
+            Assign(self.codegen.register_file.return_value_register_address, temp))
+
+    def restore_data_and_temp(self):
         for address in range(self.codegen.temp_address, self.codegen.function_temp_start_pointer, -WORD_SIZE):
             self.codegen.runtime_stack.pop(address - WORD_SIZE)
         for address in range(self.codegen.data_address, self.codegen.function_data_start_pointer, -WORD_SIZE):
@@ -268,16 +285,22 @@ class ActionManager:
             if symbol and symbol.is_initialized:
                 self.codegen.runtime_stack.pop(address - WORD_SIZE)
 
-        temp = self.codegen.get_next_temp_address()
-        self.codegen.semantic_stack.append(temp)
-        self.codegen.push_instruction(
-            Assign(self.codegen.register_file.return_value_register_address, temp))
+    def make_call(self, arg_count):
+        for i in range(arg_count):
+            data = self.codegen.semantic_stack.pop()
+            self.codegen.runtime_stack.push(data)
+        address = self.codegen.semantic_stack.pop()
+        instruction = JP(address)
+        self.codegen.push_instruction(instruction)
 
-        function_name = self.called_functions.pop()
-        symbol = self.codegen.symbol_table.find_symbol(function_name)
-        if symbol.param_count != arg_count:
-            raise SemanticException(ARG_COUNT_MISMATCH_SEMANTIC_ERROR.format(function_name))
-    
+    def store_data_and_temp(self):
+        for address in range(self.codegen.function_data_start_pointer, self.codegen.data_address, WORD_SIZE):
+            symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address)
+            if symbol and symbol.is_initialized:
+                self.codegen.runtime_stack.push(address)
+        for address in range(self.codegen.function_temp_start_pointer, self.codegen.temp_address, WORD_SIZE):
+            self.codegen.runtime_stack.push(address)
+
     def set_return_value(self, previous_token: Token, current_token: Token):
         value = self.codegen.semantic_stack.pop()
         self.codegen.register_file.save_return_value(value)
@@ -288,11 +311,14 @@ class ActionManager:
             self.codegen.push_instruction(instruction)
 
     def add_argument_count(self, previous_token: Token, current_token: Token):
+        self.found_arg_type_mismtach[-1] = False
         self.argument_counts[-1] += 1
 
     def zero_initialize(self, previous_token: Token, current_token: Token):
         if len(self.codegen.symbol_table.scopes) > 1:
             symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
+            if not symbol.is_array:
+                symbol.symbol_type = INT
             self.codegen.push_instruction(
                 Assign("#0", symbol.address))
 
