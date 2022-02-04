@@ -42,7 +42,14 @@ class ActionManager:
         self.current_id = previous_token.lexeme
         address = self.symbol_table.find_address(previous_token.lexeme, self.check_declaration_flag,
                                                  self.force_declaration_flag)
-        if previous_token.lexeme == "main":
+        self.handle_main_function(previous_token)
+        if not self.no_push_flag:
+            self.codegen.semantic_stack.append(address)
+        self.handle_operand_mismatch(current_token)
+        self.handle_arg_mismatch(current_token, previous_token)
+
+    def handle_main_function(self, previous_token):
+        if previous_token.lexeme == 'main':
             self.codegen.insert_instruction(JP(f"#{self.codegen.i}"), self.codegen.jump_to_main_address)
             if not self.has_reached_main:
                 for symbol in self.codegen.symbol_table.scopes[0]:
@@ -50,8 +57,8 @@ class ActionManager:
                         self.codegen.push_instruction(
                             Assign("#0", symbol.address))
             self.has_reached_main = True
-        if not self.no_push_flag:
-            self.codegen.semantic_stack.append(address)
+
+    def handle_operand_mismatch(self, current_token):
         if self.is_rhs:
             symbol = self.symbol_table.find_symbol(self.current_id, prevent_add=True)
             if symbol.is_function:
@@ -61,6 +68,8 @@ class ActionManager:
                 if symbol.is_array:
                     if current_token.lexeme != "[" and not self.argument_counts:
                         raise SemanticException(OPERAND_TYPE_MISMATCH_SEMANTIC_ERROR.format(ARRAY, INT))
+
+    def handle_arg_mismatch(self, current_token, previous_token):
         if len(self.argument_counts) > 0:
             index = self.argument_counts[-1]
             symbol: Symbol = self.symbol_table.find_symbol(self.called_functions[-1], prevent_add=True)
@@ -107,11 +116,11 @@ class ActionManager:
         operand1 = self.codegen.semantic_stack.pop()
         self.codegen.semantic_stack.append(temp_address)
         operation_to_instruction = {
-            "+": Add,
-            "-": Sub,
-            "<": LT,
-            "==": Eq,
-            "*": Mult,
+            '+': Add,
+            '-': Sub,
+            '<': LT,
+            '==': Eq,
+            '*': Mult,
         }
         instruction = operation_to_instruction[operation](operand1, operand2, temp_address)
         self.codegen.push_instruction(instruction)
@@ -233,7 +242,7 @@ class ActionManager:
         self.codegen.runtime_stack.pop(address)
         symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address)
         symbol.symbol_type = self.current_type
-        if previous_token and previous_token.lexeme == "]":
+        if previous_token and previous_token.lexeme == ']':
             symbol.symbol_type = ARRAY
             symbol.is_array = True
         self.current_declared_function_symbol.param_symbols.append(symbol)
@@ -354,5 +363,5 @@ class ActionManager:
     def check_type(self, previous_token: Token, current_token: Token):
         symbol = self.symbol_table.find_symbol(self.current_id, prevent_add=True)
         if symbol.is_array:
-            if current_token.lexeme != "[" and not self.argument_counts:
+            if current_token.lexeme != '[' and not self.argument_counts:
                 raise SemanticException(OPERAND_TYPE_MISMATCH_SEMANTIC_ERROR.format(ARRAY, INT))

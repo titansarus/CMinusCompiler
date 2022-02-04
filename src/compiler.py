@@ -6,6 +6,7 @@ from Compiler.CodeGen.codegen import CodeGen
 from Compiler.Constants.constants import DEBUG
 
 # Written by Soroush Jahanzad (98100389) and Amirmahdi Namjoo (97107212)
+# Department of Computer Engineering - Sharif University of Technology
 
 if __name__ == '__main__':
     lexer_states.initialize_states()
