@@ -13,6 +13,8 @@ class ActionManager:
         self.codegen = codegen
         self.symbol_table = symbol_table
         self.argument_counts = []
+        self.current_declared_function_symbol = None
+        self.called_functions = []
         self.no_push_flag = False
         self.check_declaration_flag = False
         self.function_scope_flag = False
@@ -69,6 +71,7 @@ class ActionManager:
 
     def start_argument_list(self, previous_token: Token, current_token: Token):
         self.argument_counts.append(0)
+        self.called_functions.append(self.current_id)
 
     def end_argument_list(self, previous_token: Token, current_token: Token):
         pass
@@ -182,11 +185,14 @@ class ActionManager:
         symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address)
         if symbol:
             symbol.is_initialized = True
+            self.current_declared_function_symbol.param_count += 1
 
     def declare_function(self, previous_token: Token, current_token: Token):
         symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
         symbol.address = f"#{self.codegen.i}"
         symbol.is_function = True
+        self.current_declared_function_symbol = symbol
+        symbol.param_count = 0
         self.void_flag = False
         self.codegen.function_data_start_pointer = self.codegen.data_address
         self.codegen.function_temp_start_pointer = self.codegen.temp_address
@@ -223,6 +229,11 @@ class ActionManager:
         self.codegen.semantic_stack.append(temp)
         self.codegen.push_instruction(
             Assign(self.codegen.register_file.return_value_register_address, temp))
+
+        function_name = self.called_functions.pop()
+        symbol = self.codegen.symbol_table.find_symbol(function_name)
+        if symbol.param_count != arg_count:
+            raise SemanticException(ARG_COUNT_MISMATCH_SEMANTIC_ERROR.format(function_name))
     
     def set_return_value(self, previous_token: Token, current_token: Token):
         value = self.codegen.semantic_stack.pop()
