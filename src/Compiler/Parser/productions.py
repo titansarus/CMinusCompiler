@@ -150,8 +150,8 @@ Factor_zegond.add_rule(["(", "#startRHS", Expression, "#endRHS", ")", ])
 Factor_zegond.add_rule(["NUM", "#pnum", ])
 Args.add_rule([Arg_list, ])
 Args.has_epsilon = True
-Arg_list.add_rule([Expression, Arg_list_prime, "#addArgumentCount", ])
-Arg_list_prime.add_rule([",", Expression, Arg_list_prime, "#addArgumentCount", ])
+Arg_list.add_rule([Expression, "#addArgumentCount", Arg_list_prime, ])
+Arg_list_prime.add_rule([",", Expression, "#addArgumentCount", Arg_list_prime, ])
 Arg_list_prime.has_epsilon = True
 Program.first = ["$", "int", "void", ]
 Declaration_list.first_has_epsilon = True

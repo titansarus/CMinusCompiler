@@ -41,5 +41,5 @@ Var-prime -> [ #startRHS Expression #endRHS ] #array | EPSILON
 Factor-prime -> ( #startArgumentList Args #endArgumentList ) #call | EPSILON
 Factor-zegond -> ( #startRHS Expression #endRHS ) | NUM #pnum
 Args -> Arg-list | EPSILON
-Arg-list -> Expression Arg-list-prime #addArgumentCount
-Arg-list-prime -> , Expression Arg-list-prime #addArgumentCount | EPSILON
+Arg-list -> Expression #addArgumentCount Arg-list-prime
+Arg-list-prime -> , Expression #addArgumentCount Arg-list-prime | EPSILON

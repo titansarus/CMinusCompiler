@@ -8,18 +8,15 @@
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S1...
-Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S1/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S2...
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S3...
-Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S3/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S4...
-Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S4/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S5...

@@ -49,12 +49,35 @@ class ActionManager:
                 if symbol.is_array:
                     if current_token.lexeme != "[" and not self.argument_counts:
                         raise SemanticException(OPERAND_TYPE_MISMATCH_SEMANTIC_ERROR.format(ARRAY, INT))
+        if len(self.argument_counts) > 0:
+            index = self.argument_counts[-1]
+            symbol: Symbol = self.symbol_table.find_symbol(self.called_functions[-1], prevent_add=True)
+            param_symbol: Symbol = symbol.param_symbols[index]
+            current_symbol: Symbol = self.codegen.symbol_table.find_symbol(previous_token.lexeme, prevent_add=True)
+            if param_symbol.symbol_type == INT:
+                if current_symbol.symbol_type == ARRAY and current_token.lexeme != "[":
+                    raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, INT, ARRAY))
+                if current_symbol.symbol_type == VOID:
+                    raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, INT, VOID))
+            if param_symbol.symbol_type == ARRAY:
+                if current_symbol.symbol_type == INT:
+                    raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, ARRAY, INT))
+                if current_symbol.symbol_type == ARRAY and current_token.lexeme == "[":
+                    raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, ARRAY, INT))
+                if current_symbol.symbol_type == VOID:
+                    raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, ARRAY, VOID))
 
     
     def pnum(self, previous_token: Token, current_token: Token):
         num = f"#{previous_token.lexeme}"
         if not self.no_push_flag:
             self.codegen.semantic_stack.append(num)
+        if len(self.argument_counts) > 0:
+            index = self.argument_counts[-1]
+            symbol: Symbol = self.symbol_table.find_symbol(self.called_functions[-1], prevent_add=True)
+            param_symbol: Symbol = symbol.param_symbols[index]
+            if param_symbol.symbol_type == ARRAY:
+                raise SemanticException(ARG_TYPE_MISMATCH_SEMANTIC_ERROR.format(index + 1, symbol.lexeme, ARRAY, INT))
 
     def label(self, previous_token: Token, current_token: Token):
         self.codegen.semantic_stack.append(f"#{self.codegen.i}")
@@ -130,6 +153,7 @@ class ActionManager:
         length = int(self.codegen.semantic_stack.pop()[1:])
         symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
         symbol.is_array = True
+        symbol.symbol_type = ARRAY
         size = length * WORD_SIZE
         array_start_address = self.codegen.get_next_data_address(size = size)
         self.codegen.push_instruction(Assign(f"#{array_start_address}", symbol.address))
@@ -197,6 +221,9 @@ class ActionManager:
         self.codegen.runtime_stack.pop(address)
         symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address)
         symbol.symbol_type = self.current_type
+        if previous_token and previous_token.lexeme == "]":
+            symbol.symbol_type = ARRAY
+            symbol.is_array = True
         self.current_declared_function_symbol.param_symbols.append(symbol)
         if symbol:
             symbol.is_initialized = True
@@ -272,6 +299,7 @@ class ActionManager:
     def array_param(self, previous_token: Token, current_token: Token):
         symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
         symbol.is_array = True
+        symbol.symbol_type = ARRAY
 
     def set_force_declaration_flag(self, previous_token: Token, current_token: Token):
         self.force_declaration_flag = True
