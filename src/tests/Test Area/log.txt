@@ -29,7 +29,8 @@
 
 
               *** semantic_errors.txt diffrences ***
-															    >	#17 : Semantic Error! Mismatch in type of argument 1 of 'foo'. Expected 'int' but got 'array' instead.																
+															    >	#17 : Semantic Error! Mismatch in type of argument 1 of 'foo'. Expected 'int' but got 'array' instead.
+																
 
 
               *** result.txt diffrences ***
@@ -41,8 +42,6 @@
 
 
               *** semantic_errors.txt diffrences ***
-															    >	#10 : Semantic Error! Type mismatch in operands, Got array instead of int.
-															    >	#11 : Semantic Error! Type mismatch in operands, Got array instead of int.
 
 
               *** result.txt diffrences ***
@@ -54,8 +53,8 @@
 
 
               *** semantic_errors.txt diffrences ***
-															    >	#17 : Semantic Error! Mismatch in type of argument 2 of 'f'. Expected 'array' but got 'int' instead.																
-															    >	#28 : Semantic Error! Type mismatch in operands, Got array instead of int.																
+															    >	#17 : Semantic Error! Mismatch in type of argument 2 of 'f'. Expected 'array' but got 'int' instead.
+																
 
 
               *** result.txt diffrences ***
@@ -67,7 +66,8 @@
 
 
               *** semantic_errors.txt diffrences ***
-															    >	#16 : Semantic Error! Mismatch in type of argument 1 of 'foo'. Expected 'int' but got 'array' instead.																
+															    >	#16 : Semantic Error! Mismatch in type of argument 1 of 'foo'. Expected 'int' but got 'array' instead.
+																
 
 
               *** result.txt diffrences ***
@@ -79,7 +79,6 @@
 
 
               *** semantic_errors.txt diffrences ***
-															    >	#45 : Semantic Error! Type mismatch in operands, Got array instead of int.																
 
 
               *** result.txt diffrences ***

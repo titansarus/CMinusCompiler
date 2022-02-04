@@ -22,6 +22,10 @@ EPSILON = "epsilon"
 TOKEN_TYPES = [NUM, ID, KEYWORD, KEYWORD_ID, SYMBOL, COMMENT, WHITESPACE, START, END_TOKEN]
 all_characters = "".join([chr(i) for i in range(256)])
 
+INT = "int"
+VOID = "void"
+ARRAY = "array"
+
 PANIC_INVALID_INPUT = "Invalid input"
 PANIC_INVALID_NUMBER = "Invalid number"
 PANIC_UNMATCHED_COMMENT = "Unmatched comment"
@@ -50,5 +54,5 @@ SCOPE_SEMANTIC_ERROR = "Semantic Error! '{}' is not defined."
 VOID_SEMANTIC_ERROR = "Semantic Error! Illegal type of void for '{}'."
 ARG_COUNT_MISMATCH_SEMANTIC_ERROR = "Semantic Error! Mismatch in numbers of arguments of '{}'."
 BREAK_SEMANTIC_ERROR = "Semantic Error! No 'repeat ... until' found for 'break'."
-OPERAND_TYPE_MISMATCH_SEMANTIC_ERROR = "Semantic Error! Type mismatch in operands, Got '{}' instead of '{}'."
+OPERAND_TYPE_MISMATCH_SEMANTIC_ERROR = "Semantic Error! Type mismatch in operands, Got {} instead of {}."
 ARG_TYPE_MISMATCH_SEMANTIC_ERROR = "Semantic Error! Mismatch in type of argument {} for '{}'. Expected '{}' but got '{}' instead."

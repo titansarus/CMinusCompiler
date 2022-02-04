@@ -13,7 +13,7 @@ class SymbolTable:
     def find_address(self, lexeme, check_declaration=False, force_declaration=False):
         return self.find_symbol(lexeme, check_declaration, force_declaration).address
 
-    def find_symbol(self, lexeme, check_declaration=False, force_declaration=False):
+    def find_symbol(self, lexeme, check_declaration=False, force_declaration=False, prevent_add=False):
         address = -1
         result_symbol = None
         if not force_declaration:
@@ -25,7 +25,7 @@ class SymbolTable:
                         break
                 if result_symbol:
                     break
-        if address == -1:
+        if address == -1 and not prevent_add:
             if check_declaration:
                 raise SemanticException(SCOPE_SEMANTIC_ERROR.format(lexeme))
             address = self.codegen.get_next_data_address()

@@ -66,6 +66,10 @@ class CodeGen:
             "#unsetForceDeclarationFlag": self.action_manager.unset_force_declaration_flag,
             "#voidCheck": self.action_manager.void_check,
             "#voidCheckThrow": self.action_manager.void_check_throw,
+            "#saveType": self.action_manager.save_type,
+            "#checkType": self.action_manager.check_type,
+            "#startRHS": self.action_manager.start_rhs,
+            "#endRHS": self.action_manager.end_rhs,
         }
 
         initialization_instructions = [

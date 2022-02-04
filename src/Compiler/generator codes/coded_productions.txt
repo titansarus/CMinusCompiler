@@ -1,12 +1,12 @@
 Program -> Declaration-list $
 Declaration-list -> Declaration Declaration-list | EPSILON 
 Declaration -> Declaration-initial Declaration-prime
-Declaration-initial ->  Type-specifier #setForceDeclarationFlag ID #startNoPush #pid #endNoPush #unsetForceDeclarationFlag
+Declaration-initial ->  Type-specifier #saveType #setForceDeclarationFlag ID #startNoPush #pid #endNoPush #unsetForceDeclarationFlag
 Declaration-prime -> Fun-declaration-prime | Var-declaration-prime #zeroInitialize #voidCheckThrow
 Var-declaration-prime -> ; | [ NUM #pnum ] #declareArray ; 
 Fun-declaration-prime -> ( #declareFunction #openScope #setFunctionScopeFlag Params ) Compound-stmt #jumpBack
 Type-specifier -> int | void #voidCheck
-Params -> int #setForceDeclarationFlag ID #pid #unsetForceDeclarationFlag Param-prime #popParam Param-list | void
+Params -> int #saveType #setForceDeclarationFlag ID #pid #unsetForceDeclarationFlag Param-prime #popParam Param-list | void
 Param-list -> , Param Param-list | EPSILON
 Param -> Declaration-initial Param-prime #popParam
 Param-prime -> [  ] #arrayParam | EPSILON
@@ -14,14 +14,14 @@ Compound-stmt -> { #openScope Declaration-list Statement-list #closeScope }
 Statement-list -> Statement Statement-list | EPSILON
 Statement -> Expression-stmt | Compound-stmt | Selection-stmt | Iteration-stmt | Return-stmt
 Expression-stmt -> Expression #pop ; | break #break ; | ;
-Selection-stmt -> if ( Expression ) #save Statement Else-stmt
+Selection-stmt -> if ( #startRHS Expression #endRHS ) #save Statement Else-stmt
 Else-stmt -> endif #jpfFromSaved | else #saveAndJpfFromLastSave Statement endif #jpFromSaved
-Iteration-stmt -> repeat #label #startBreakScope Statement until ( Expression ) #until #handleBreaks
-Return-stmt -> return Return-stmt-prime #jumpBack
+Iteration-stmt -> repeat #label #startBreakScope Statement until ( #startRHS Expression #endRHS ) #until #handleBreaks
+Return-stmt -> return #startRHS Return-stmt-prime #endRHS #jumpBack
 Return-stmt-prime -> ; | Expression #setReturnValue ;
-Expression -> Simple-expression-zegond | ID #checkDeclaration #pid #uncheckDeclaration B
-B -> = Expression #assign | [ Expression ] #array H | Simple-expression-prime
-H -> = Expression #assign | G D C
+Expression -> Simple-expression-zegond | ID #checkDeclaration #pid #uncheckDeclaration #checkType B
+B -> = #startRHS Expression #assign #endRHS | [ #startRHS Expression #endRHS ] #array H | Simple-expression-prime
+H -> = #startRHS Expression #assign #endRHS | G D C
 Simple-expression-zegond -> Additive-expression-zegond C
 Simple-expression-prime -> Additive-expression-prime C
 C -> Relop Additive-expression #execute | EPSILON
@@ -35,11 +35,11 @@ Term -> Factor G
 Term-prime -> Factor-prime G
 Term-zegond -> Factor-zegond G
 G -> * #pushOperation Factor #execute G | EPSILON
-Factor -> ( Expression ) | ID #checkDeclaration #pid #uncheckDeclaration Var-call-prime | NUM #pnum
+Factor -> ( #startRHS Expression #endRHS ) | ID #checkDeclaration #pid #uncheckDeclaration Var-call-prime | NUM #pnum
 Var-call-prime -> ( #startArgumentList Args #endArgumentList ) #call | Var-prime
-Var-prime -> [ Expression ] #array | EPSILON
+Var-prime -> [ #startRHS Expression #endRHS ] #array | EPSILON
 Factor-prime -> ( #startArgumentList Args #endArgumentList ) #call | EPSILON
-Factor-zegond -> ( Expression ) | NUM #pnum
+Factor-zegond -> ( #startRHS Expression #endRHS ) | NUM #pnum
 Args -> Arg-list | EPSILON
 Arg-list -> Expression Arg-list-prime #addArgumentCount
 Arg-list-prime -> , Expression Arg-list-prime #addArgumentCount | EPSILON

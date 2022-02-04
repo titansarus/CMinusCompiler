@@ -14,6 +14,9 @@ class ActionManager:
         self.symbol_table = symbol_table
         self.argument_counts = []
         self.current_declared_function_symbol = None
+        self.current_id = None
+        self.is_rhs = False
+        self.current_type = None
         self.called_functions = []
         self.no_push_flag = False
         self.check_declaration_flag = False
@@ -37,6 +40,16 @@ class ActionManager:
             self.has_reached_main = True
         if not self.no_push_flag:
             self.codegen.semantic_stack.append(address)
+        if self.is_rhs:
+            symbol = self.symbol_table.find_symbol(self.current_id, prevent_add=True)
+            if symbol.is_function:
+                if symbol.symbol_type != INT:
+                    raise SemanticException(OPERAND_TYPE_MISMATCH_SEMANTIC_ERROR.format(VOID, INT))
+            else:
+                if symbol.is_array:
+                    if current_token.lexeme != "[" and not self.argument_counts:
+                        raise SemanticException(OPERAND_TYPE_MISMATCH_SEMANTIC_ERROR.format(ARRAY, INT))
+
     
     def pnum(self, previous_token: Token, current_token: Token):
         num = f"#{previous_token.lexeme}"
@@ -183,6 +196,8 @@ class ActionManager:
         address = self.codegen.semantic_stack.pop()
         self.codegen.runtime_stack.pop(address)
         symbol: Symbol = self.codegen.symbol_table.find_symbol_by_address(address)
+        symbol.symbol_type = self.current_type
+        self.current_declared_function_symbol.param_symbols.append(symbol)
         if symbol:
             symbol.is_initialized = True
             self.current_declared_function_symbol.param_count += 1
@@ -191,8 +206,9 @@ class ActionManager:
         symbol: Symbol = self.codegen.symbol_table.scopes[-1][-1]
         symbol.address = f"#{self.codegen.i}"
         symbol.is_function = True
-        self.current_declared_function_symbol = symbol
+        symbol.symbol_type = self.current_type
         symbol.param_count = 0
+        self.current_declared_function_symbol = symbol
         self.void_flag = False
         self.codegen.function_data_start_pointer = self.codegen.data_address
         self.codegen.function_temp_start_pointer = self.codegen.temp_address
@@ -271,3 +287,18 @@ class ActionManager:
             self.void_flag = False
             self.codegen.symbol_table.remove_symbol(self.current_id)
             raise SemanticException(VOID_SEMANTIC_ERROR.format(self.current_id))
+
+    def save_type(self, previous_token: Token, current_token: Token):
+        self.current_type = previous_token.lexeme
+
+    def start_rhs(self, previous_token: Token, current_token: Token):
+        self.is_rhs = True
+
+    def end_rhs(self, previous_token: Token, current_token: Token):
+        self.is_rhs = False
+
+    def check_type(self, previous_token: Token, current_token: Token):
+        symbol = self.symbol_table.find_symbol(self.current_id, prevent_add=True)
+        if symbol.is_array:
+            if current_token.lexeme != "[" and not self.argument_counts:
+                raise SemanticException(OPERAND_TYPE_MISMATCH_SEMANTIC_ERROR.format(ARRAY, INT))

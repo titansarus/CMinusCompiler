@@ -12,7 +12,6 @@ Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S1/semantic_errors.tx
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S2...
-Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S2/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S3...
@@ -24,7 +23,6 @@ Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S4/semantic_errors.tx
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/S5...
-Files ./semantic_errors.txt and ../PA3-Resources/TestCases/S5/semantic_errors.txt differ
 
 
 =====================================>>>>> Running Test ../PA3-Resources/TestCases/T1...
